@@ -2,8 +2,8 @@ const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 
-// Librería de NODE.
-const crypto = require("crypto");
+// IdBase
+const IDBASE = require('../global/idDogsBase.js');
 
 module.exports = (sequelize) => {
   // defino el modelo
@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       primaryKey: true,
       set(value) {
-        this.setDataValue('id', (value + 1000));
+        this.setDataValue('id', (value + IDBASE));
       }
     },
     name: {
