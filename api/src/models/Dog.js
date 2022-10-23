@@ -9,27 +9,30 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Dog', {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
+      set(value) {
+        this.setDataValue('id', (value + 1000));
+      }
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
 
     height: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNull: false
     },
 
     weight: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNull: false
     },
 
     lifeSpan: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     }
   },
