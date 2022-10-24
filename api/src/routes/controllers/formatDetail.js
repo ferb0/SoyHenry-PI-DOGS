@@ -6,11 +6,11 @@ function formatDetailAPIServer(breed) {
     return breed ? {
         name: breed.name,
         weight: breed.weight.metric,
-        img: breed.image.url,
-        source: API,
         height: breed.height.metric,
         life_span: breed.life_span.slice(0, -6),
-        temper: breed.temperament.split(", ")
+        img: breed.image.url,
+        temper: breed.temperament.split(", "),
+        source: API
     } : null;
 };
 
@@ -18,11 +18,11 @@ function formatDetailBDServer(breed) {
     return breed ? {
         name: breed.name,
         weight: breed.weight,
-        img: null,
-        source: DB,
         height: breed.height,
         life_span: breed.lifeSpan,
-        temper: breed.Tempers.map(el => el.name)
+        img: null,
+        temper: breed.Tempers.map(el => el.name),
+        source: DB
     } : null;
 };
 
