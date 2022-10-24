@@ -1,9 +1,10 @@
 // Funciones para darle formato a las respuestas del server.
-const DB = 'DB';
-const API = 'API';
+
+const {DB, API} = require('../../global/constSource.js');
 
 function formatDetailAPIServer(breed) {
     return breed ? {
+        id: breed.id,
         name: breed.name,
         weight: breed.weight.metric,
         height: breed.height.metric,
@@ -16,6 +17,7 @@ function formatDetailAPIServer(breed) {
 
 function formatDetailBDServer(breed) {
     return breed ? {
+        id: breed.id,
         name: breed.name,
         weight: breed.weight,
         height: breed.height,

@@ -1,15 +1,21 @@
 const { Router } = require('express');
 const router = Router();
 
+const { Sequelize } = require("sequelize");
+
 const { Dog, Temper } = require('../db.js');
 const axiosDogs = require('../global/axiosInstance.js');
-
 // IdBase
 const IDBASE = require('../global/idDogsBase.js');
+//Funcones para formatos
 const {
     formatDetailAPIServer,
     formatDetailBDServer
 } = require('./controllers/formatDetail.js');
+const {
+    formatSummaryAPIServer,
+    formatSummaryBDServer
+} = require('./controllers/formatSumary.js');
 
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
@@ -42,21 +48,37 @@ router.get('/', async (req, res) => {
     let name = req.query.name;
 
     try {
+        let responseAPI = (await axiosDogs({ method: 'get' })).data;
+
         if (name) {
-            // Búsqueda en API
-            let response = await axiosDogs({
-                method: 'get',
-                url: '/search',
-                params: { q: name }
+            // Busqueda y ya filtrado en BD
+            let responseDB = await Dog.findAll({
+                where: {
+                    name: {
+                        [Sequelize.Op.iLike]: '%' + name + '%'
+                    }
+                },
+                include: Temper
             });
 
-            // Falta busqueda en BD
-            res.json(response.data);
+            // Filtrado en API
+            let responseFilteredAPI = responseAPI.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
+
+
+            res.json([
+                ...formatSummaryAPIServer(responseFilteredAPI),
+                ...formatSummaryBDServer(responseDB)
+            ]);
+
         }
         else {
-            let response = await axiosDogs({ method: 'get' });
-
-            res.json(response.data);
+            // Busqueda en BD
+            let responseDB = await Dog.findAll({ include: Temper });
+            // Búsqueda en API
+            res.json([
+                ...formatSummaryAPIServer(responseAPI),
+                ...formatSummaryBDServer(responseDB)
+            ]);
         }
     }
     catch (e) {
