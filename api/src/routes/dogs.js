@@ -29,12 +29,12 @@ router.get('/:idBreed', async (req, res) => {
                 include: Temper
             });
             // Contar con respuesta null.
-            res.json(formatDetailBDServer(response.get({plain: true})));
+            res.json(formatDetailBDServer(response.get({ plain: true })));
         }
 
     }
     catch (e) {
-        res.status(500).json(e);
+        res.status(500).json({ msg: e });
     }
 });
 
@@ -60,23 +60,26 @@ router.get('/', async (req, res) => {
         }
     }
     catch (e) {
-        res.status(500).json(e);
+        res.status(500).json({ msg: e });
     }
 });
 
 router.post('/', async (req, res) => {
     let { name, height, weight, lifeSpan, temper } = req.body;
-    // Obtener la cantidad de elementos en la tabla.
-    const id = await Dog.count();
-    // Se crea la raza.
-    const newBreed = await Dog.create({ id, name, height, weight, lifeSpan });
-    //Se agregan los temperamentos.
-    temper.forEach(async element => {
-        await newBreed.addTemper(await Temper.create({ name: element }));
-    });
+    try {// Obtener la cantidad de elementos en la tabla.
+        const id = await Dog.count();
+        // Se crea la raza.
+        const newBreed = await Dog.create({ id, name, height, weight, lifeSpan });
+        //Se agregan los temperamentos.
+        temper.forEach(async element => {
+            await newBreed.addTemper(await Temper.create({ name: element }));
+        });
 
-    res.send("Ok.");
-
+        res.send("Ok.");
+    }
+    catch (e) {
+        res.status(500).json({ msg: e });
+    }
 });
 
 module.exports = router;

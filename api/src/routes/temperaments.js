@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
         res.send(allTemperaments);
     }
     catch (e) {
-        res.status(500).json(e);
+        res.status(500).json({msg: e});
     }
 });
 
