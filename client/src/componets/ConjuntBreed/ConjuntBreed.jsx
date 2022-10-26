@@ -19,7 +19,7 @@ export default function ConjuntBreed() {
     else {
         temperFilter = breeds;
     }
-    console.log(temperFilter)
+
     // Contenplar la condicion de que sea ceros elementos a mistrar con o son filtro
     return (
         <div className="App">
