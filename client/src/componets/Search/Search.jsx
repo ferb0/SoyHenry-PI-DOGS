@@ -4,6 +4,7 @@ import { getBreed } from '../../redux/actions.js'
 
 import TemperamentFilter from "./TemperamentFilter.jsx";
 import SourceFilter from "./SourceFilter.jsx";
+import SortType from "./SortType.jsx";
 
 
 export default function Search() {
@@ -26,7 +27,7 @@ export default function Search() {
         <div className="Search">
             {<SourceFilter />}
             {<TemperamentFilter />}
-
+            {<SortType />}
             <form onSubmit={handleSubmit}>
                 <label>Ordenamiento</label> <br />
                 <input id="searchInput" type='text' name="search" onChange={handleOnChange}></input>
