@@ -21,21 +21,19 @@ export default function Search() {
     };
 
     function handleOnClickRadio(event) {
-        dispatch(setFilterType(event.target.name))
+        dispatch(setFilterType(event.target.value))
     };
 
     return (
         <div className="nav">
             <form>
-                <label>Filtro</label> <br />
-                <input id="radio_ALL" type="radio" name={ALL} value={ALL} onClick={handleOnClickRadio} />
-                <label>{ALL}</label> <br />
-                <input id="radio_DB" type="radio" name={DB} value={DB} onClick={handleOnClickRadio} />
-                <label>{DB}</label> <br />
-                <input id="radio_API" type="radio" name={API} value={API} onClick={handleOnClickRadio} />
-                <label>{API}</label>
+                <label>Filtro por origen</label>
+                <select name="filtroOrigen" id="" onChange={handleOnClickRadio} >
+                    <option value={ALL} name={ALL} > {ALL} </option>
+                    <option value={DB} name={DB} > {DB} </option>
+                    <option value={API} name={API} > {API} </option>
+                </select>
             </form>
-
 
             <form onSubmit={handleSubmit}>
                 <label>Ordenamiento</label> <br />
