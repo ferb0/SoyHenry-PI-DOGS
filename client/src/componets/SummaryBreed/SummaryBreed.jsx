@@ -1,6 +1,6 @@
 export default function SummaryBreed(props) {
     return (
-      <div className="App">
+      <div className="SummaryBreed">
         <h3>Sumary</h3>
         <p>{props.name}</p>
         <p>{props.weight}</p>
