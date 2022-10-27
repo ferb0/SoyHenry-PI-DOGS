@@ -30,6 +30,7 @@ export default function ConjuntBreed() {
                 if (filterSource === ALL)
                     return <SummaryBredd
                         key={el.id}
+                        id={el.id}
                         name={el.name}
                         weight={el.weight}
                         img={el.img}
@@ -39,6 +40,7 @@ export default function ConjuntBreed() {
                 else if (el.source === filterSource)
                     return <SummaryBredd
                         key={el.id}
+                        id={el.id}
                         name={el.name}
                         weight={el.weight}
                         img={el.img}

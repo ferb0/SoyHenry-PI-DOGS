@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getBreed } from '../../redux/actions.js'
+import { getAllBreeds } from '../../redux/actions.js'
 
 import TemperamentFilter from "./TemperamentFilter.jsx";
 import SourceFilter from "./SourceFilter.jsx";
@@ -18,7 +18,7 @@ export default function Search() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        dispatch(getBreed(input));
+        dispatch(getAllBreeds(input));
         SetInput("");
         document.getElementById('searchInput').value = '';
     };
@@ -29,7 +29,6 @@ export default function Search() {
             {<TemperamentFilter />}
             {<SortType />}
             <form onSubmit={handleSubmit}>
-                <label>Ordenamiento</label> <br />
                 <input id="searchInput" type='text' name="search" onChange={handleOnChange}></input>
                 <button type="submit">Buscar</button>
             </form>

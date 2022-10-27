@@ -1,15 +1,17 @@
 import {
-  GET_BREED,
+  GET_ALL_BREED,
   GET_TEMPERS,
   SET_FILTERTYPE,
   SET_TEMPER,
-  SET_BREEDS
+  SET_BREEDS,
+  GET_BREED
 } from './actions.js';
 
 import { ALL } from '../global/constSource.js'
 
 const initialState = {
   breeds: [],
+  breed: {},
   filterType: ALL,
   tempers: [],
   temperSelected: ""
@@ -17,7 +19,7 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_BREED:
+    case GET_ALL_BREED:
       return {
         ...state,
         breeds: action.payload
@@ -40,12 +42,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         temperSelected: action.payload
       };
-    
-      case SET_BREEDS:
-        return {
-          ...state,
-          breeds: action.payload
-        }
+
+    case SET_BREEDS:
+      return {
+        ...state,
+        breeds: action.payload
+      };
+
+    case GET_BREED:
+      return {
+        ...state,
+        breed: action.payload
+      };
 
     default:
       return state;

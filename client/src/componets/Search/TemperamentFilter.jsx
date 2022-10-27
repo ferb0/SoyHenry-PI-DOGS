@@ -19,7 +19,7 @@ export default function TemperamentFilter() {
 
     return (
         <form>
-            <label>Filtro por Temperamentos</label>
+            <label>Filtro por temperamentos</label>
             <input type="search" name="busquedamodelos" list="listTemper" onChange={handleOnChangeTempers}></input>
             <datalist id="listTemper">
                 {tempers?.map((el, id) => <OptionsTempers key={id} value={el} />)}
