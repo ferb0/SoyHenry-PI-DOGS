@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {setBreeds} from '../../redux/actions.js'
+import { setBreeds } from '../../redux/actions.js'
 
 export default function SortType() {
-    const ALPHA_ASC = "ALPHA_ASC";
+    const ALPHA_ASC = "ALPHA_ASC"
     const ALPHA_DES = "ALPHA_DES";
     const WEIGHT_ASC = "WEIGHT_ASC";
     const WEIGHT_DES = "WEIGHT_DES";
@@ -12,7 +12,26 @@ export default function SortType() {
     let breeds = useSelector(state => state.breeds);
 
     function handleOnChangeSort(event) {
-        console.log(event.target.value);
+        breeds.sort((first, second) => {
+            console.log(event.target.value)
+            if (event.target.value === ALPHA_DES) {
+                if (first.name < second.name)
+                    return 1
+                if (first.name > second.name)
+                    return -1
+                return 0;
+            }
+
+            if (event.target.value === ALPHA_ASC) {
+                if (first.name < second.name)
+                    return -1
+                if (first.name > second.name)
+                    return 1
+                return 0;
+            }
+
+        });
+
         dispatch(setBreeds(breeds));
     };
 
