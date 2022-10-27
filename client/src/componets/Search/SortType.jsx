@@ -13,7 +13,7 @@ export default function SortType() {
 
     function handleOnChangeSort(event) {
         breeds.sort((first, second) => {
-            console.log(event.target.value)
+
             if (event.target.value === ALPHA_DES) {
                 if (first.name < second.name)
                     return 1
@@ -26,6 +26,38 @@ export default function SortType() {
                 if (first.name < second.name)
                     return -1
                 if (first.name > second.name)
+                    return 1
+                return 0;
+            }
+
+            if (event.target.value === WEIGHT_DES) {
+                // Se calcula el promedio de peso.
+                let weightFirst = first.weight.split(' - ').reduce((previous, current) => {
+                    return (parseInt(previous) + parseInt(current))/2
+                });
+                let weightSecond = second.weight.split(' - ').reduce((previous, current) => {
+                    return (parseInt(previous) + parseInt(current))/2
+                });
+
+                if (weightFirst > weightSecond)
+                    return -1
+                if (weightFirst < weightSecond)
+                    return 1
+                return 0;
+            }
+
+            if (event.target.value === WEIGHT_ASC) {
+                // Se calcula el promedio de peso.
+                let weightFirst = first.weight.split(' - ').reduce((previous, current) => {
+                    return (parseInt(previous) + parseInt(current))/2
+                });
+                let weightSecond = second.weight.split(' - ').reduce((previous, current) => {
+                    return (parseInt(previous) + parseInt(current))/2
+                });
+
+                if (weightFirst < weightSecond)
+                    return -1
+                if (weightFirst > weightSecond)
                     return 1
                 return 0;
             }
