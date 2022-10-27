@@ -3,6 +3,8 @@ import SummaryBredd from '../SummaryBreed/SummaryBreed.jsx'
 
 import { ALL } from '../../global/constSource.js'
 
+import './ConjuntBreed.css';
+
 export default function ConjuntBreed() {
     const { breeds, filterSource, temperSelected } = useSelector(state => {
         return {
@@ -22,7 +24,7 @@ export default function ConjuntBreed() {
 
     // Contenplar la condicion de que sea ceros elementos a mistrar con o son filtro
     return (
-        <div className="App">
+        <div className="ConjuntBreed">
             <h1>Conjunt Breed</h1>
             {temperFilter?.map(el => {
                 if (filterSource === ALL)
