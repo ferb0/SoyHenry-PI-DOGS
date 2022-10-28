@@ -1,5 +1,6 @@
 import { ALL } from '../../global/ConstSource.js'
 import SummaryBredd from '../SummaryBreed/SummaryBreed.jsx'
+import { CANT_SUMMARIES } from '../../global/CantSummaries.js'
 
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)
@@ -30,4 +31,14 @@ export function sourceFilter(breeds, sourceSelected) {
                 temper={el.temper}
             />
     })
+};
+
+export function cantFilter(breeds, page = 1, cant = CANT_SUMMARIES) {
+    if (breeds.length === 0) return [];
+    let array = [];
+
+    for (let i = (page - 1) * cant; i < (page - 1) * cant + cant; i++)
+        array.push(breeds[i]);
+
+    return array;
 };
