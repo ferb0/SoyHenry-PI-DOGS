@@ -1,5 +1,6 @@
 import { Route } from 'react-router-dom';
 import ConjuntBreed from '../ConjuntBreed/ConjuntBreed.jsx';
+import Createbreed from '../CreateBreed/CreateBreed.jsx';
 import DetailBreed from '../DetailBreed/DetailBreed.jsx';
 import Nav from '../Nav/Nav.jsx'
 import Search from '../Search/Search.jsx';
@@ -10,6 +11,7 @@ export default function Principal() {
         <Nav />
         <Route exact path='/' component={Search} />
         <Route exact path='/' component={ConjuntBreed} />
+        <Route exact path='/create' component={Createbreed} />
         <Route path='/breed/:id' component={DetailBreed}/>
       </div>
     );  
