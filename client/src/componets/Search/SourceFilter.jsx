@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setFilterType } from '../../redux/actions.js'
 
-import { DB, API, ALL } from '../../global/constSource.js'
+import { DB, API, ALL } from '../../global/ConstSource.js'
 
 export default function SourceFilter() {
     //const [filterType, SetFilter] = React.useState("");

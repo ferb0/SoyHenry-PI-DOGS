@@ -7,7 +7,7 @@ import {
   GET_BREED
 } from './actions.js';
 
-import { ALL } from '../global/constSource.js'
+import { ALL } from '../global/ConstSource.js'
 
 const initialState = {
   breeds: [],

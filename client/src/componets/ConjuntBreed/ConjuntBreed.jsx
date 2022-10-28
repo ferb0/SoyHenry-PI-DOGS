@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import SummaryBredd from '../SummaryBreed/SummaryBreed.jsx'
 
-import { ALL } from '../../global/constSource.js'
+import { ALL } from '../../global/ConstSource.js'
 
 import './ConjuntBreed.css';
 
