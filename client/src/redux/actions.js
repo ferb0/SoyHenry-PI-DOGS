@@ -4,6 +4,7 @@ export const GET_TEMPERS = "GET_TEMPERS";
 export const SET_TEMPER = "SET_TEMPER";
 export const SET_BREEDS = "SET_BREEDS";
 export const GET_BREED = "GET_BREED";
+export const LOADING_BREED = "LOADING_BREED";
 
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
@@ -40,13 +41,27 @@ export const setBreeds = (breeds) => {
         type: SET_BREEDS,
         payload: breeds
     }
-
 };
 
 export const getBreed = (id) => {
     return function (dispatch) {
+        dispatch(loadingBreed())
         return fetch(`http://localhost:3001/dogs/${id}`)
             .then(response => response.json())
             .then(json => dispatch({ type: GET_BREED, payload: json }))
     }
-}
+};
+
+export const cleanBreed = () => {
+    return {
+        type: GET_BREED,
+        payload: {}
+    }
+};
+
+export const loadingBreed = () => {
+    return {
+        type: LOADING_BREED,
+        payload: true
+    }
+};
