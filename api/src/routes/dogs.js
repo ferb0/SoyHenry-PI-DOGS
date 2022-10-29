@@ -23,10 +23,11 @@ router.get('/:idBreed', async (req, res) => {
     try {
         if (idBreed < IDBASE) {
             let response = (await axiosDogs({ method: 'get' })).data;
+            
             let breed = response.find(el => {
                 return el.id === parseInt(idBreed);
             });
-
+            
             res.json(formatDetailAPIServer(breed));
         }
         else {
@@ -34,6 +35,7 @@ router.get('/:idBreed', async (req, res) => {
                 where: { id: idBreed },
                 include: Temper
             });
+
             // Contar con respuesta null.
             res.json(formatDetailBDServer(response.get({ plain: true })));
         }
@@ -88,10 +90,20 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     let { name, height, weight, lifeSpan, temper } = req.body;
+
     try {// Obtener la cantidad de elementos en la tabla.
         const id = await Dog.count();
         // Se crea la raza.
-        const newBreed = await Dog.create({ id, name, height, weight, lifeSpan });
+        const newBreed = await Dog.create({
+            id,
+            name,
+            minHeight: height[0],
+            maxHeight: height[1],
+            minWeight: weight[0],
+            maxWeight: weight[1],
+            minLifeSpan: lifeSpan[0],
+            maxLifeSpan: lifeSpan[1]
+        });
         //Se agregan los temperamentos.
         temper.forEach(async element => {
             await newBreed.addTemper(await Temper.create({ name: element }));

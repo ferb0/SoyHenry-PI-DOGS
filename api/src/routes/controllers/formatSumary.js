@@ -8,7 +8,7 @@ function formatSummaryAPIServer(breed) {
         return {
             id: el.id,
             name: el.name,
-            weight: el.weight.metric,
+            weight: el.weight.metric.split(" - "),
             img: el.image.url,
             temper: el.temperament?.split(", "),
             source: API
@@ -20,17 +20,14 @@ function formatSummaryBDServer(breed) {
     let response = breed?.map(el => {
         let obj = el.get({ plain: true });
 
-        obj = {...obj,
+        return {
+            id: obj.id,
+            name: obj.name,
+            weight: [String(obj.minWeight), String(obj.maxWeight)],
             img: null,
             temper: obj.Tempers.map(el => el.name),
             source: DB
         };
-
-        delete obj.height;
-        delete obj.Tempers;
-        delete obj.lifeSpan;
-
-        return obj;
     });
     return response;
 };
