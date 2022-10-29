@@ -23,7 +23,7 @@ export default function ConjuntBreed() {
 
     // let breedsFiltered = cantFilter(sourceFiltered);
     let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
-    console.log(breedsFiltered)
+
     return (
         <div className="ConjuntBreed">
             <h1>Conjunt Breed</h1>
