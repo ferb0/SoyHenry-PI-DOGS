@@ -78,7 +78,7 @@ module.exports = (sequelize) => {
 
     minLifeSpan: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       validate: {
         isNumeric: true,
 
@@ -91,7 +91,7 @@ module.exports = (sequelize) => {
 
     maxLifeSpan: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       validate: {
         isNumeric: true,
 
