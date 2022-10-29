@@ -6,7 +6,10 @@ module.exports = (sequelize) => {
   sequelize.define('Temper', {    
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        is: /^[a-z]+$/i,
+      }
     }
   },
     { timestamps: false }
