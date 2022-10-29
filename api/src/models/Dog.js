@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         maxHeight(value) {
-          if(value < this.maxHeight)
+          if(value < this.minHeight)
           throw new Error('The maxHeight < minHeight.');
         }
       }
@@ -70,7 +70,7 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         maxWeight(value) {
-          if(value < this.maxHeight)
+          if(value < this.minWeight)
           throw new Error('The maxWeight < minWeight.');
         }
       }
@@ -83,7 +83,7 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         minorLifeSpan(value) {
-          if(value > this.maxHeight)
+          if(value > this.maxLifeSpan)
           throw new Error('The minLifeSpan > maxLifeSpan.');
         }
       }
@@ -96,7 +96,7 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         maxLifeSpan(value) {
-          if(value < this.maxHeight)
+          if(value < this.minLifeSpan)
           throw new Error('The maxLifeSpan < minLifeSpan.');
         }
       }
