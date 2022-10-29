@@ -23,11 +23,11 @@ router.get('/:idBreed', async (req, res) => {
     try {
         if (idBreed < IDBASE) {
             let response = (await axiosDogs({ method: 'get' })).data;
-            
+
             let breed = response.find(el => {
                 return el.id === parseInt(idBreed);
             });
-            
+
             res.json(formatDetailAPIServer(breed));
         }
         else {
@@ -104,15 +104,17 @@ router.post('/', async (req, res) => {
             minLifeSpan: lifeSpan[0],
             maxLifeSpan: lifeSpan[1]
         });
-        //Se agregan los temperamentos.
-        temper.forEach(async element => {
-            await newBreed.addTemper(await Temper.create({ name: element }));
-        });
 
-        res.send("Ok.");
+        let promiseTempers = temper.map(element => {
+            return Temper.create({ name: element });
+        });
+        let newTempers = await Promise.all(promiseTempers);
+        await newBreed.addTempers(newTempers);
+
+        res.send({ msg: "New race successfully created." });
     }
     catch (e) {
-        res.status(500).json({ msg: e });
+        res.status(500).json({ err: e.errors[0].message, value: e.errors[0].value });
     }
 });
 
