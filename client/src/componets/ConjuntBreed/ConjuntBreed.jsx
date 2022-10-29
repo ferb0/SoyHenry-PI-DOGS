@@ -17,10 +17,11 @@ export default function ConjuntBreed() {
     let temperFiltered = temperFilter(breeds, temperSelected);
 
     // Se filtra por origen
-    let sourceFiltered = sourceFilter(temperFiltered, sourceSelected);
+    // let sourceFiltered = sourceFilter(temperFiltered, sourceSelected);
 
-    let breedsFiltered = cantFilter(sourceFiltered);
-
+    // let breedsFiltered = cantFilter(sourceFiltered);
+    let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
+    console.log(breedsFiltered)
     return (
         <div className="ConjuntBreed">
             <h1>Conjunt Breed</h1>

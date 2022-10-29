@@ -32,12 +32,8 @@ export default function SortType() {
 
             if (event.target.value === WEIGHT_DES) {
                 // Se calcula el promedio de peso.
-                let weightFirst = first.weight.split(' - ').reduce((previous, current) => {
-                    return (parseInt(previous) + parseInt(current))/2
-                });
-                let weightSecond = second.weight.split(' - ').reduce((previous, current) => {
-                    return (parseInt(previous) + parseInt(current))/2
-                });
+                let weightFirst = (first.weight[0] + first.weight[1]) / 2;
+                let weightSecond = (second.weight[0] + second.weight[1]) / 2;
 
                 if (weightFirst > weightSecond)
                     return -1
@@ -48,12 +44,8 @@ export default function SortType() {
 
             if (event.target.value === WEIGHT_ASC) {
                 // Se calcula el promedio de peso.
-                let weightFirst = first.weight.split(' - ').reduce((previous, current) => {
-                    return (parseInt(previous) + parseInt(current))/2
-                });
-                let weightSecond = second.weight.split(' - ').reduce((previous, current) => {
-                    return (parseInt(previous) + parseInt(current))/2
-                });
+                let weightFirst = (first.weight[0] + first.weight[1]) / 2;
+                let weightSecond = (second.weight[0] + second.weight[1]) / 2;
 
                 if (weightFirst < weightSecond)
                     return -1

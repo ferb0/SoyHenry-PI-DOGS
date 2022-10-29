@@ -24,9 +24,9 @@ export default function Createbreed() {
         // Se le da formato para enviar.
         let data = {
             name: input.name,
-            height: `${input.minHeight} - ${input.maxHeight}`,
-            weight: `${input.minWeight} - ${input.maxWeight}`,
-            lifeSpan: `${input.minLifeSpan} - ${input.maxLifeSpan}`,
+            height: [input.minHeight,input.maxHeight ],
+            weight: [input.minWeight, input.maxWeight],
+            lifeSpan: [input.minLifeSpan, input.maxLifeSpan],
             temper: input.temper.replace(/\s/g, '').split(',')
         };
 
