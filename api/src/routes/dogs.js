@@ -90,8 +90,11 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     let { name, height, weight, lifeSpan, temper } = req.body;
+    if (!name || !height || !weight || !lifeSpan || !temper) 
+    return res.status(500).json({ err: 'Insufficient data.', value: '' });
 
-    try {// Obtener la cantidad de elementos en la tabla.
+    try {    
+        // Obtener la cantidad de elementos en la tabla.
         const id = await Dog.count();
         // Se crea la raza.
         const newBreed = await Dog.create({
