@@ -50,7 +50,8 @@ router.get('/', async (req, res) => {
     let name = req.query.name;
 
     try {
-        let responseAPI = (await axiosDogs({ method: 'get' })).data;
+        let responseAPI = await axiosDogs({ method: 'get' });
+        responseAPI = responseAPI.data;
 
         if (name) {
             // Busqueda y ya filtrado en BD
@@ -62,6 +63,7 @@ router.get('/', async (req, res) => {
                 },
                 include: Temper
             });
+            console.log(responseDB)
 
             // Filtrado en API
             let responseFilteredAPI = responseAPI.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
@@ -84,7 +86,7 @@ router.get('/', async (req, res) => {
         }
     }
     catch (e) {
-        res.status(500).json({ msg: e });
+        res.status(500).json({ err: e.errors[0].message, value: e.errors[0].value });
     }
 });
 
