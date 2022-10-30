@@ -63,7 +63,6 @@ router.get('/', async (req, res) => {
                 },
                 include: Temper
             });
-            console.log(responseDB)
 
             // Filtrado en API
             let responseFilteredAPI = responseAPI.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
