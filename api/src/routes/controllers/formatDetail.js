@@ -3,7 +3,6 @@
 const {DB, API} = require('../../global/constSource.js');
 
 function formatDetailAPIServer(breed) {
-    console.log(breed)
     return breed ? {
         id: breed.id,
         name: breed.name,
@@ -17,7 +16,6 @@ function formatDetailAPIServer(breed) {
 };
 
 function formatDetailBDServer(breed) {
-    console.log(breed)
     return breed ? {
         id: breed.id,
         name: breed.name,
