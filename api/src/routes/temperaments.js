@@ -7,27 +7,27 @@ const axiosTemperaments = require('../global/axiosInstance.js');
 router.get('/', async (req, res) => {
     try {
         // Se busca en la API
-        let response = await axiosTemperaments({ method: 'get' });
-        let temperamentsApi = new Set();
-        response.data.forEach(el => {
+        let temperamentsAPI = (await axiosTemperaments({ method: 'get' })).data;
+        
+        let temperaments = new Set();
+        temperamentsAPI?.forEach(el => {
             if (el.temperament) {
                 el.temperament.split(", ").forEach(el => {
-                    temperamentsApi.add(el);
+                    temperaments.add(el);
                 });
             }
         });
-        let allTemperaments = Array.from(temperamentsApi);
 
         // Se busca en la BS
-        let temperamentsBd = await Temper.findAll({attributes: ['name']});
-        temperamentsBd.forEach(el => {
-            allTemperaments.push(el.name);
+        let temperamentsBd = await Temper.findAll({ attributes: ['name'] });
+        temperamentsBd?.forEach(el => {
+            temperaments.add(el.name);
         });
 
-        res.send(allTemperaments);
+        res.send(Array.from(temperaments));
     }
     catch (e) {
-        res.status(500).json({msg: e});
+        res.status(500).json({ err: e });
     }
 });
 

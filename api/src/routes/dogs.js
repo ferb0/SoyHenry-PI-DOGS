@@ -20,6 +20,9 @@ const {
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
+    if (!idBreed.match(/^[0-9]+$/))
+    return res.status(500).json({ err: "Wrong parameter." });
+
     try {
         if (idBreed < IDBASE) {
             let response = (await axiosDogs({ method: 'get' })).data;
@@ -27,6 +30,9 @@ router.get('/:idBreed', async (req, res) => {
             let breed = response.find(el => {
                 return el.id === parseInt(idBreed);
             });
+
+            if (!breed)
+            return res.status(500).json({ err: "Without results." });
 
             res.json(formatDetailAPIServer(breed));
         }
@@ -36,13 +42,15 @@ router.get('/:idBreed', async (req, res) => {
                 include: Temper
             });
 
-            // Contar con respuesta null.
-            res.json(formatDetailBDServer(response.get({ plain: true })));
+            if (!response)
+            return res.status(500).json({ err: "Without results." });
+
+            res.json(formatDetailBDServer(response?.get({ plain: true })));
         }
 
     }
     catch (e) {
-        res.status(500).json({ msg: e });
+        res.status(500).json({ err: e.message });
     }
 });
 
@@ -50,51 +58,51 @@ router.get('/', async (req, res) => {
     let name = req.query.name;
 
     try {
-        let responseAPI = await axiosDogs({ method: 'get' });
+        let responseAPI = await axiosDogs({ method: 'get' })
         responseAPI = responseAPI.data;
 
         if (name) {
-            // Busqueda y ya filtrado en BD
-            let responseDB = await Dog.findAll({
+            var paramSearch = {
                 where: {
                     name: {
                         [Sequelize.Op.iLike]: '%' + name + '%'
                     }
                 },
                 include: Temper
-            });
-
-            // Filtrado en API
-            let responseFilteredAPI = responseAPI.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
-
-
-            res.json([
-                ...formatSummaryAPIServer(responseFilteredAPI),
-                ...formatSummaryBDServer(responseDB)
-            ]);
-
+            };
         }
         else {
-            // Busqueda en BD
-            let responseDB = await Dog.findAll({ include: Temper });
-            // Búsqueda en API
-            res.json([
-                ...formatSummaryAPIServer(responseAPI),
-                ...formatSummaryBDServer(responseDB)
-            ]);
+            var paramSearch = { include: Temper };
         }
+
+        // Busqueda y ya filtrado en BD
+        let responseFilteredDB = await Dog.findAll(paramSearch);
+
+        // Filtrado en API
+        let responseFilteredAPI = responseAPI.filter(el => {
+            if (!name)
+                return true;
+            else
+                return el.name.toLowerCase().includes(name.toLowerCase())
+        });
+
+
+        res.json([
+            ...formatSummaryAPIServer(responseFilteredAPI),
+            ...formatSummaryBDServer(responseFilteredDB)
+        ]);
     }
     catch (e) {
-        res.status(500).json({ err: e.errors[0].message, value: e.errors[0].value });
+        res.status(500).json({ err: e.message });
     }
 });
 
 router.post('/', async (req, res) => {
     let { name, height, weight, lifeSpan, temper } = req.body;
-    if (!name || !height || !weight || !lifeSpan || !temper) 
-    return res.status(500).json({ err: 'Insufficient data.', value: '' });
+    if (!name || !height || !weight || !lifeSpan || !temper)
+        return res.status(500).json({ err: 'Insufficient data.' });
 
-    try {    
+    try {
         // Obtener la cantidad de elementos en la tabla.
         const id = await Dog.count();
         // Se crea la raza.
@@ -118,7 +126,7 @@ router.post('/', async (req, res) => {
         res.send({ msg: "New race successfully created." });
     }
     catch (e) {
-        res.status(500).json({ err: e.errors[0].message, value: e.errors[0].value });
+        res.status(500).json({ err: e.message });
     }
 });
 
