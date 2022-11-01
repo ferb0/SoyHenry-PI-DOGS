@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import { temperFilter, sourceFilter, cantFilter } from './funcions.js'
+import { useEffect, useState } from 'react';
 
 import ConjuntBreed from "./ConjuntBreed/ConjuntBreed.jsx";
-import { useEffect, useState } from 'react';
+import ButtonPage from './ButtonPage/ButtonPage.jsx';
 
 export default function Pagination() {
     const { breeds, sourceSelected, temperSelected } = useSelector(state => {
@@ -12,28 +13,33 @@ export default function Pagination() {
             temperSelected: state.temperSelected
         }
     });
-    let [breedsFinal, setBreedsFinal] = useState([]);
+    let [breedsFinal, setBreedsFinal] = useState([0, []]);
 
     // let temperFiltered = temperFilter(breeds, temperSelected);
     // let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
 
     useEffect(() => {
-        console.log(temperFilter(breeds, temperSelected))
-        setBreedsFinal(cantFilter(sourceFilter(temperFilter(breeds, temperSelected), sourceSelected)), 1);
+        let temperFiltered = temperFilter(breeds, temperSelected);
+        let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
+        setBreedsFinal([breedsFiltered.length, cantFilter(breedsFiltered)]);
     }, [breeds, sourceSelected, temperSelected]);
 
     function handleClick(e) {
-        setBreedsFinal(cantFilter(sourceFilter(temperFilter(breeds, temperSelected), sourceSelected), e.target.value));
-    }
+        let temperFiltered = temperFilter(breeds, temperSelected);
+        let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
+        setBreedsFinal([breedsFiltered.length, cantFilter(breedsFiltered, e.target.value)]);
+    };
 
+    let pages = [];
+    for (let i = 0; i < Math.ceil(breedsFinal[0] / 8); i++) {
+        pages.push(<ButtonPage key={i+1} handleClick={handleClick} value={i + 1} />);
+    };
 
     return (
         <div>
             <h3>Pagination</h3>
-            <button onClick={handleClick} value="1">1</button>
-            <button onClick={handleClick} value="2">2</button>
-            <button onClick={handleClick} value="3">3</button>
-            <ConjuntBreed breeds={breedsFinal} />
+            {pages}
+            <ConjuntBreed breeds={breedsFinal[1]} />
         </div>
     )
 };
