@@ -18,7 +18,7 @@ export function sourceFilter(breeds, sourceSelected) {
         }
     }
     else
-    return breeds;
+        return breeds;
 };
 
 export function cantFilter(breeds, page = 1, cant = CANT_SUMMARIES) {
@@ -26,7 +26,7 @@ export function cantFilter(breeds, page = 1, cant = CANT_SUMMARIES) {
     let array = [];
     let max = (page - 1) * cant + cant;
 
-    if(breeds.length < cant)
+    if (breeds.length < max)
         max = breeds.length;
 
     for (let i = (page - 1) * cant; i < max; i++)
