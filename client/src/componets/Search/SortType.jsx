@@ -10,9 +10,10 @@ export default function SortType() {
 
     let dispatch = useDispatch();
     let breeds = useSelector(state => state.breeds);
+    let copyBreeds = [...breeds];
 
     function handleOnChangeSort(event) {
-        breeds.sort((first, second) => {
+        copyBreeds.sort((first, second) => {
 
             if (event.target.value === ALPHA_DES) {
                 if (first.name < second.name)
@@ -56,7 +57,7 @@ export default function SortType() {
 
         });
 
-        dispatch(setBreeds(breeds));
+        dispatch(setBreeds(copyBreeds));
     };
 
     return (
