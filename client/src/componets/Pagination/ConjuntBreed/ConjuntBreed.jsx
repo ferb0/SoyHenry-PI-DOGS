@@ -1,4 +1,4 @@
-import SummaryBredd from '../SummaryBreed/SummaryBreed.jsx'
+import SummaryBredd from '../../SummaryBreed/SummaryBreed.jsx'
 
 //import './ConjuntBreed.css';
 

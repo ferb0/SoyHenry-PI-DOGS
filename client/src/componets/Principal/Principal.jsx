@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom';
-import ConjuntBreed from '../ConjuntBreed/ConjuntBreed.jsx';
-import Pagination from '../ConjuntBreed/Pagination/Pagination.jsx';
+
+import Pagination from '../Pagination/Pagination.jsx';
 import Createbreed from '../CreateBreed/CreateBreed.jsx';
 import DetailBreed from '../DetailBreed/DetailBreed.jsx';
 import Nav from '../Nav/Nav.jsx'

@@ -1,5 +1,5 @@
-import { ALL, API, DB } from '../../../global/ConstSource.js'
-import { CANT_SUMMARIES } from '../../../global/CantSummaries.js'
+import { ALL, API, DB } from '../../global/ConstSource.js'
+import { CANT_SUMMARIES } from '../../global/CantSummaries.js'
 
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)

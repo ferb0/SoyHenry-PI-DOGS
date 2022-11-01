@@ -1,14 +1,13 @@
 import { useSelector } from 'react-redux';
 import { temperFilter, sourceFilter, cantFilter } from './funcions.js'
 
-import ConjuntBreed from "../ConjuntBreed";
+import ConjuntBreed from "./ConjuntBreed/ConjuntBreed.jsx";
 import { useEffect, useState } from 'react';
 
 export default function Pagination() {
-    const breeds = useSelector(state => state.breeds);
-
-    const { sourceSelected, temperSelected } = useSelector(state => {
+    const { breeds, sourceSelected, temperSelected } = useSelector(state => {
         return {
+            breeds: state.breeds,
             sourceSelected: state.filterType,
             temperSelected: state.temperSelected
         }
