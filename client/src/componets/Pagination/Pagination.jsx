@@ -13,7 +13,11 @@ export default function Pagination() {
             temperSelected: state.temperSelected
         }
     });
-    let [breedsFinal, setBreedsFinal] = useState([0, 0, []]);
+    let [breedsFinal, setBreedsFinal] = useState(
+        [0, // Página actual
+         0, // Cantidad total de elementos
+         [] // Elementos a mostrar por página
+        ]);
 
     // let temperFiltered = temperFilter(breeds, temperSelected);
     // let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
