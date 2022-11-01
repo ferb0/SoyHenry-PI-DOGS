@@ -24,8 +24,12 @@ export function sourceFilter(breeds, sourceSelected) {
 export function cantFilter(breeds, page = 1, cant = CANT_SUMMARIES) {
     if (breeds.length === 0) return [];
     let array = [];
+    let max = (page - 1) * cant + cant;
 
-    for (let i = (page - 1) * cant; i < (page - 1) * cant + cant; i++)
+    if(breeds.length < cant)
+        max = breeds.length;
+
+    for (let i = (page - 1) * cant; i < max; i++)
         array.push(breeds[i]);
 
     return array;
