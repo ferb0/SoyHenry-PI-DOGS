@@ -3,10 +3,10 @@ export default function checker(parameter, value) {
     if (value && parameter === "name" && !value.match(/^[a-z ]+$/i)) {
         return true;
     }
-    else if (parameter === "temper" && !value.match(/^[a-z ,]+$/i)) {
+    else if (value && parameter === "temper" && !value.match(/^[a-z ,]+$/i)) {
         return true;
     }
-    else if ((parameter.includes('min') || parameter.includes('max')) && !value.match(/^[0-9]+$/)){
+    else if (value &&  (parameter.includes('min') || parameter.includes('max')) && !value.match(/^[0-9]+$/)){
         return true;
     }
     else {
