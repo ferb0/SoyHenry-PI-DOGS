@@ -52,10 +52,10 @@ export default function Createbreed() {
       })
       .then(response => response.json())
       .then((response) => {
-        if(response.hasOwnProperty('msg') )
-        setSend(true);
-        if(response.hasOwnProperty('err') )
-        setSend(false);
+        if (response.hasOwnProperty('msg'))
+          setSend(true);
+        if (response.hasOwnProperty('err'))
+          setSend(false);
       })
   };
 
@@ -96,7 +96,7 @@ export default function Createbreed() {
       <p>Agregar separados por comas</p>
       <br />
       <button type="submit">Crear Raza</button>
-      {send === undefined ? null: send ? <p>Datos enviados</p> : <p>Datos no enviados</p>}
+      {send === undefined ? null : send ? <p>Datos enviados</p> : <p>Datos no enviados</p>}
     </form>
   )
 };
