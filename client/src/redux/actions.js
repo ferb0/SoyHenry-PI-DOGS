@@ -5,6 +5,7 @@ export const SET_TEMPER = "SET_TEMPER";
 export const SET_BREEDS = "SET_BREEDS";
 export const GET_BREED = "GET_BREED";
 export const LOADING_BREED = "LOADING_BREED";
+export const SET_SORT_TYPE = "SET_SORT_TYPE";
 
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
@@ -65,3 +66,10 @@ export const loadingBreed = () => {
         payload: true
     }
 };
+
+export const setSortType = (sort) => {
+    return {
+        type: SET_SORT_TYPE,
+        payload: sort
+    }
+}

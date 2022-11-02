@@ -5,17 +5,20 @@ import {
   SET_TEMPER,
   SET_BREEDS,
   GET_BREED,
-  LOADING_BREED
+  LOADING_BREED,
+  SET_SORT_TYPE
 } from './actions.js';
 
 import { ALL } from '../global/ConstSource.js'
+import { ALPHA_ASC } from '../global/ConstSort.js';
 
 const initialState = {
   breeds: [],
   breed: {},
-  filterType: ALL,
   tempers: [],
+  filterType: ALL,
   temperSelected: "",
+  sortSelected: ALPHA_ASC,
   loadingBreed: false
 };
 
@@ -62,6 +65,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingBreed: true
+      };
+
+    case SET_SORT_TYPE:
+      return {
+        ...state,
+        sortSelected: action.payload
       };
 
     default:
