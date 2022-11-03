@@ -1,11 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSortType } from '../../redux/actions.js'
 import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../global/ConstSort.js";
 
 export default function SortType() {
 
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
+    let sortSelected = useSelector(state => state.sortSelected);
 
     function handleOnChangeSort(event) {
         dispatch(setSortType(event.target.value));
@@ -14,7 +15,7 @@ export default function SortType() {
     return (
         <div>
             <label>Ordenamientos</label>
-            <select name="filtroOrigen" id="" onChange={handleOnChangeSort} >
+            <select name="filtroOrigen" id="" value={sortSelected} onChange={handleOnChangeSort} >
                 <option value={ALPHA_ASC} name={ALPHA_ASC} > {ALPHA_ASC} </option>
                 <option value={ALPHA_DES} name={ALPHA_DES} > {ALPHA_DES} </option>
                 <option value={WEIGHT_ASC} name={WEIGHT_ASC} > {WEIGHT_ASC} </option>
