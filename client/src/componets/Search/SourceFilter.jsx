@@ -3,6 +3,8 @@ import { setFilterType } from '../../redux/actions.js'
 
 import { DB, API, ALL } from '../../global/ConstSource.js'
 
+import './GlobalSearch.css';
+
 export default function SourceFilter() {
     //const [filterType, SetFilter] = React.useState("");
 
@@ -15,9 +17,9 @@ export default function SourceFilter() {
     };
 
     return (
-        <form>
-            <label>Filtro por origen</label>
-            <select name="filtroOrigen" id="" value={sourceSelected} onChange={handleOnClickRadio} >
+        <form className={`Global`}>
+            <label className={`GlobalSearch`}>Filtro por origen</label>
+            <select className={`GlobalSearch Button`} name="filtroOrigen" id="" value={sourceSelected} onChange={handleOnClickRadio} >
                 <option value={ALL} name={ALL} > {ALL} </option>
                 <option value={DB} name={DB} > {DB} </option>
                 <option value={API} name={API} > {API} </option>

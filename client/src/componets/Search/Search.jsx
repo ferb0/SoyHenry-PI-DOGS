@@ -7,6 +7,8 @@ import SourceFilter from "./SourceFilter.jsx";
 import SortType from "./SortType.jsx";
 import { Link } from "react-router-dom";
 
+import '../../global/GlobalStyle.css';
+import s from './Search.module.css';
 
 export default function Search() {
     const dispatch = useDispatch();
@@ -25,15 +27,20 @@ export default function Search() {
     };
 
     return (
-        <div className="Search">
+        <div className={`${s.Search} Global`}>
+            <div className={`${s.items}`}>
             {<SourceFilter />}
-            {<TemperamentFilter />}
             {<SortType />}
-            <form onSubmit={handleSubmit}>
-                <input id="searchInput" type='text' name="search" onChange={handleOnChange}></input>
-                <button type="submit">Buscar</button>
+            {<TemperamentFilter />}
+            </div>
+
+            <div className={`${s.items}`}>
+            <form className={`Global`} onSubmit={handleSubmit}>
+                <input className={`GlobalSearch`} id="searchInput" type='text' name="search" size="20" onChange={handleOnChange}></input>
+                <button className={`GlobalSearch Button`} type="submit">Buscar</button>
             </form>
-            <Link to='/create'>Crear Raza</Link>
+            <Link className={`Global`} to='/create'>Crear Raza</Link>
+            </div>
         </div>
     );
 }

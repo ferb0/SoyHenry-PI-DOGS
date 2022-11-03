@@ -1,16 +1,16 @@
 import SummaryBredd from '../../SummaryBreed/SummaryBreed.jsx'
 
-//import './ConjuntBreed.css';
+import '../../../global/GlobalStyle.css';
+import s from './ConjuntBreed.module.css';
 
 export default function ConjuntBreed(props) {
     const breeds = props.breeds;
 
     return (
-        <div className="ConjuntBreed">
-            <h4>Conjunt Breed</h4>
-            <br />
+        <div className={`${s.Conjunt} Global`}>
+
             {breeds?.length === 0 ?
-                <p>Sin resultados.</p> :
+                <p className={`${s.empty}`}>Sin resultados.</p> :
                 breeds?.map(el => {
                     return <SummaryBredd
                         key={el.id}
@@ -21,6 +21,7 @@ export default function ConjuntBreed(props) {
                         temper={el.temper}
                     />
             })}
+
         </div>
     );
 };

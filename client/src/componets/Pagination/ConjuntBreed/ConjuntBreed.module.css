@@ -1,0 +1,11 @@
+.Conjunt {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Por espacio entre botones página y SymmaryBreeds */
+    margin: 0;
+}
+
+.empty {
+    margin: auto;
+}
