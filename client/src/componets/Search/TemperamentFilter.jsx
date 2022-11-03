@@ -1,17 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTempers, setTemper } from '../../redux/actions.js'
+import { setTemper } from '../../redux/actions.js'
 
 import OptionsTempers from "./OptionsTempers.jsx";
 
 export default function TemperamentFilter() {
     const dispatch = useDispatch();
 
-    React.useEffect(() => {
-        dispatch(getTempers());
-    }, []);
-
-    const tempers = useSelector(state => state.tempers);
+    let tempers = useSelector(state => state.tempers);
+    let temperSelected = useSelector(state => state.temperSelected);
 
     function handleOnChangeTempers(event) {
         dispatch(setTemper(event.target.value));
@@ -20,7 +17,7 @@ export default function TemperamentFilter() {
     return (
         <form>
             <label>Filtro por temperamentos</label>
-            <input type="search" name="busquedamodelos" list="listTemper" onChange={handleOnChangeTempers}></input>
+            <input type="search" name="busquedamodelos" list="listTemper" value={temperSelected} onChange={handleOnChangeTempers}></input>
             <datalist id="listTemper">
                 {tempers?.map((el, id) => <OptionsTempers key={id} value={el} />)}
             </datalist>
