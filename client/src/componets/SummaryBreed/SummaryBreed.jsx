@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import '../../global/GlobalStyle.css';
 import s from './SummaryBreed.module.css';
 
 export default function SummaryBreed(props) {

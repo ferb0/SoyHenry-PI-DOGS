@@ -1,6 +1,5 @@
 import SummaryBredd from '../../SummaryBreed/SummaryBreed.jsx'
 
-import '../../../global/GlobalStyle.css';
 import s from './ConjuntBreed.module.css';
 
 export default function ConjuntBreed(props) {

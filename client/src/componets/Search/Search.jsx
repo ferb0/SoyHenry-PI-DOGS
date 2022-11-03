@@ -7,7 +7,6 @@ import SourceFilter from "./SourceFilter.jsx";
 import SortType from "./SortType.jsx";
 import { Link } from "react-router-dom";
 
-import '../../global/GlobalStyle.css';
 import s from './Search.module.css';
 
 export default function Search() {

@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import ConjuntBreed from "./ConjuntBreed/ConjuntBreed.jsx";
 import ButtonPage from './ButtonPage/ButtonPage.jsx';
 
-import '../../global/GlobalStyle.css';
 import s from './Pagination.module.css';
 
 export default function Pagination() {

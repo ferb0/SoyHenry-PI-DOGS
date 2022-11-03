@@ -8,6 +8,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
 
+// Como es global solo se necesita importar en un archivo.
+// WebPack hace el resto.
+import './global/GlobalStyle.css';
+
 //Quitar después de crear HOME (App)
 import Principal from './componets/Principal/Principal.jsx';
 
