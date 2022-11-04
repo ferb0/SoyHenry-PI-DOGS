@@ -1,0 +1,28 @@
+.Create {
+    display: flex;
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 4px;
+
+    /* justify-content: space-between; */
+}
+
+.items {
+    display: flex;
+}
+
+.form {
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 2rem;
+}
+
+.label {
+    display: inline-block;
+    width: 180px;
+}
+
+
+.elementForm {
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
