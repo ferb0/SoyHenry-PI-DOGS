@@ -40,9 +40,9 @@ export function sortType(breed, sort) {
 
     if (sort === ALPHA_DES) {
         breed.sort((first, second) => {
-            if (first.name < second.name)
+            if (first.name.toLowerCase() < second.name.toLowerCase())
                 return 1
-            if (first.name > second.name)
+            if (first.name.toLowerCase() > second.name.toLowerCase())
                 return -1
             return 0;
         })
@@ -52,9 +52,9 @@ export function sortType(breed, sort) {
 
     if (sort === ALPHA_ASC) {
         breed.sort((first, second) => {
-            if (first.name < second.name)
+            if (first.name.toLowerCase() < second.name.toLowerCase())
                 return -1
-            if (first.name > second.name)
+            if (first.name.toLowerCase() > second.name.toLowerCase())
                 return 1
 
             return 0;
