@@ -23,17 +23,17 @@ export default function Pagination() {
         ]);
 
     useEffect(() => {
-        let sortFiltered = sortType(breeds, sortSelected);
-        let temperFiltered = temperFilter(sortFiltered, temperSelected);
-        let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
-        setBreedsFinal([1, breedsFiltered.length, cantFilter(breedsFiltered)]);
+        let temperFiltered = temperFilter(breeds, temperSelected);
+        let sourceFiltered = sourceFilter(temperFiltered, sourceSelected);
+        let sortFiltered = sortType(sourceFiltered, sortSelected);
+        setBreedsFinal([1, sortFiltered.length, cantFilter(sortFiltered)]);
     }, [breeds, sourceSelected, temperSelected, sortSelected]);
 
     function handleClick(e) {
-        let sortFiltered = sortType(breeds, sortSelected);
-        let temperFiltered = temperFilter(sortFiltered, temperSelected);
-        let breedsFiltered = sourceFilter(temperFiltered, sourceSelected);
-        setBreedsFinal([parseInt(e.target.value), breedsFiltered.length, cantFilter(breedsFiltered, e.target.value)]);
+        let temperFiltered = temperFilter(breeds, temperSelected);
+        let sourceFiltered = sourceFilter(temperFiltered, sourceSelected);
+        let sortFiltered = sortType(sourceFiltered, sortSelected);
+        setBreedsFinal([parseInt(e.target.value), sortFiltered.length, cantFilter(sortFiltered, e.target.value)]);
     };
 
     let pages = [<ButtonPage key={0} value={'Páginas:'} disable={true} />];

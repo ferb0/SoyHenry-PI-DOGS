@@ -1,6 +1,6 @@
 import { ALL, API, DB } from '../../global/ConstSource.js'
 import { CANT_SUMMARIES } from '../../global/CantSummaries.js'
-import {ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES} from '../../global/ConstSort.js'
+import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from '../../global/ConstSort.js'
 
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)
@@ -37,45 +37,59 @@ export function cantFilter(breeds, page = 1, cant = CANT_SUMMARIES) {
 };
 
 export function sortType(breed, sort) {
-    breed.sort((first, second) => {
 
-        if (sort === ALPHA_DES) {
+    if (sort === ALPHA_DES) {
+        breed.sort((first, second) => {
             if (first.name < second.name)
                 return 1
             if (first.name > second.name)
                 return -1
-        }
+            return 0;
+        })
 
-        if (sort === ALPHA_ASC) {
+        return breed;
+    }
+
+    if (sort === ALPHA_ASC) {
+        breed.sort((first, second) => {
             if (first.name < second.name)
                 return -1
             if (first.name > second.name)
                 return 1
+
+            return 0;
+        });
+
+        return breed;
+    }
+
+    if (sort === WEIGHT_DES) {
+        for (let i = 0; i < breed.length - 1; i++) {
+            for (let j = i + 1; j < breed.length; j++) {
+                let weightFirst = (breed[i].weight[0] + breed[i].weight[1]) / 2;
+                let weightSecond = (breed[j].weight[0] + breed[j].weight[1]) / 2;
+                if (weightFirst < weightSecond) {
+                    let tmp = breed[i];
+                    breed[i] = breed[j];
+                    breed[j] = tmp;
+                }
+            }
         }
+        return breed;
+    }
 
-        if (sort === WEIGHT_DES) {
-            // Se calcula el promedio de peso.
-            let weightFirst = (first.weight[0] + first.weight[1]) / 2;
-            let weightSecond = (second.weight[0] + second.weight[1]) / 2;
-
-            if (weightFirst > weightSecond)
-                return -1
-            if (weightFirst < weightSecond)
-                return 1
+    if (sort === WEIGHT_ASC) {
+        for (let i = 0; i < breed.length - 1; i++) {
+            for (let j = i + 1; j < breed.length; j++) {
+                let weightFirst = (breed[i].weight[0] + breed[i].weight[1]) / 2;
+                let weightSecond = (breed[j].weight[0] + breed[j].weight[1]) / 2;
+                if (weightFirst > weightSecond) {
+                    let tmp = breed[i];
+                    breed[i] = breed[j];
+                    breed[j] = tmp;
+                }
+            }
         }
-
-        if (sort === WEIGHT_ASC) {
-            // Se calcula el promedio de peso.
-            let weightFirst = (first.weight[0] + first.weight[1]) / 2;
-            let weightSecond = (second.weight[0] + second.weight[1]) / 2;
-
-            if (weightFirst < weightSecond)
-                return -1
-            if (weightFirst > weightSecond)
-                return 1
-        }
-
-        return 0;
-    });
-    return breed;
+        return breed;
+    }
 };
