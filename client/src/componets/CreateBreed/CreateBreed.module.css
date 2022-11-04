@@ -1,9 +1,11 @@
 .Create {
     display: flex;
+}
+
+.img {
+    display: flex;
     border: 1px solid rgb(175, 175, 175);
     border-radius: 4px;
-
-    /* justify-content: space-between; */
 }
 
 .items {
@@ -25,4 +27,15 @@
 .elementForm {
     margin-bottom: 0.2rem;
     margin-top: 0.2rem;
+}
+
+.msgError {
+    display: inline;
+    color: rgb(194, 84, 84);
+}
+
+.msgDetail {
+    margin-top: 0rem;
+    font-size: 0.75rem;
+    white-space: pre-line
 }
