@@ -20,9 +20,9 @@ export default function SourceFilter() {
         <form className={`Global`}>
             <label className={`GlobalSearch`}>Filtro por origen</label>
             <select className={`GlobalSearch Button`} name="filtroOrigen" id="" value={sourceSelected} onChange={handleOnClickRadio} >
-                <option value={ALL} name={ALL} > {ALL} </option>
-                <option value={DB} name={DB} > {DB} </option>
-                <option value={API} name={API} > {API} </option>
+                <option value={ALL} name={ALL} >Todos</option>
+                <option value={DB} name={DB} >Interno</option>
+                <option value={API} name={API} >Externo</option>
             </select>
         </form>
     )

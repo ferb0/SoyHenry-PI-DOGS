@@ -16,12 +16,12 @@ export default function SortType() {
 
     return (
         <div className={`Global`}>
-            <label className={`GlobalSearch`}>Ordenamientos</label>
+            <label className={`GlobalSearch`}>Orden:</label>
             <select className={`GlobalSearch Button`} name="filtroOrigen" id="" value={sortSelected} onChange={handleOnChangeSort} >
-                <option value={ALPHA_ASC} name={ALPHA_ASC} > {ALPHA_ASC} </option>
-                <option value={ALPHA_DES} name={ALPHA_DES} > {ALPHA_DES} </option>
-                <option value={WEIGHT_ASC} name={WEIGHT_ASC} > {WEIGHT_ASC} </option>
-                <option value={WEIGHT_DES} name={WEIGHT_DES} > {WEIGHT_DES} </option>
+                <option value={ALPHA_ASC} name={ALPHA_ASC} >Nombre ↑</option>
+                <option value={ALPHA_DES} name={ALPHA_DES} >Nombre ↓</option>
+                <option value={WEIGHT_ASC} name={WEIGHT_ASC} >Peso ↑</option>
+                <option value={WEIGHT_DES} name={WEIGHT_DES} >Peso ↓</option>
             </select>
         </div>
     )

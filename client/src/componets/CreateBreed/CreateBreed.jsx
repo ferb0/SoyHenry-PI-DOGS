@@ -29,13 +29,15 @@ export default function Createbreed() {
     temper: false
   });
 
+  // Error cuando se envia los datos al server.
   const [send, setSend] = React.useState(undefined);
+  // Para verificar que no se encien datos vacios.
   const [errorDataToSend, setErrorDataToSend] = React.useState(undefined);
 
   function handleOnChange(event) {
     setError({
       ...error,
-      [event.target.name]: checker(event.target.name, event.target.value, input)
+      [event.target.name]: checker(event.target.name, event.target.value)
     });
 
     setInput({
