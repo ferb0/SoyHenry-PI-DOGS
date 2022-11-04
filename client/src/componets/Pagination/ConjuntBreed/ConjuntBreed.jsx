@@ -18,8 +18,9 @@ export default function ConjuntBreed(props) {
                         weight={el.weight}
                         img={el.img}
                         temper={el.temper}
+                        source={el.source}
                     />
-            })}
+                })}
 
         </div>
     );

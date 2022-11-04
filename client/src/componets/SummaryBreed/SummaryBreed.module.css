@@ -1,6 +1,7 @@
 .summary {
     border: 1px solid rgb(175, 175, 175);
     border-radius: 4px;
+    position: relative;
 }
 
 .img {
@@ -12,4 +13,15 @@
 
 h4 {
     text-align: center;
+}
+
+.origin {
+    display: inline;
+    margin-bottom: 0.3rem;
+    margin-right: 0.3rem;
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.55rem;
 }
