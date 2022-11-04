@@ -44,7 +44,6 @@ export function sortType(breed, sort) {
                 return 1
             if (first.name > second.name)
                 return -1
-            return 0;
         }
 
         if (sort === ALPHA_ASC) {
@@ -52,7 +51,6 @@ export function sortType(breed, sort) {
                 return -1
             if (first.name > second.name)
                 return 1
-            return 0;
         }
 
         if (sort === WEIGHT_DES) {
@@ -64,7 +62,6 @@ export function sortType(breed, sort) {
                 return -1
             if (weightFirst < weightSecond)
                 return 1
-            return 0;
         }
 
         if (sort === WEIGHT_ASC) {
@@ -76,8 +73,9 @@ export function sortType(breed, sort) {
                 return -1
             if (weightFirst > weightSecond)
                 return 1
-            return 0;
         }
+
+        return 0;
     });
     return breed;
 };
