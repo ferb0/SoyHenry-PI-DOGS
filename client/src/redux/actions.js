@@ -6,6 +6,7 @@ export const SET_BREEDS = "SET_BREEDS";
 export const GET_BREED = "GET_BREED";
 export const LOADING_BREED = "LOADING_BREED";
 export const SET_SORT_TYPE = "SET_SORT_TYPE";
+export const CLEAN_ALL_DATA = "CLEAN_ALL_DATA";
 
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
@@ -74,3 +75,9 @@ export const setSortType = (sort) => {
         payload: sort
     }
 }
+
+export const cleanAllData = () => {
+    return {
+        type: CLEAN_ALL_DATA
+    }
+};

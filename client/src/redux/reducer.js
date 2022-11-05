@@ -6,7 +6,8 @@ import {
   SET_BREEDS,
   GET_BREED,
   LOADING_BREED,
-  SET_SORT_TYPE
+  SET_SORT_TYPE,
+  CLEAN_ALL_DATA
 } from './actions.js';
 
 import { ALL } from '../global/ConstSource.js'
@@ -72,6 +73,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         sortSelected: action.payload
+      };
+
+    case CLEAN_ALL_DATA:
+      return {
+        ...initialState
       };
 
     default:

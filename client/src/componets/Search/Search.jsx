@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBreeds } from '../../redux/actions.js'
+import { getAllBreeds, getTempers, cleanAllData } from '../../redux/actions.js'
 
 import TemperamentFilter from "./TemperamentFilter.jsx";
 import SourceFilter from "./SourceFilter.jsx";
@@ -27,6 +27,11 @@ export default function Search() {
         document.getElementById('searchInput').value = '';
     };
 
+    function cleanAll() {
+        dispatch(cleanAllData());
+        dispatch(getTempers());
+    };
+
     return (
         <div className={`${s.Search} Global`}>
 
@@ -34,7 +39,10 @@ export default function Search() {
                 {<SourceFilter />}
                 {<SortType />}
                 {<TemperamentFilter />}
+                
             </div>
+
+            <button className={`${s.clean}`} onClick={cleanAll}>Limpiar todo</button>
 
             <div className={`${s.items}`}>
                 <form className={`Global`} onSubmit={handleSubmit}>
