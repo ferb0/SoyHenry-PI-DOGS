@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllBreeds } from '../../redux/actions.js'
 
 import TemperamentFilter from "./TemperamentFilter.jsx";
@@ -11,6 +11,8 @@ import s from './Search.module.css';
 
 export default function Search() {
     const dispatch = useDispatch();
+
+    const loading = useSelector(state => state.loadingBreed);
 
     const [input, SetInput] = React.useState("");
 
@@ -27,19 +29,22 @@ export default function Search() {
 
     return (
         <div className={`${s.Search} Global`}>
+
             <div className={`${s.items}`}>
-            {<SourceFilter />}
-            {<SortType />}
-            {<TemperamentFilter />}
+                {<SourceFilter />}
+                {<SortType />}
+                {<TemperamentFilter />}
             </div>
 
             <div className={`${s.items}`}>
-            <form className={`Global`} onSubmit={handleSubmit}>
-                <input className={`GlobalSearch`} id="searchInput" type='text' name="search" size="20" onChange={handleOnChange}></input>
-                <button className={`GlobalSearch Button`} type="submit">Buscar</button>
-            </form>
-            <Link className={`Global`} to='/create'>Crear Raza</Link>
+                <form className={`Global`} onSubmit={handleSubmit}>
+                    <input className={`GlobalSearch`} id="searchInput" type='text' name="search" size="20" onChange={handleOnChange}></input>
+                    <button className={`GlobalSearch Button`} type="submit">Buscar</button>
+                </form>
+                <Link className={`Global`} to='/create'>Crear Raza</Link>
+                {loading ? <div className={`${s.cargando}`}>Recibiendo datos...</div> : null}
             </div>
+
         </div>
     );
 }

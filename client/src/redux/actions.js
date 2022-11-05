@@ -9,6 +9,7 @@ export const SET_SORT_TYPE = "SET_SORT_TYPE";
 
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
+        dispatch(loadingBreed())
         return fetch(`http://localhost:3001/dogs?name=${breed}`)
             .then(response => response.json())
             .then(json => dispatch({ type: GET_ALL_BREED, payload: json }))
