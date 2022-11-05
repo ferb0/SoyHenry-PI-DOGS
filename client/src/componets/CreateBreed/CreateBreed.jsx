@@ -72,7 +72,7 @@ export default function Createbreed() {
 
   return (
     <div className={`${s.Create} Global`}>
-      <img className={`${s.img}`} src={imageCreate} alt="imagen" width={`300px`} />
+      <img className={`${s.img}`} src={imageCreate} alt="imagen" />
 
       <form className={`${s.form}`} onSubmit={handleSubmit}>
 
