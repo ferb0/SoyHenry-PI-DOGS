@@ -1,0 +1,33 @@
+.Detail {
+    display: flex;
+}
+
+.img {
+    display: flex;
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 4px;
+    height: auto;
+    width: 500px;
+}
+
+.items {
+    display: inline-block;
+    margin: 0rem;
+}
+
+.info {
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 2rem;
+}
+
+.label {
+    display: inline-block;
+    width: 180px;
+}
+
+
+.elementDetail {
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}

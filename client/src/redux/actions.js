@@ -44,6 +44,13 @@ export const setBreeds = (breeds) => {
     }
 };
 
+export const loadingBreed = () => {
+    return {
+        type: LOADING_BREED,
+        payload: true
+    }
+};
+
 export const getBreed = (id) => {
     return function (dispatch) {
         dispatch(loadingBreed())
@@ -57,13 +64,6 @@ export const cleanBreed = () => {
     return {
         type: GET_BREED,
         payload: {}
-    }
-};
-
-export const loadingBreed = () => {
-    return {
-        type: LOADING_BREED,
-        payload: true
     }
 };
 
