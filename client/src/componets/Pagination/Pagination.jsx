@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { temperFilter, sourceFilter, cantFilter, sortType } from './funcions.js'
 import { useEffect, useState } from 'react';
 
+import { generatorPages } from './GeneratorPages.js';
 import ConjuntBreed from "./ConjuntBreed/ConjuntBreed.jsx";
-import ButtonPage from './ButtonPage/ButtonPage.jsx';
 
 import s from './Pagination.module.css';
 
@@ -36,12 +36,7 @@ export default function Pagination() {
         setBreedsFinal([parseInt(e.target.value), sortFiltered.length, cantFilter(sortFiltered, e.target.value)]);
     };
 
-    let pages = [<ButtonPage key={0} value={'Páginas:'} disable={true} />];
-
-    for (let i = 0; i < Math.ceil(breedsFinal[1] / 8); i++) {
-
-        pages.push(<ButtonPage key={i + 1} handleClick={handleClick} value={i + 1} disable={i === breedsFinal[0] - 1} />);
-    };
+    let pages = generatorPages(breedsFinal, handleClick);
 
     return (
         <div className={`Global`}>
