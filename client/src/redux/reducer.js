@@ -7,7 +7,8 @@ import {
   GET_BREED,
   LOADING_BREED,
   SET_SORT_TYPE,
-  CLEAN_ALL_DATA
+  CLEAN_ALL_DATA,
+  LOADING_TEMPERS
 } from './actions.js';
 
 import { ALL } from '../global/ConstSource.js'
@@ -20,7 +21,8 @@ const initialState = {
   filterType: ALL,
   temperSelected: "",
   sortSelected: ALPHA_ASC,
-  loadingBreed: false
+  loadingBreed: false,
+  loadingTemper: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -41,7 +43,8 @@ const rootReducer = (state = initialState, action) => {
     case GET_TEMPERS:
       return {
         ...state,
-        tempers: action.payload
+        tempers: action.payload,
+        loadingTemper: false
       }
 
     case SET_TEMPER:
@@ -67,6 +70,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingBreed: true
+      };
+
+    case LOADING_TEMPERS:
+      return {
+        ...state,
+        loadingTemper: true
       };
 
     case SET_SORT_TYPE:

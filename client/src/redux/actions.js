@@ -7,10 +7,11 @@ export const GET_BREED = "GET_BREED";
 export const LOADING_BREED = "LOADING_BREED";
 export const SET_SORT_TYPE = "SET_SORT_TYPE";
 export const CLEAN_ALL_DATA = "CLEAN_ALL_DATA";
+export const LOADING_TEMPERS = "LOADING_TEMPERS";
 
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
-        dispatch(loadingBreed())
+        dispatch(loadingBreed());
         return fetch(`http://localhost:3001/dogs?name=${breed}`)
             .then(response => response.json())
             .then((response) => {
@@ -32,15 +33,23 @@ export const setFilterType = (filter) => {
 
 export const getTempers = () => {
     return function (dispatch) {
+        dispatch(loadingTempers());
         return fetch(`http://localhost:3001/temperaments`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
                     dispatch({ type: GET_TEMPERS, payload: response.msg.sort() })
                 if (response.hasOwnProperty('err'))
-                    dispatch({ type: GET_ALL_BREED, payload: false })
+                    dispatch({ type: GET_TEMPERS, payload: false })
             })
             .catch(() => dispatch({ type: GET_TEMPERS, payload: false }));
+    }
+};
+
+export const loadingTempers = () => {
+    return {
+        type: LOADING_TEMPERS,
+        payload: true
     }
 };
 
@@ -67,7 +76,7 @@ export const loadingBreed = () => {
 
 export const getBreed = (id) => {
     return function (dispatch) {
-        dispatch(loadingBreed())
+        dispatch(loadingBreed());
         return fetch(`http://localhost:3001/dogs/${id}`)
             .then(response => response.json())
             .then((response) => {

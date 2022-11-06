@@ -10,8 +10,13 @@ import s from './TemperamentFilter.module.css';
 export default function TemperamentFilter() {
     const dispatch = useDispatch();
 
-    let tempers = useSelector(state => state.tempers);
-    let temperSelected = useSelector(state => state.temperSelected);
+    let { tempers, temperSelected, loading } = useSelector(state => {
+        return {
+            tempers: state.tempers,
+            temperSelected: state.temperSelected,
+            loading: state.loadingBreed
+        }
+    });
 
     function handleOnChangeTempers(event) {
         dispatch(setTemper(event.target.value));
@@ -26,6 +31,7 @@ export default function TemperamentFilter() {
                     {tempers === false ? null : tempers?.map((el, id) => <OptionsTempers key={id} value={el} />)}
                 </datalist>
             </form>
+            {loading ? <div className={`${s.loading}`}>Recibiendo datos...</div> : null}
             {tempers === false ? <p className={`${s.msgDetail} msgError`}>Error al obtener los temperamentos.</p> : null}
         </div>
     );
