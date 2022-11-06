@@ -21,7 +21,7 @@ router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
     if (!idBreed.match(/^[0-9]+$/))
-    return res.status(500).json({ err: "Wrong parameter." });
+        return res.status(500).json({ err: "Wrong parameter." });
 
     try {
         if (idBreed < IDBASE) {
@@ -32,9 +32,9 @@ router.get('/:idBreed', async (req, res) => {
             });
 
             if (!breed)
-            return res.status(500).json({ err: "Without results." });
+                return res.status(500).json({ err: "Without results." });
 
-            res.json(formatDetailAPIServer(breed));
+            res.json({ msg: formatDetailAPIServer(breed) });
         }
         else {
             let response = await Dog.findOne({
@@ -43,9 +43,9 @@ router.get('/:idBreed', async (req, res) => {
             });
 
             if (!response)
-            return res.status(500).json({ err: "Without results." });
+                return res.status(500).json({ err: "Without results." });
 
-            res.json(formatDetailBDServer(response?.get({ plain: true })));
+            res.json({ msg: formatDetailBDServer(response?.get({ plain: true })) });
         }
 
     }
@@ -87,10 +87,10 @@ router.get('/', async (req, res) => {
         });
 
 
-        res.json([
-            ...formatSummaryAPIServer(responseFilteredAPI),
-            ...formatSummaryBDServer(responseFilteredDB)
-        ]);
+        res.json({
+            msg: [...formatSummaryAPIServer(responseFilteredAPI),
+            ...formatSummaryBDServer(responseFilteredDB)]
+        });
     }
     catch (e) {
         res.status(500).json({ err: e.message });

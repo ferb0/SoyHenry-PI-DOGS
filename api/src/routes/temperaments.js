@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     try {
         // Se busca en la API
         let temperamentsAPI = (await axiosTemperaments({ method: 'get' })).data;
-        
+
         let temperaments = new Set();
         temperamentsAPI?.forEach(el => {
             if (el.temperament) {
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
             temperaments.add(el.name);
         });
 
-        res.send(Array.from(temperaments));
+        res.send({ msg: Array.from(temperaments) });
     }
     catch (e) {
         res.status(500).json({ err: e });

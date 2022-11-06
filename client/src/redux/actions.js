@@ -13,7 +13,11 @@ export const getAllBreeds = (breed) => {
         dispatch(loadingBreed())
         return fetch(`http://localhost:3001/dogs?name=${breed}`)
             .then(response => response.json())
-            .then(json => dispatch({ type: GET_ALL_BREED, payload: json }))
+            .then(res => {
+                console.log(res)
+                return res;
+            })
+            .then(json => dispatch({ type: GET_ALL_BREED, payload: json.msg }))
     }
 };
 
@@ -28,7 +32,7 @@ export const getTempers = () => {
     return function (dispatch) {
         return fetch(`http://localhost:3001/temperaments`)
             .then(response => response.json())
-            .then(json => dispatch({ type: GET_TEMPERS, payload: json.sort() }))
+            .then(json => dispatch({ type: GET_TEMPERS, payload: json.msg.sort() }))
     }
 };
 
@@ -58,7 +62,7 @@ export const getBreed = (id) => {
         dispatch(loadingBreed())
         return fetch(`http://localhost:3001/dogs/${id}`)
             .then(response => response.json())
-            .then(json => dispatch({ type: GET_BREED, payload: json }))
+            .then(json => dispatch({ type: GET_BREED, payload: json.msg }))
     }
 };
 
