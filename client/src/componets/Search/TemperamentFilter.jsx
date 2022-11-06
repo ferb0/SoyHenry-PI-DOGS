@@ -14,7 +14,7 @@ export default function TemperamentFilter() {
         return {
             tempers: state.tempers,
             temperSelected: state.temperSelected,
-            loading: state.loadingBreed
+            loading: state.loadingTemper
         }
     });
 
