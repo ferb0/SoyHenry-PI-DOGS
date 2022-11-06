@@ -70,7 +70,13 @@ export const getBreed = (id) => {
         dispatch(loadingBreed())
         return fetch(`http://localhost:3001/dogs/${id}`)
             .then(response => response.json())
-            .then(json => dispatch({ type: GET_BREED, payload: json.msg }))
+            .then((response) => {
+                if (response.hasOwnProperty('msg'))
+                    dispatch({ type: GET_BREED, payload: response.msg })
+                if (response.hasOwnProperty('err'))
+                    dispatch({ type: GET_BREED, payload: false })
+            })
+            .catch(() => dispatch({ type: GET_BREED, payload: false }));
     }
 };
 

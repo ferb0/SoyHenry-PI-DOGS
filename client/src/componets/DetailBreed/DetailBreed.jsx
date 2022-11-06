@@ -27,6 +27,9 @@ export default function DetailBreed(props) {
             {loading ?
                 <p>Recibiendo Datos...</p>
                 :
+                breed === false ?
+                <p className={`msgError`}>Error al obtener los detalles de la raza.</p>
+                :
                 <div className={`${s.Detail} Global`}>
                     <img className={`${s.img}`} src={breed.img} alt="imagen" />
                     <div className={`${s.info}`}>
