@@ -25,16 +25,9 @@
     width: 180px;
 }
 
-
 .elementForm {
     margin-bottom: 0.2rem;
     margin-top: 0.2rem;
-}
-
-.msgError {
-    display: inline;
-    color: rgb(194, 84, 84);
-    font-size: 0.9rem;
 }
 
 .msgDetail {
