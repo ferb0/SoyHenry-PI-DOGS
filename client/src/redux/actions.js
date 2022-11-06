@@ -13,11 +13,13 @@ export const getAllBreeds = (breed) => {
         dispatch(loadingBreed())
         return fetch(`http://localhost:3001/dogs?name=${breed}`)
             .then(response => response.json())
-            .then(res => {
-                console.log(res)
-                return res;
+            .then((response) => {
+                if (response.hasOwnProperty('msg'))
+                    dispatch({ type: GET_ALL_BREED, payload: response.msg })
+                if (response.hasOwnProperty('err'))
+                    dispatch({ type: GET_ALL_BREED, payload: false })
             })
-            .then(json => dispatch({ type: GET_ALL_BREED, payload: json.msg }))
+            .catch(() => dispatch({ type: GET_ALL_BREED, payload: false }));
     }
 };
 
@@ -32,7 +34,13 @@ export const getTempers = () => {
     return function (dispatch) {
         return fetch(`http://localhost:3001/temperaments`)
             .then(response => response.json())
-            .then(json => dispatch({ type: GET_TEMPERS, payload: json.msg.sort() }))
+            .then((response) => {
+                if (response.hasOwnProperty('msg'))
+                    dispatch({ type: GET_TEMPERS, payload: response.msg.sort() })
+                if (response.hasOwnProperty('err'))
+                    dispatch({ type: GET_ALL_BREED, payload: false })
+            })
+            .catch(() => dispatch({ type: GET_TEMPERS, payload: false }));
     }
 };
 
