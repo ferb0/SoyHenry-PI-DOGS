@@ -11,7 +11,8 @@
 }
 
 .cargando {
-    font-size: 0.75rem;
+    color: rgb(175, 175, 175);
+    font-size: 0.9rem;
     position: absolute;
     bottom: 0;
     left: 1rem;
