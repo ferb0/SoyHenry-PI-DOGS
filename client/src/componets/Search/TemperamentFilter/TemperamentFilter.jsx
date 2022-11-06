@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setTemper } from '../../redux/actions.js'
+import { setTemper } from '../../../redux/actions.js'
 
-import OptionsTempers from "./OptionsTempers.jsx";
+import OptionsTempers from "../OptionsTempers/OptionsTempers.jsx";
 
-import './GlobalSearch.css';
+import '../GlobalSearch.css';
 import s from './TemperamentFilter.module.css';
 
 export default function TemperamentFilter() {

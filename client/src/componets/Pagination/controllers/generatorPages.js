@@ -1,4 +1,4 @@
-import ButtonPage from './ButtonPage/ButtonPage.jsx';
+import ButtonPage from '../ButtonPage/ButtonPage.jsx';
 
 export function generatorPages(breedsFinal, handleClick) {
     let pages = [];

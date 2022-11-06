@@ -1,7 +1,7 @@
 import React from "react";
-import checker from "./checker.js";
 
-import formatData from "./formatData.js";
+import checker from "./controllers/checker.js";
+import formatData from "./controllers/formatData.js";
 
 import s from './CreateBreed.module.css';
 import imageCreate from './images/createBreed.webp';

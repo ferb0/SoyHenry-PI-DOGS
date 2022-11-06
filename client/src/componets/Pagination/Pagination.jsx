@@ -1,8 +1,10 @@
-import { useSelector } from 'react-redux';
-import { temperFilter, sourceFilter, cantFilter, sortType } from './funcions.js'
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { generatorPages } from './GeneratorPages.js';
+import { temperFilter, sourceFilter, cantFilter } from './controllers/funcionsFilter.js';
+import { sortType } from './controllers/functiosSort.js';
+import { generatorPages } from './controllers/generatorPages.js';
+
 import ConjuntBreed from "./ConjuntBreed/ConjuntBreed.jsx";
 
 import s from './Pagination.module.css';

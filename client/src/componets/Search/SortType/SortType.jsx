@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSortType } from '../../redux/actions.js'
-import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../global/ConstSort.js";
+import { setSortType } from '../../../redux/actions.js';
 
-import './GlobalSearch.css';
+import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../../global/ConstSort.js";
+
+import '../GlobalSearch.css';
 
 export default function SortType() {
 

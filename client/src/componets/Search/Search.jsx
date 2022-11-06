@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBreeds, getTempers, cleanAllData } from '../../redux/actions.js'
-
-import TemperamentFilter from "./TemperamentFilter.jsx";
-import SourceFilter from "./SourceFilter.jsx";
-import SortType from "./SortType.jsx";
 import { Link } from "react-router-dom";
+
+import TemperamentFilter from "./TemperamentFilter/TemperamentFilter.jsx";
+import SourceFilter from "./SourceFilter/SourceFilter.jsx";
+import SortType from "./SortType/SortType.jsx";
+
 
 import s from './Search.module.css';
 

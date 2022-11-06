@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setFilterType } from '../../redux/actions.js'
+import { setFilterType } from '../../../redux/actions.js';
 
-import { DB, API, ALL } from '../../global/ConstSource.js'
+import { DB, API, ALL } from '../../../global/ConstSource.js';
 
-import './GlobalSearch.css';
+import '../GlobalSearch.css';
 
 export default function SourceFilter() {
-    //const [filterType, SetFilter] = React.useState("");
-
     const dispatch = useDispatch();
 
     let sourceSelected = useSelector(state => state.filterType);
