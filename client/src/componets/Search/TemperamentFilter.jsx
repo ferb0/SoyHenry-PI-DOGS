@@ -32,7 +32,7 @@ export default function TemperamentFilter() {
                 </datalist>
             </form>
             {loading ? <div className={`${s.loading}`}>Recibiendo datos...</div> : null}
-            {tempers === false ? <p className={`${s.msgDetail} msgError`}>Error al obtener los temperamentos.</p> : null}
+            {tempers === false ? <p className={`${s.msgDetail} msgError`}>Error al obtener la lista.</p> : null}
         </div>
     );
 };
