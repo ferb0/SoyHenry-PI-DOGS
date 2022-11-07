@@ -9,10 +9,12 @@ export const SET_SORT_TYPE = "SET_SORT_TYPE";
 export const CLEAN_ALL_DATA = "CLEAN_ALL_DATA";
 export const LOADING_TEMPERS = "LOADING_TEMPERS";
 
+const { REACT_APP_API_BASE_URL } = process.env;
+
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
         dispatch(loadingBreed());
-        return fetch(`http://localhost:3001/dogs?name=${breed}`)
+        return fetch(REACT_APP_API_BASE_URL + `dogs?name=${breed}`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
@@ -34,7 +36,7 @@ export const setFilterType = (filter) => {
 export const getTempers = () => {
     return function (dispatch) {
         dispatch(loadingTempers());
-        return fetch(`http://localhost:3001/temperaments`)
+        return fetch(REACT_APP_API_BASE_URL + `temperaments`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
@@ -77,7 +79,7 @@ export const loadingBreed = () => {
 export const getBreed = (id) => {
     return function (dispatch) {
         dispatch(loadingBreed());
-        return fetch(`http://localhost:3001/dogs/${id}`)
+        return fetch(REACT_APP_API_BASE_URL + `dogs/${id}`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
