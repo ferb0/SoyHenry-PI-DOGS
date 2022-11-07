@@ -50,7 +50,7 @@ export default function Search() {
                     <input className={`GlobalSearch`} id="searchInput" type='text' name="search" size="20" onChange={handleOnChange}></input>
                     <button className={`GlobalSearch Button`} type="submit">Buscar</button>
                 </form>
-                <Link className={`${s.create} Global`} to='/create'>Crear Raza</Link>
+                <Link className={`Global`} to='/create'>Crear Raza</Link>
                 {loading ? <div className={`${s.cargando}`}>Recibiendo datos...</div> : null}
             </div>
 

@@ -12,3 +12,7 @@
 body {
     background: -moz-linear-gradient(top left, white, #DEF5E5);
 }
+
+a {
+    text-decoration:none;
+}
