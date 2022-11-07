@@ -8,3 +8,7 @@
     color: rgb(194, 84, 84);
     font-size: 0.9rem;
 }
+
+body {
+    background: -moz-linear-gradient(top left, white, #ececc6);
+}
