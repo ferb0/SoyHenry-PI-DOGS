@@ -2,7 +2,7 @@
     border: 1px solid rgb(175, 175, 175);
     border-radius: 4px;
     position: relative;
-    background-color: #A9AF7E;
+    background: -moz-linear-gradient(top left, white, #8EC3B0);
 }
 
 .img {
