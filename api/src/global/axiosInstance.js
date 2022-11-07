@@ -1,10 +1,9 @@
 // Instancia de Axios con algunas config
 const axios = require('axios');
 
-const baseURL = 'https://api.thedogapi.com/v1/breeds';
-const { API_KEY } = process.env;
+const { API_KEY, API_BASE_URL } = process.env;
 
 module.exports = axios.create({
-    baseURL: baseURL,
+    baseURL: API_BASE_URL,
     params: { api_key: API_KEY }
 });
