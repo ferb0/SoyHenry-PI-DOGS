@@ -6,6 +6,8 @@ import formatData from "./controllers/formatData.js";
 import s from './CreateBreed.module.css';
 import imageCreate from './images/createBreed.webp';
 
+const { REACT_APP_API_BASE_URL } = process.env;
+
 export default function Createbreed() {
   const [input, setInput] = React.useState({
     name: "",
@@ -54,7 +56,7 @@ export default function Createbreed() {
 
     if (data) {
       setErrorDataToSend(false);
-      fetch(`http://localhost:3001/dogs`,
+      fetch(REACT_APP_API_BASE_URL + `dogs`,
         {
           method: "POST",
           body: JSON.stringify(data),
@@ -123,8 +125,8 @@ export default function Createbreed() {
         <div className={`${s.elementForm}`}>
           <label className={`${s.label}`}>Temperamentos: </label>
           <input type='text' name="temper" size="20" onChange={handleOnChange}></input>
-          {input.temper  === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-          <p className={`${s.msgDetail}`}>(Agregar temperamentos<br/>separados por comas.)</p>
+          {input.temper === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
         </div>
 
         <button type="submit">Crear Raza</button>
