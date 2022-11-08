@@ -48,9 +48,9 @@ export default function Search() {
             <div className={`${s.items}`}>
                 <form className={`Global`} onSubmit={handleSubmit}>
                     <input className={`GlobalSearch`} id="searchInput" type='text' name="search" size="20" onChange={handleOnChange}></input>
-                    <button className={`GlobalSearch Button`} type="submit">Buscar</button>
+                    <button className={`GlobalSearch`} type="submit">Buscar</button>
                 </form>
-                <Link className={`Global`} to='/create'>Crear Raza</Link>
+                <button className={`${s.create}`}><Link to='/create'>Crear Raza</Link></button>
                 {loading ? <div className={`${s.cargando}`}>Recibiendo datos...</div> : null}
             </div>
 

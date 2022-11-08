@@ -18,7 +18,7 @@ export default function SortType() {
     return (
         <div className={`Global`}>
             <label className={`GlobalSearch`}>Orden:</label>
-            <select className={`GlobalSearch Button`} name="filtroOrigen" id="" value={sortSelected} onChange={handleOnChangeSort} >
+            <select className={`GlobalSearch`} name="filtroOrigen" id="" value={sortSelected} onChange={handleOnChangeSort} >
                 <option value={ALPHA_ASC} name={ALPHA_ASC} >Nombre ↑</option>
                 <option value={ALPHA_DES} name={ALPHA_DES} >Nombre ↓</option>
                 <option value={WEIGHT_ASC} name={WEIGHT_ASC} >Peso ↑</option>

@@ -13,6 +13,16 @@ body {
     background: -moz-linear-gradient(top left, white, #DEF5E5);
 }
 
-a {
+a, a:link, a:visited{
     text-decoration:none;
+    color: #519e82;
+}
+
+button, select {
+    color: #519e82;
+    cursor: pointer;
+}
+
+option {
+    color: #519e82;
 }
