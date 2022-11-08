@@ -21,17 +21,6 @@ export default function Createbreed() {
     temper: []
   });
 
-  // const [error, setError] = React.useState({
-  //   name: false,
-  //   maxHeight: false,
-  //   minHeight: false,
-  //   maxWeight: false,
-  //   minWeight: false,
-  //   minLifeSpan: false,
-  //   maxLifeSpan: false,
-  //   temper: false
-  // });
-
   // Error cuando se envia los datos al server.
   const [send, setSend] = React.useState(undefined);
   // Para verificar que no se encien datos vacios.
@@ -40,10 +29,6 @@ export default function Createbreed() {
   function handleOnChange(event) {
     // Para limpiar el mensaje cuando se corrige campos.
     setErrorDataToSend(false);
-    // setError({
-    //   ...error,
-    //   [event.target.name]: checker(event.target.name, event.target.value)
-    // });
 
     setInput({
       ...input,
