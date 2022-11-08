@@ -30,4 +30,11 @@
 .elementDetail {
     margin-bottom: 0.2rem;
     margin-top: 0.2rem;
+    width: 400px;
+}
+
+.ul {
+    float: right;
+    display: block;
+    width: 180px;
 }

@@ -35,35 +35,35 @@ export default function DetailBreed(props) {
                     <div className={`${s.info}`}>
                         <div className={`${s.elementDetail}`}>
                             <label className={`${s.label}`}>Nombre:</label>
-                            <p className={`${s.items}`}>{breed.name}</p>
+                            <p className={`${s.items}`}>{breed.name}.</p>
                         </div>
 
                         <div className={`${s.elementDetail}`}>
                             <label className={`${s.label}`}>Peso:</label>
-                            {breed.weight ? <p className={`${s.items}`}>{breed.weight[0]}Kg - {breed.weight[1]}Kg.</p> : null}
+                            {breed.weight ? <p className={`${s.items}`}>{breed.weight[0]} a {breed.weight[1]}Kg.</p> : null}
                         </div>
 
                         <div className={`${s.elementDetail}`}>
                             <label className={`${s.label}`}>Altura:</label>
-                            {breed.height ? <p className={`${s.items}`}>{breed.height[0]}cm - {breed.height[1]}cm.</p> : null}
+                            {breed.height ? <p className={`${s.items}`}>{breed.height[0]} a {breed.height[1]}cm.</p> : null}
                         </div>
 
                         <div className={`${s.elementDetail}`}>
                             <label className={`${s.label}`}>Espectativa de vida:</label>
-                            { breed.lifeSpan ? <p className={`${s.items}`}>{breed.lifeSpan[0]} - {breed.lifeSpan[1]} años.</p> :null}
+                            { breed.lifeSpan ? <p className={`${s.items}`}>{breed.lifeSpan[0]} a {breed.lifeSpan[1]} años.</p> :null}
                         </div>
 
                         {breed.temper ?
-                            <div>
-                                <p>Temperamentos:</p>
-                                <ul className={`${s.elementDetail}`}>
+                            <div className={`${s.elementDetail}`}>
+                                <label className={`${s.label}`}>Temperamentos:</label>
+                                <ul className={`${s.elementDetail} ${s.ul}`}>
                                     {breed.temper.map((el, i) => {
                                         return (<li key={i}>{el}</li>);
                                     })}
                                 </ul>
                             </div>
                             :
-                            <p>Sin Temperamentos.</p>}
+                            <label className={`${s.label}`}>Sin temperamentos.</label>}
                     </div>
                 </div>}
 
