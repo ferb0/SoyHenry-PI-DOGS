@@ -23,7 +23,8 @@ export default function Createbreed() {
 
   // Error cuando se envia los datos al server.
   const [send, setSend] = React.useState(undefined);
-  // Para verificar que no se encien datos vacios.
+
+  // Para gestionar mensajes on submit.
   const [errorDataToSend, setErrorDataToSend] = React.useState(undefined);
 
   function handleOnChange(event) {
@@ -38,6 +39,7 @@ export default function Createbreed() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     let data = formatData(input);
 
     if (data) {
@@ -119,7 +121,7 @@ export default function Createbreed() {
             <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
           </div>
 
-          <button type="submit">Crear Raza</button>
+          <button type="submit" disabled={data}>Crear Raza</button>
           {send === undefined ?
             null
             :
