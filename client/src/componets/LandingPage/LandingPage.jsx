@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 
+import paws from './images/paws.png';
+
 export default function LandingPage() {
 
     return (
         <div>
-        <h1>Landing Page.</h1>
-        <Link to='/principal'>Principal</Link>
+        <Link to='/principal'>InfoDog</Link>
+        <img src={paws} alt="paws" />
         </div>
     )
 };
