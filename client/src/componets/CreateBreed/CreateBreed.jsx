@@ -21,45 +21,39 @@ export default function Createbreed() {
     temper: []
   });
 
+  const [data, setData] = React.useState(undefined);
+
   // Error cuando se envia los datos al server.
   const [send, setSend] = React.useState(undefined);
 
-  // Para gestionar mensajes on submit.
-  const [errorDataToSend, setErrorDataToSend] = React.useState(undefined);
-
   function handleOnChange(event) {
-    // Para limpiar el mensaje cuando se corrige campos.
-    setErrorDataToSend(false);
-
     setInput({
       ...input,
       [event.target.name]: checker(event.target.name, event.target.value)
     });
   };
 
+  React.useEffect(() => {
+    setData(formatData(input));
+  }, [input]);
+
   function handleSubmit(e) {
     e.preventDefault();
 
-    let data = formatData(input);
+    fetch(REACT_APP_API_BASE_URL + `dogs`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+      })
+      .then(response => response.json())
+      .then((response) => {
+        if (response.hasOwnProperty('msg'))
+          setSend(true);
+        if (response.hasOwnProperty('err'))
+          setSend(false);
+      })
 
-    if (data) {
-      setErrorDataToSend(false);
-      fetch(REACT_APP_API_BASE_URL + `dogs`,
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-type": "application/json; charset=UTF-8" }
-        })
-        .then(response => response.json())
-        .then((response) => {
-          if (response.hasOwnProperty('msg'))
-            setSend(true);
-          if (response.hasOwnProperty('err'))
-            setSend(false);
-        })
-    }
-    else
-      setErrorDataToSend(true);
   };
 
   return (
@@ -121,7 +115,7 @@ export default function Createbreed() {
             <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
           </div>
 
-          <button type="submit">Crear Raza</button>
+          <button type="submit" disabled={!data}>Crear Raza</button>
           {send === undefined ?
             null
             :
@@ -129,8 +123,6 @@ export default function Createbreed() {
               <p>Datos enviados</p>
               :
               <p className={`msgError Global`}>Datos no cargados.</p>}
-
-          {errorDataToSend ? <p className={`msgError Global`}>Falta completar datos o tienen formato inadecuado.</p> : null}
         </form>
       </div>
     </div>

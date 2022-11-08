@@ -1,7 +1,7 @@
 export default function formatData(input) {
     // Se le da formato para enviar.
 
-    if (!input.name || !input.minHeight || !input.maxHeight || !input.minWeight || !input.maxWeight || !input.minLifeSpan || !input.maxLifeSpan || input.temper.length === 0) {
+    if (!input.name || !input.minHeight || !input.maxHeight || !input.minWeight || !input.maxWeight || !input.minLifeSpan || !input.maxLifeSpan || !input.temper || input.temper.length === 0) {
         return false;
     }
 
