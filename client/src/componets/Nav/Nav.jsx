@@ -6,7 +6,7 @@ import s from './Nav.module.css';
 export default function Nav() {
   return (
     <div className={`${s.Nav} Global`}>
-      <Link className={`${s.title}`} to='/'>InfoDog</Link>
+      <Link className={`${s.title}`} to='/principal'>InfoDog</Link>
     </div>
   );
 }

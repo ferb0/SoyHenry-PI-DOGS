@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from "../Nav/Nav.jsx";
 
 import checker from "./controllers/checker.js";
 import formatData from "./controllers/formatData.js";
@@ -75,71 +76,76 @@ export default function Createbreed() {
   };
 
   return (
-    <div className={`${s.Create} Global`}>
-      <img className={`${s.img}`} src={imageCreate} alt="imagen" />
+    <div>
 
-      <form className={`${s.form}`} onSubmit={handleSubmit}>
+      <Nav />
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Nombre: </label>
-          <input type='text' name="name" size="20" onChange={handleOnChange}></input>
-          {input.name === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-        </div>
+      <div className={`${s.Create} Global`}>
+        <img className={`${s.img}`} src={imageCreate} alt="imagen" />
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Altura mínima: </label>
-          <input type='text' name="minHeight" size="20" onChange={handleOnChange}></input>
-          {input.minHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-        </div>
+        <form className={`${s.form}`} onSubmit={handleSubmit}>
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Altura máxima: </label>
-          <input type='text' name="maxHeight" size="20" onChange={handleOnChange}></input>
-          {input.maxHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-        </div>
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Nombre: </label>
+            <input type='text' name="name" size="20" onChange={handleOnChange}></input>
+            {input.name === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Peso Mínimo: </label>
-          <input type='text' name="minWeight" size="20" onChange={handleOnChange}></input>
-          {input.minWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-        </div>
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Altura mínima: </label>
+            <input type='text' name="minHeight" size="20" onChange={handleOnChange}></input>
+            {input.minHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Peso máximo: </label>
-          <input type='text' name="maxWeight" size="20" onChange={handleOnChange}></input>
-          {input.maxWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-        </div>
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Altura máxima: </label>
+            <input type='text' name="maxHeight" size="20" onChange={handleOnChange}></input>
+            {input.maxHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Años de vida mínimos: </label>
-          <input type='text' name="minLifeSpan" size="20" onChange={handleOnChange}></input>
-          {input.minLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-        </div>
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Peso Mínimo: </label>
+            <input type='text' name="minWeight" size="20" onChange={handleOnChange}></input>
+            {input.minWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Años de vida máximos: </label>
-          <input type='text' name="maxLifeSpan" size="20" onChange={handleOnChange}></input>
-          {input.maxLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-        </div>
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Peso máximo: </label>
+            <input type='text' name="maxWeight" size="20" onChange={handleOnChange}></input>
+            {input.maxWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
 
-        <div className={`${s.elementForm}`}>
-          <label className={`${s.label}`}>Temperamentos: </label>
-          <input type='text' name="temper" size="20" onChange={handleOnChange}></input>
-          {input.temper === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-          <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
-        </div>
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Años de vida mínimos: </label>
+            <input type='text' name="minLifeSpan" size="20" onChange={handleOnChange}></input>
+            {input.minLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
 
-        <button type="submit">Crear Raza</button>
-        {send === undefined ?
-          null
-          :
-          send ?
-            <p>Datos enviados</p>
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Años de vida máximos: </label>
+            <input type='text' name="maxLifeSpan" size="20" onChange={handleOnChange}></input>
+            {input.maxLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
+
+          <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Temperamentos: </label>
+            <input type='text' name="temper" size="20" onChange={handleOnChange}></input>
+            {input.temper === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+            <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
+          </div>
+
+          <button type="submit">Crear Raza</button>
+          {send === undefined ?
+            null
             :
-            <p className={`msgError Global`}>Datos no cargados.</p>}
+            send ?
+              <p>Datos enviados</p>
+              :
+              <p className={`msgError Global`}>Datos no cargados.</p>}
 
-        {errorDataToSend ? <p className={`msgError Global`}>Falta completar datos o tienen formato inadecuado.</p> : null}
-      </form>
+          {errorDataToSend ? <p className={`msgError Global`}>Falta completar datos o tienen formato inadecuado.</p> : null}
+        </form>
+      </div>
     </div>
   )
 };

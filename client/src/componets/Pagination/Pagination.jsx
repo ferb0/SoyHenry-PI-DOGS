@@ -6,6 +6,8 @@ import { sortType } from './controllers/functiosSort.js';
 import { generatorPages } from './controllers/generatorPages.js';
 
 import ConjuntBreed from "./ConjuntBreed/ConjuntBreed.jsx";
+import Nav from '../Nav/Nav.jsx';
+import Search from '../Search/Search.jsx';
 
 import s from './Pagination.module.css';
 
@@ -45,6 +47,12 @@ export default function Pagination() {
     let pages = generatorPages(breedsFinal, handleClick);
 
     return (
+        <div>
+
+            <Nav />
+
+            <Search />
+
         <div className={`Global`}>
             <div className={`${s.button}`}>
                 {pages}
@@ -53,6 +61,7 @@ export default function Pagination() {
             <ConjuntBreed breeds={breedsFinal[2]} />
 
             {breeds === false ? <p className={`${s.alignError} msgError`}>Error al obtener los resultados.</p> : null}
+        </div>
         </div>
     )
 };
