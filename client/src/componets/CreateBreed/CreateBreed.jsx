@@ -121,7 +121,7 @@ export default function Createbreed() {
             <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
           </div>
 
-          <button type="submit" disabled={data}>Crear Raza</button>
+          <button type="submit">Crear Raza</button>
           {send === undefined ?
             null
             :

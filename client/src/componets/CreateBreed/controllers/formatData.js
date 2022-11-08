@@ -5,7 +5,7 @@ export default function formatData(input) {
         return false;
     }
 
-    if (!Array.isArray(input.temper))
+    if (!Array.isArray(input.temper?.replace(/\s/g, '').split(',')))
         return false;
 
     // Filter para quitar temper vacios
