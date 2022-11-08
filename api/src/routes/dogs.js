@@ -17,6 +17,8 @@ const {
     formatSummaryBDServer
 } = require('./controllers/formatSumary.js');
 
+const { checkData } = require('./controllers/checkdataPut.js');
+
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
@@ -101,6 +103,17 @@ router.post('/', async (req, res) => {
     let { name, height, weight, lifeSpan, temper } = req.body;
     if (!name || !height || !weight || !lifeSpan || !temper)
         return res.status(500).json({ err: 'Insufficient data.' });
+
+    // Se convierte en numeros.
+    height = height.map(Number);
+    weight = weight.map(Number);
+    lifeSpan = lifeSpan.map(Number);
+
+    // Se chequea consistencia.
+    let responseCheck = checkData(height, weight, lifeSpan);
+    if (responseCheck) {
+        return res.status(500).json({ err: responseCheck });
+    }
 
     try {
         // Obtener la cantidad de elementos en la tabla.
