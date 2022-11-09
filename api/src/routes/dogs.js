@@ -109,6 +109,11 @@ router.post('/', async (req, res) => {
     weight = weight.map(Number);
     lifeSpan = lifeSpan.map(Number);
 
+    // Convertir primera letra en mayúscula.
+    temper = temper.map((el) => {
+        return el.charAt(0).toUpperCase() + el.slice(1);
+    });
+
     // Se chequea consistencia.
     let responseCheck = checkData(height, weight, lifeSpan);
     if (responseCheck) {
