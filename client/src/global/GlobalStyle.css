@@ -26,3 +26,8 @@ button, select {
 option {
     color: #519e82;
 }
+
+img {
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 4px;
+}
