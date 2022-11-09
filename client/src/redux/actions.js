@@ -40,7 +40,13 @@ export const getTempers = () => {
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
-                    dispatch({ type: GET_TEMPERS, payload: response.msg.sort() })
+                    dispatch({ type: GET_TEMPERS, payload: response.msg.sort((first, second) => {
+                        if (first.toLowerCase() < second.toLowerCase())
+                            return -1
+                        if (first.toLowerCase() > second.toLowerCase())
+                            return 1
+                        return 0;
+                    }) })
                 if (response.hasOwnProperty('err'))
                     dispatch({ type: GET_TEMPERS, payload: false })
             })
