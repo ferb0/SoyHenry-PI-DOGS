@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: /^[a-z]+$/i,
+        is: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/i,
       }
     }
   },
