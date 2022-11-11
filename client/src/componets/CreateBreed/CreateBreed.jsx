@@ -5,7 +5,7 @@ import checker from "./controllers/checker.js";
 import formatData from "./controllers/formatData.js";
 
 import s from './CreateBreed.module.css';
-import imageCreate from './images/createBreed.webp';
+import imageCreate from '../../global/images/paws.png';
 
 const { REACT_APP_API_BASE_URL } = process.env;
 

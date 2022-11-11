@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import s from './LandingPage.module.css';
-import paws from './images/paws.png';
+import paws from '../../global/images/paws.png';
 
 export default function LandingPage() {
 
