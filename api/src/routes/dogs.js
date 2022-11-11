@@ -105,6 +105,9 @@ router.post('/', async (req, res) => {
     if (!name || !height || !weight || !lifeSpan || !temper)
         return res.status(500).json({ err: 'Insufficient data.' });
 
+    if (img && !img.match(/^http/))
+        return res.status(500).json({ err: 'Bad format image.' });
+
     // Se convierte en numeros.
     height = height.map(Number);
     weight = weight.map(Number);
