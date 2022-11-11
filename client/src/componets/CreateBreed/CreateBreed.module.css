@@ -34,3 +34,14 @@
     font-size: 0.75rem;
     white-space: pre-line
 }
+
+.msgLoad {
+    display: inline;
+    color: #519e82;
+    margin-left: 0.5rem;
+}
+
+.input {
+    width: 30px;
+    margin-right: 0.5rem;
+}

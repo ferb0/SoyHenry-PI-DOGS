@@ -68,49 +68,34 @@ export default function Createbreed() {
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Nombre: </label>
-            <input type='text' name="name" size="20" onChange={handleOnChange}></input>
+            <input type='text' name="name"  onChange={handleOnChange}></input>
             {input.name === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
-            <label className={`${s.label}`}>Altura mínima: </label>
-            <input type='text' name="minHeight" size="20" onChange={handleOnChange}></input>
-            {input.minHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+            <label className={`${s.label}`}>Altura: </label>
+            <input className={`${s.input}`} type='text' name="minHeight"  onChange={handleOnChange}></input>
+            <input className={`${s.input}`} type='text' name="maxHeight"  onChange={handleOnChange}></input>
+            {input.minHeight === false || input.maxHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
-            <label className={`${s.label}`}>Altura máxima: </label>
-            <input type='text' name="maxHeight" size="20" onChange={handleOnChange}></input>
-            {input.maxHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+            <label className={`${s.label}`}>Peso: </label>
+            <input className={`${s.input}`} type='text' name="minWeight"  onChange={handleOnChange}></input>
+            <input className={`${s.input}`} type='text' name="maxWeight"  onChange={handleOnChange}></input>
+            {input.minWeight === false || input.maxWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
-            <label className={`${s.label}`}>Peso Mínimo: </label>
-            <input type='text' name="minWeight" size="20" onChange={handleOnChange}></input>
-            {input.minWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-          </div>
-
-          <div className={`${s.elementForm}`}>
-            <label className={`${s.label}`}>Peso máximo: </label>
-            <input type='text' name="maxWeight" size="20" onChange={handleOnChange}></input>
-            {input.maxWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-          </div>
-
-          <div className={`${s.elementForm}`}>
-            <label className={`${s.label}`}>Años de vida mínimos: </label>
-            <input type='text' name="minLifeSpan" size="20" onChange={handleOnChange}></input>
-            {input.minLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
-          </div>
-
-          <div className={`${s.elementForm}`}>
-            <label className={`${s.label}`}>Años de vida máximos: </label>
-            <input type='text' name="maxLifeSpan" size="20" onChange={handleOnChange}></input>
-            {input.maxLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+            <label className={`${s.label}`}>Años de vida: </label>
+            <input className={`${s.input}`} type='text' name="minLifeSpan"  onChange={handleOnChange}></input>
+            <input className={`${s.input}`} type='text' name="maxLifeSpan"  onChange={handleOnChange}></input>
+            {input.minLifeSpan === false || input.maxLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Temperamentos: </label>
-            <input type='text' name="temper" size="20" onChange={handleOnChange}></input>
+            <input type='text' name="temper"  onChange={handleOnChange}></input>
             {input.temper === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
             <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
           </div>
@@ -120,7 +105,7 @@ export default function Createbreed() {
             null
             :
             send ?
-              <p>Datos enviados</p>
+              <p className={`${s.msgLoad}`}>Datos enviados.</p>
               :
               <p className={`msgError Global`}>Datos no cargados.</p>}
         </form>
