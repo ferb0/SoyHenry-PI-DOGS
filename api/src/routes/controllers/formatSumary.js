@@ -24,7 +24,7 @@ function formatSummaryBDServer(breed) {
             id: obj.id,
             name: obj.name,
             weight: [String(obj.minWeight), String(obj.maxWeight)],
-            img: null,
+            img: obj.img,
             temper: obj.Tempers.map(el => el.name),
             source: DB
         };

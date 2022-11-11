@@ -18,6 +18,7 @@ export default function Createbreed() {
     minWeight: "",
     minLifeSpan: "",
     maxLifeSpan: "",
+    img: "",
     temper: []
   });
 
@@ -62,7 +63,10 @@ export default function Createbreed() {
       <Nav />
 
       <div className={`${s.Create} Global`}>
-        <img className={`${s.img}`} src={imageCreate} alt="imagen" />
+        {input.img ?
+        <img className={`${s.img}`} src={input.img} alt="imagen" />
+        :
+        <img className={`${s.img}`} src={imageCreate} alt="imagen" />}
 
         <form className={`${s.form}`} onSubmit={handleSubmit}>
 
@@ -94,13 +98,19 @@ export default function Createbreed() {
           </div>
 
           <div className={`${s.elementForm}`}>
+            <label className={`${s.label}`}>Imágen <p className={`${s.msgDetail} ${s.msgDetailOptional}`}>(Opcional.)</p>: </label>
+            <input type='text' name="img"  onChange={handleOnChange}></input>
+            {input.img === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
+          </div>
+
+          <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Temperamentos: </label>
             <input type='text' name="temper"  onChange={handleOnChange}></input>
             {input.temper === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
             <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
           </div>
 
-          <button type="submit" disabled={!data}>Crear Raza</button>
+          <button type="submit" className={`${s.submitButton}`} disabled={!data}>Crear Raza</button>
           {send === undefined ?
             null
             :

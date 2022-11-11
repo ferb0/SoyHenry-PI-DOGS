@@ -100,7 +100,8 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    let { name, height, weight, lifeSpan, temper } = req.body;
+    let { name, height, weight, lifeSpan, img, temper } = req.body;
+
     if (!name || !height || !weight || !lifeSpan || !temper)
         return res.status(500).json({ err: 'Insufficient data.' });
 
@@ -132,7 +133,8 @@ router.post('/', async (req, res) => {
             minWeight: weight[0],
             maxWeight: weight[1],
             minLifeSpan: lifeSpan[0],
-            maxLifeSpan: lifeSpan[1]
+            maxLifeSpan: lifeSpan[1],
+            img
         });
 
         let promiseTempers = temper.map(element => {

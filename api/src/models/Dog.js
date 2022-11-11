@@ -101,7 +101,20 @@ module.exports = (sequelize) => {
         }
       }
     },
+
+    img : {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate : {
+
+        url(value) {
+          if(value && !value.match(/^http/))
+          throw new Error('The img is not a URL valid.');
+        }
+      }
+    },
   },
+
     { timestamps: false }
   );
 };

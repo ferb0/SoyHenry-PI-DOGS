@@ -30,9 +30,13 @@
 }
 
 .msgDetail {
-    margin-top: 0rem;
+    margin: 0rem;
     font-size: 0.75rem;
     white-space: pre-line
+}
+
+.msgDetailOptional {
+    display: inline;
 }
 
 .msgLoad {
@@ -44,4 +48,8 @@
 .input {
     width: 30px;
     margin-right: 0.5rem;
+}
+
+.submitButton {
+    margin-top: 1rem;
 }

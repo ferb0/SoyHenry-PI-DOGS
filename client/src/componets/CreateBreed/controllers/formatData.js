@@ -16,6 +16,7 @@ export default function formatData(input) {
         height: [input.minHeight, input.maxHeight],
         weight: [input.minWeight, input.maxWeight],
         lifeSpan: [input.minLifeSpan, input.maxLifeSpan],
+        img: input.img,
         temper
     };
 }

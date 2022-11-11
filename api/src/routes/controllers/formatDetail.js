@@ -22,7 +22,7 @@ function formatDetailBDServer(breed) {
         weight: [String(breed.minWeight), String(breed.maxWeight)],
         height: [String(breed.minHeight), String(breed.maxHeight)],
         lifeSpan: [String(breed.minLifeSpan), String(breed.maxLifeSpan)],
-        img: null,
+        img: breed.img,
         temper: breed.Tempers.map(el => el.name),
         source: DB
     } : null;
