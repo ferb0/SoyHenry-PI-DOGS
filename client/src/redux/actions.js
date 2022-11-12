@@ -14,7 +14,7 @@ const { REACT_APP_API_BASE_URL } = process.env;
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
         dispatch(loadingBreed());
-        return fetch(REACT_APP_API_BASE_URL + `dogs?name=${breed}`)
+        return fetch(REACT_APP_API_BASE_URL + `/dogs?name=${breed}`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
@@ -36,7 +36,7 @@ export const setFilterType = (filter) => {
 export const getTempers = () => {
     return function (dispatch) {
         dispatch(loadingTempers());
-        return fetch(REACT_APP_API_BASE_URL + `temperaments`)
+        return fetch(REACT_APP_API_BASE_URL + `/temperaments`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
@@ -85,7 +85,7 @@ export const loadingBreed = () => {
 export const getBreed = (id) => {
     return function (dispatch) {
         dispatch(loadingBreed());
-        return fetch(REACT_APP_API_BASE_URL + `dogs/${id}`)
+        return fetch(REACT_APP_API_BASE_URL + `/dogs/${id}`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
