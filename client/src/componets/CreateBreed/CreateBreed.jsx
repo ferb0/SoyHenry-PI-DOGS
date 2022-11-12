@@ -41,7 +41,7 @@ export default function Createbreed() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch(REACT_APP_API_BASE_URL + `dogs`,
+    fetch(REACT_APP_API_BASE_URL + `/dogs`,
       {
         method: "POST",
         body: JSON.stringify(data),
