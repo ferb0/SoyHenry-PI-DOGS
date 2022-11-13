@@ -53,15 +53,20 @@ export default function Pagination() {
 
             <Search />
 
-        <div className={`Global`}>
-            <div className={`${s.button}`}>
-                {pages}
+            <div className={`Global`}>
+                <div className={`${s.button}`}>
+                    {pages}
+                </div>
+
+                <ConjuntBreed breeds={breedsFinal[2]} />
+
+                {breeds === false ? <p className={`${s.alignError} msgError`}>Error al obtener los resultados.</p> : null}
+
+                <div className={`${s.button}`}>
+                    {pages}
+                </div>
             </div>
 
-            <ConjuntBreed breeds={breedsFinal[2]} />
-
-            {breeds === false ? <p className={`${s.alignError} msgError`}>Error al obtener los resultados.</p> : null}
-        </div>
         </div>
     )
 };
