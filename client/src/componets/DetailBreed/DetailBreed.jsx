@@ -22,6 +22,9 @@ export default function DetailBreed(props) {
         return function () {
             dispatch(cleanBreed());
         }
+        // Comantario para quitar mensaje de advertencia con el uso de dispatch en useEfect.
+        // Creo que es porque hay código asincrónico en el action.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
