@@ -8,8 +8,13 @@ export default function SummaryBreed(props) {
   return (
     <div className={`${s.summary} Global`}>
       <h4><Link to={`/breed/${props.id}`}>{props.name}</Link></h4>
+
       <p>Peso: {props.weight[0]}Kg - {props.weight[1]}Kg.</p>
-      <img className={`${s.img}`}src={props.img} alt={'img'} />
+      
+      <Link to={`/breed/${props.id}`}>
+        <img className={`${s.img}`} src={props.img} alt={'img'} />
+      </Link>
+
       {props.temper ?
         <div>
           <p>Temperamentos:</p>
@@ -22,7 +27,7 @@ export default function SummaryBreed(props) {
         :
         <p>Sin Temperamentos.</p>}
 
-        {props.source === API ? <p className={`${s.origin}`}>Ext</p> : <p className={`${s.origin}`}>Int</p>}
+      {props.source === API ? <p className={`${s.origin}`}>Ext</p> : <p className={`${s.origin}`}>Int</p>}
     </div>
   );
 };
