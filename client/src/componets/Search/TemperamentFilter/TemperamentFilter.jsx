@@ -25,7 +25,7 @@ export default function TemperamentFilter() {
     return (
         <div className={`${s.TemperamentFilter} Global`}>
             <form >
-                <label className={`GlobalSearch`}>Filtro por temperamentos</label>
+                <label className={`GlobalSearch`}>Filtro por temperamentos:</label>
                 <input className={`GlobalSearch`} type="search" name="busquedamodelos" list="listTemper" size="13" value={temperSelected} onChange={handleOnChangeTempers}></input>
                 <datalist id="listTemper">
                     {tempers === false ? null : tempers?.map((el, id) => <OptionsTempers key={id} value={el} />)}
