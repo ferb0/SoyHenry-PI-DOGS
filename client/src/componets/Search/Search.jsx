@@ -38,8 +38,8 @@ export default function Search() {
 
             <div className={`${s.items}`}>
                 {<SourceFilter />}
-                {<SortType />}
                 {<TemperamentFilter />}
+                {<SortType />}
 
             </div>
 
