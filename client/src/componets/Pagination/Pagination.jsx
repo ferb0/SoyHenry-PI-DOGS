@@ -21,9 +21,10 @@ export default function Pagination() {
         }
     });
     let [breedsFinal, setBreedsFinal] = useState(
-        [0, // Página actual
-            0, // Cantidad total de elementos
-            [] // Elementos a mostrar por página
+        [
+            0, // Página actual.
+            0, // Cantidad total de elementos.
+            [] // Elementos a mostrar por página.
         ]);
 
     useEffect(() => {
@@ -36,6 +37,9 @@ export default function Pagination() {
     }, [breeds, sourceSelected, temperSelected, sortSelected]);
 
     function handleClick(e) {
+        // Para llevar foco al top de la ventana. 
+        window.scrollTo(0, 0);
+
         if (breeds !== false) {
             let temperFiltered = temperFilter(breeds, temperSelected);
             let sourceFiltered = sourceFilter(temperFiltered, sourceSelected);
