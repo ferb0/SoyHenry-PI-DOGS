@@ -21,9 +21,8 @@ export default function Createbreed() {
     img: "",
     temper: []
   });
-
+  // input con formato de envio.
   const [data, setData] = React.useState(undefined);
-
   // Error cuando se envia los datos al server.
   const [send, setSend] = React.useState(undefined);
 
@@ -111,6 +110,7 @@ export default function Createbreed() {
           </div>
 
           <button type="submit" className={`${s.submitButton}`} disabled={!data}>Crear Raza</button>
+          {data === false ? <p className={`msgError Global`}>Un valor mínimo es mayor que su máximo.</p> : null}
           {send === undefined ?
             null
             :
