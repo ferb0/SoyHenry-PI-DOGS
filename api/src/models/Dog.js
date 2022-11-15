@@ -30,6 +30,11 @@ module.exports = (sequelize) => {
       validate: {
         isNumeric: true,
 
+        onlyPositive(value) {
+          if(value <= 0)
+          throw new Error('Only numbers greater than zero are allowed.');
+        },
+
         minorHeight(value) {
           if(value > this.maxHeight)
           throw new Error('The minHeight > maxHeight.');
@@ -42,6 +47,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         isNumeric: true,
+
+        onlyPositive(value) {
+          if(value <= 0)
+          throw new Error('Only numbers greater than zero are allowed.');
+        },
 
         maxHeight(value) {
           if(value < this.minHeight)
@@ -56,6 +66,11 @@ module.exports = (sequelize) => {
       validate: {
         isNumeric: true,
 
+        onlyPositive(value) {
+          if(value <= 0)
+          throw new Error('Only numbers greater than zero are allowed.');
+        },
+
         minorWeight(value) {
           if(value > this.maxWeight)
           throw new Error('The minWeight > minWeight.');
@@ -68,6 +83,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         isNumeric: true,
+
+        onlyPositive(value) {
+          if(value <= 0)
+          throw new Error('Only numbers greater than zero are allowed.');
+        },
 
         maxWeight(value) {
           if(value < this.minWeight)
@@ -82,6 +102,11 @@ module.exports = (sequelize) => {
       validate: {
         isNumeric: true,
 
+        onlyPositive(value) {
+          if(value <= 0)
+          throw new Error('Only numbers greater than zero are allowed.');
+        },
+
         minorLifeSpan(value) {
           if(value > this.maxLifeSpan)
           throw new Error('The minLifeSpan > maxLifeSpan.');
@@ -94,6 +119,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         isNumeric: true,
+
+        onlyPositive(value) {
+          if(value <= 0)
+          throw new Error('Only numbers greater than zero are allowed.');
+        },
 
         maxLifeSpan(value) {
           if(value < this.minLifeSpan)
