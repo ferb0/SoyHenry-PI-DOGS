@@ -24,13 +24,13 @@ export default function TemperamentFilter() {
 
     return (
         <div className={`${s.TemperamentFilter} Global`}>
-            <form >
+            <div >
                 <label className={`GlobalSearch`}>Filtro por temperamentos:</label>
                 <input className={`GlobalSearch`} type="search" name="busquedamodelos" list="listTemper" size="13" value={temperSelected} onChange={handleOnChangeTempers}></input>
                 <datalist id="listTemper">
                     {tempers === false ? null : tempers?.map((el, id) => <OptionsTempers key={id} value={el} />)}
                 </datalist>
-            </form>
+            </div>
             {loading ? <div className={`${s.loading}`}>Recibiendo datos...</div> : null}
             {tempers === false ? <p className={`${s.msgDetail} msgError`}>Error al obtener la lista.</p> : null}
         </div>
