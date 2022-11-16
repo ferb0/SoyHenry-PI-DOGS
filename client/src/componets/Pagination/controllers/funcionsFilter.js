@@ -4,7 +4,7 @@ import { CANT_SUMMARIES } from '../../../global/CantSummaries.js';
 
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)
-        return breeds?.filter(el => el.temper?.includes(temperSelected));
+        return breeds?.filter(el => el.temper?.some((el) => el.toLowerCase() === temperSelected.toLowerCase()));
 
     return breeds;
 };
