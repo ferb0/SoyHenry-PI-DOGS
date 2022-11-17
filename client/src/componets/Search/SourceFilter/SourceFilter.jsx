@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setFilterType } from '../../../redux/actions.js';
 
 import { DB, API, ALL } from '../../../global/ConstSource.js';
@@ -8,8 +8,6 @@ import '../GlobalSearch.css';
 export default function SourceFilter() {
     const dispatch = useDispatch();
 
-    let sourceSelected = useSelector(state => state.filterType);
-
     function handleOnClickRadio(event) {
         dispatch(setFilterType(event.target.value))
     };
@@ -17,7 +15,7 @@ export default function SourceFilter() {
     return (
         <form className={`Global`}>
             <label className={`GlobalSearch`}>Filtro por origen:</label>
-            <select className={`GlobalSearch`} name="filtroOrigen" id="" value={sourceSelected} onChange={handleOnClickRadio} >
+            <select className={`GlobalSearch`} onChange={handleOnClickRadio} >
                 <option value={ALL} name={ALL} >Todos</option>
                 <option value={DB} name={DB} >Interno</option>
                 <option value={API} name={API} >Externo</option>

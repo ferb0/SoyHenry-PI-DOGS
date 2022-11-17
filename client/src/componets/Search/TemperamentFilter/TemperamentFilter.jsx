@@ -2,8 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTemper } from '../../../redux/actions.js'
 
-import OptionsTempers from "../OptionsTempers/OptionsTempers.jsx";
-
 import '../GlobalSearch.css';
 import s from './TemperamentFilter.module.css';
 
@@ -26,9 +24,9 @@ export default function TemperamentFilter() {
         <div className={`${s.TemperamentFilter} Global`}>
             <div >
                 <label className={`GlobalSearch`}>Filtro por temperamentos:</label>
-                <input className={`GlobalSearch`} type="search" name="busquedamodelos" list="listTemper" size="13" value={temperSelected} onChange={handleOnChangeTempers}></input>
+                <input className={`GlobalSearch`} type="search" list="listTemper" size="13" value={temperSelected} onChange={handleOnChangeTempers}></input>
                 <datalist id="listTemper">
-                    {tempers === false ? null : tempers?.map((el, id) => <OptionsTempers key={id} value={el} />)}
+                    {tempers === false ? null : tempers?.map((el, id) => <option key={id} value={el} />)}
                 </datalist>
             </div>
             {loading ? <div className={`${s.loading}`}>Recibiendo datos...</div> : null}

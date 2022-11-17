@@ -47,7 +47,7 @@ export default function Search() {
 
             <div className={`${s.items}`}>
                 <form className={`Global`} onSubmit={handleSubmit}>
-                    <input className={`GlobalSearch`} id="searchInput" type='text' name="search" size="20" onChange={handleOnChange}></input>
+                    <input className={`GlobalSearch`} id="searchInput" type='text' size="20" onChange={handleOnChange}></input>
                     <button className={`GlobalSearch`} type="submit">Buscar</button>
                 </form>
                 <button className={`${s.create}`}><Link to='/create'>Crear Raza</Link></button>
