@@ -63,48 +63,48 @@ export default function Createbreed() {
 
       <div className={`${s.Create} Global`}>
         {input.img ?
-        <img className={`${s.img}`} src={input.img} alt="imagen" />
-        :
-        <img className={`${s.img}`} src={imageCreate} alt="imagen" />}
+          <img className={`${s.img}`} src={input.img} alt="imagen" />
+          :
+          <img className={`${s.img}`} src={imageCreate} alt="imagen" />}
 
         <form className={`${s.form}`} onSubmit={handleSubmit}>
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Nombre: </label>
-            <input type='text' name="name"  onChange={handleOnChange}></input>
+            <input type='text' name="name" onChange={handleOnChange} placeholder={'Nombre'}></input>
             {input.name === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Altura: </label>
-            <input className={`${s.input}`} type='text' name="minHeight"  onChange={handleOnChange}></input>
-            <input className={`${s.input}`} type='text' name="maxHeight"  onChange={handleOnChange}></input>
+            <input className={`${s.input}`} type='text' name="minHeight" onChange={handleOnChange} placeholder={'Mín'}></input>
+            <input className={`${s.input}`} type='text' name="maxHeight" onChange={handleOnChange} placeholder={'Máx'}></input>
             {input.minHeight === false || input.maxHeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Peso: </label>
-            <input className={`${s.input}`} type='text' name="minWeight"  onChange={handleOnChange}></input>
-            <input className={`${s.input}`} type='text' name="maxWeight"  onChange={handleOnChange}></input>
+            <input className={`${s.input}`} type='text' name="minWeight" onChange={handleOnChange} placeholder={'Mín'}></input>
+            <input className={`${s.input}`} type='text' name="maxWeight" onChange={handleOnChange} placeholder={'Máx'}></input>
             {input.minWeight === false || input.maxWeight === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Años de vida: </label>
-            <input className={`${s.input}`} type='text' name="minLifeSpan"  onChange={handleOnChange}></input>
-            <input className={`${s.input}`} type='text' name="maxLifeSpan"  onChange={handleOnChange}></input>
+            <input className={`${s.input}`} type='text' name="minLifeSpan" onChange={handleOnChange} placeholder={'Mín'}></input>
+            <input className={`${s.input}`} type='text' name="maxLifeSpan" onChange={handleOnChange} placeholder={'Máx'}></input>
             {input.minLifeSpan === false || input.maxLifeSpan === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Imágen <p className={`${s.msgDetail} ${s.msgDetailOptional}`}>(Opcional.)</p>: </label>
-            <input type='text' name="img"  onChange={handleOnChange}></input>
+            <input type='text' name="img" onChange={handleOnChange} placeholder={'URL Imágen'}></input>
             {input.img === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
           </div>
 
           <div className={`${s.elementForm}`}>
             <label className={`${s.label}`}>Temperamentos: </label>
-            <input type='text' name="temper"  onChange={handleOnChange}></input>
+            <input type='text' name="temper" onChange={handleOnChange} placeholder={'Temperamentos'}></input>
             {input.temper === false ? <p className={`msgError Global`}>Formato inadecuado.</p> : null}
             <p className={`${s.msgDetail}`}>(Agregar temperamentos<br />separados por comas.)</p>
           </div>
