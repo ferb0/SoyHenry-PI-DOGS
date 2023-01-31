@@ -8,7 +8,8 @@ import store from './redux/store.js';
 
 import './global/GlobalStyle.css';
 
-import Principal from './componets/Principal/Principal.jsx';
+// import Principal from './componets/Principal/Principal.jsx';
+import Principal from './MaterialUIComponents/Principal.js';
 
 ReactDOM.render(
   <React.StrictMode>
