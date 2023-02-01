@@ -27,7 +27,7 @@ router.get('/:idBreed', async (req, res) => {
 
     try {
         if (idBreed < IDBASE) {
-            let response = (await axiosDogs({ method: 'get' })).data;
+            let response = (await axiosDogs({ method: 'get', url: 'v1/breeds' })).data;
 
             let breed = response.find(el => {
                 return el.id === parseInt(idBreed);
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
     let name = req.query.name;
 
     try {
-        let responseAPI = await axiosDogs({ method: 'get' })
+        let responseAPI = await axiosDogs({ method: 'get', url: 'v1/breeds' })
         responseAPI = responseAPI.data;
 
         if (name) {
