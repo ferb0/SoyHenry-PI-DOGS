@@ -7,7 +7,7 @@ const axiosTemperaments = require('../global/axiosInstance.js');
 router.get('/', async (req, res) => {
     try {
         // Se busca en la API
-        let temperamentsAPI = (await axiosTemperaments({ method: 'get' })).data;
+        let temperamentsAPI = (await axiosTemperaments({ method: 'get', url: 'v1/breeds' })).data;
 
         let temperaments = new Set();
         temperamentsAPI?.forEach(el => {
