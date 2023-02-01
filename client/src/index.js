@@ -9,7 +9,7 @@ import store from './redux/store.js';
 import './global/GlobalStyle.css';
 
 // import Principal from './componets/Principal/Principal.jsx';
-import Principal from './MaterialUIComponents/Principal.js';
+import Principal from './MaterialUIComponents/Principal.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
