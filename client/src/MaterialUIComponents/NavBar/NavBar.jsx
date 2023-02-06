@@ -38,13 +38,19 @@ export default function NavBar() {
                     InfoDog
                 </Typography>
 
-                <Stack direction='row'>
-                    <Autocomplete
+                <Stack
+                    direction="row"
+                    justifyContent="flex-end"
+                    alignItems="center"
+                    spacing={2}>
+                    {tempers ? <Autocomplete
                         options={tempers}
                         sx={{ width: 175, padding: '0.7rem' }}
                         renderInput={(params) => <TextField {...params} label="Temperaments" />}
-                        onChange={(event, value) => handleOnChangeTempers(value)}
-                    />
+                        onChange={(event, value) => handleOnChangeTempers(value)} /> :
+                        <Typography sx={{ color: 'red' }}>
+                            Error to load Temperaments.
+                        </Typography>}
                 </Stack>
             </Toolbar>
         </AppBar>
