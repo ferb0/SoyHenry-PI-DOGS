@@ -5,7 +5,8 @@ import { temperFilter, sourceFilter, cantFilter } from '../../controllers/Pagina
 import { sortType } from '../../controllers/Pagination/functiosSort.js';
 import { CANT_SUMMARIES } from '../../global/CantSummaries.js';
 
-import { Typography, Container, Grid, Card, CardMedia, CardContent, Pagination, Stack } from '@mui/material';
+import { Typography, Container, Pagination, Stack } from '@mui/material';
+import BreedCard from './BreedCard.jsx';
 
 export default function Breeds() {
     const { breeds, sourceSelected, temperSelected, sortSelected } = useSelector(state => {
@@ -54,27 +55,7 @@ export default function Breeds() {
                 <Pagination page={breedsFinal[0]} count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)} onChange={handleClick} sx={{ margin: 'auto' }} />
             </Stack>
 
-            <Grid container spacing={4}>
-                {breedsFinal[2]?.map(el =>
-                    <Grid item key={el.name} xs={12} sm={6} md={3} lg={3}>
-                        <Card
-                            sx={{ padding: '1rem' }}>
-                            <CardMedia
-                                component="img"
-                                image={el.img}
-                                alt="imageDog"
-                                sx={{ border: '1px solid #f3f6f4' }} />
-                            <CardContent>
-                                <Typography align='center' variant='h6'>
-                                    {el.name}
-                                </Typography>
-                                <Typography>
-                                    {el.temper}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>)}
-            </Grid>
+            <BreedCard breeds={breedsFinal[2]}/>
 
             <Stack align='center'>
                 <Pagination page={breedsFinal[0]} count={breedsFinal[1]} onChange={handleClick} sx={{ margin: 'auto' }} />
