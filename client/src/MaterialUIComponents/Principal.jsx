@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import { getTempers, getAllBreeds } from '../redux/actions.js';
 
-import NavBar from "./NavBar/NavBar";
+import NavBar from "./NavBar/NavBar.jsx";
 import Breeds from './Breeds/Breeds.jsx';
 
 import { ThemeProvider } from '@mui/material/styles';
