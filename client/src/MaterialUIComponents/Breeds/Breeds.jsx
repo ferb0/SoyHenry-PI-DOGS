@@ -50,16 +50,21 @@ export default function Breeds() {
             <Typography variant='h6' align='center'>
                 List of Breeds
             </Typography>
+            {breedsFinal[2].length !== 0 ?
+                <>
+                    <Stack align='center'>
+                        <Pagination page={breedsFinal[0]} count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)} onChange={handleClick} sx={{ margin: 'auto' }} />
+                    </Stack>
 
-            <Stack align='center'>
-                <Pagination page={breedsFinal[0]} count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)} onChange={handleClick} sx={{ margin: 'auto' }} />
-            </Stack>
+                    <BreedCard breeds={breedsFinal[2]} />
 
-            <BreedCard breeds={breedsFinal[2]}/>
-
-            <Stack align='center'>
-                <Pagination page={breedsFinal[0]} count={breedsFinal[1]} onChange={handleClick} sx={{ margin: 'auto' }} />
-            </Stack>
+                    <Stack align='center'>
+                        <Pagination page={breedsFinal[0]} count={breedsFinal[1]} onChange={handleClick} sx={{ margin: 'auto' }} />
+                    </Stack>
+                </> :
+                <Typography align='center' sx={{color: 'red'}}>
+                    There aren´t breeds to show.
+                </Typography>}
 
         </Container>
     )
