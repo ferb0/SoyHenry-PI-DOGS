@@ -16,6 +16,7 @@ export default function TemperSearch() {
     return (
         <>
             {tempers ? <Autocomplete
+                size="small"
                 options={tempers}
                 sx={{ width: 175 }}
                 renderInput={(params) => <TextField {...params} label="Temperaments" />}
