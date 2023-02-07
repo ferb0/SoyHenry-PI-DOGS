@@ -53,16 +53,24 @@ export default function Breeds() {
             {breedsFinal[2].length !== 0 ?
                 <>
                     <Stack align='center'>
-                        <Pagination page={breedsFinal[0]} count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)} onChange={handleClick} sx={{ margin: 'auto' }} />
+                        <Pagination
+                            page={breedsFinal[0]}
+                            count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)}
+                            onChange={handleClick}
+                            sx={{ margin: 'auto', paddingBottom: '1rem', paddingTop: '1rem' }} />
                     </Stack>
 
                     <BreedCard breeds={breedsFinal[2]} />
 
                     <Stack align='center'>
-                        <Pagination page={breedsFinal[0]} count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)} onChange={handleClick} sx={{ margin: 'auto' }} />
+                        <Pagination
+                            page={breedsFinal[0]}
+                            count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)}
+                            onChange={handleClick}
+                            sx={{ margin: 'auto', paddingBottom: '1rem', paddingTop: '1rem' }} />
                     </Stack>
                 </> :
-                <Typography align='center' sx={{color: 'red'}}>
+                <Typography align='center' sx={{ color: 'red' }}>
                     There aren´t breeds to show.
                 </Typography>}
 
