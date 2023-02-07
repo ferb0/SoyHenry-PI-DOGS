@@ -1,18 +1,33 @@
+import * as React from 'react';
+
 import TemperSearch from "./Searcher/TemperSearch.jsx";
 import NameSearch from './Searcher/NameSearch.jsx';
 import Options from './Searcher/Options.jsx';
 import Sort from './Searcher/Sort.jsx';
 import FilterSource from './Searcher/FilterSource.jsx';
 
-import { AppBar, IconButton, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import imageLogo from '../../global/images/favicon.ico';
 
 export default function NavBar() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
     return (
         <AppBar position="sticky">
             <Toolbar>
                 <IconButton
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
                     size="large"
                     edge="start"
                     color="inherit"
@@ -20,10 +35,20 @@ export default function NavBar() {
                     sx={{ display: { sm: 'flex', xs: 'flex', md: 'none' } }}>
                     <MenuIcon />
                 </IconButton>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}>
+                    <MenuItem><FilterSource /></MenuItem>
+                    <MenuItem><Sort /></MenuItem>
+                    <MenuItem><TemperSearch /></MenuItem>
+                    <MenuItem><NameSearch /></MenuItem>
+                    <MenuItem onClick={handleClose}><Options /></MenuItem>
+                </Menu>
 
                 <Stack
-                direction='row'
-                spacing={1}
+                    direction='row'
+                    spacing={1}
                     sx={{ margin: { sm: 'auto', xs: 'auto', md: '0' } }}>
                     <img src={imageLogo} width='35rem' alt='logo' />
                     <Typography
