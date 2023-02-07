@@ -17,7 +17,7 @@ export default function TemperSearch() {
         <>
             {tempers ? <Autocomplete
                 options={tempers}
-                sx={{ width: 175, padding: '0.7rem' }}
+                sx={{ width: 175 }}
                 renderInput={(params) => <TextField {...params} label="Temperaments" />}
                 onChange={(event, value) => handleOnChangeTempers(value)} /> :
                 <Typography sx={{ color: 'red' }}>
