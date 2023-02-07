@@ -3,9 +3,14 @@ import { Container } from '@mui/system';
 
 export default function BreedCard({ breeds }) {
     return (
-        <Grid container spacing={4}>
+        <Grid
+        container
+        spacing={2}>
             {breeds?.map(el =>
-                <Grid item key={el.name} xs={12} sm={6} md={3} lg={3}>
+                <Grid
+                    item
+                    key={el.name}
+                    xs={12} sm={6} md={4} lg={3}>
                     <Card
                         sx={{ padding: '1rem' }}>
                         <CardMedia
