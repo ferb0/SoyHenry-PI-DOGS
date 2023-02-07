@@ -11,13 +11,11 @@ import {
   LOADING_TEMPERS
 } from './actions.js';
 
-import { ALL } from '../global/ConstSource.js'
-
 const initialState = {
   breeds: [],
   breed: {},
   tempers: [],
-  filterType: ALL,
+  filterType: null,
   temperSelected: "",
   sortSelected: null,
   loadingBreed: false,
