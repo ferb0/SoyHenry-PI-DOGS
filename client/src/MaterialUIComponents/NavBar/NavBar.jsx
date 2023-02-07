@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import TemperSearch from "./Searcher/TemperSearch.jsx";
 import NameSearch from './Searcher/NameSearch.jsx';
 import Options from './Searcher/Options.jsx';
+import Sort from './Searcher/Sort.jsx';
 
 export default function NavBar() {
     return (
@@ -27,6 +28,7 @@ export default function NavBar() {
                     justifyContent="flex-end"
                     alignItems="center"
                     spacing={2}>
+                    <Sort />
                     <TemperSearch />
                     <NameSearch />
                     <Options />
