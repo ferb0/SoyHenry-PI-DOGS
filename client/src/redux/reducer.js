@@ -12,7 +12,6 @@ import {
 } from './actions.js';
 
 import { ALL } from '../global/ConstSource.js'
-import { ALPHA_ASC } from '../global/ConstSort.js';
 
 const initialState = {
   breeds: [],
@@ -20,7 +19,7 @@ const initialState = {
   tempers: [],
   filterType: ALL,
   temperSelected: "",
-  sortSelected: ALPHA_ASC,
+  sortSelected: null,
   loadingBreed: false,
   loadingTemper: false
 };
