@@ -19,28 +19,32 @@ export default function BreedCard({ breeds }) {
                             alt="imageDog"
                             sx={{ border: '1px solid #f3f6f4' }} />
                         <CardContent>
-                            <Typography align='center' variant='h6' sx={{ paddingBottom: '0.20rem' }}>
+                            <Typography align='center' component='h6' variant='h6' sx={{ paddingBottom: '0.20rem' }}>
                                 {el.name}
                             </Typography>
                             <hr />
-                            <Stack direction='row' spacing={2}>
-                                <Typography>
-                                    Weight
+                            <Stack
+                            direction='row'
+                            spacing={2}
+                            alignItems="center" >
+                                
+                                <Typography variant='h6'>
+                                    Weight:
                                 </Typography>
 
-                                <Typography variant='subtitle2'>
-                                    {el.weight[0]} - {el.weight[1]}
+                                <Typography component='subtitle2'>
+                                    {el.weight[0]}Kg - {el.weight[1]}Kg
                                 </Typography>
                             </Stack>
 
                             <Stack>
-                                <Typography>
-                                    Temperaments
+                                <Typography variant='h6'>
+                                    Temperaments:
                                 </Typography>
-                                <List dense={true}>
+                                <List dense={true} sx={{padding: '0'}}>
                                     {el.temper?.map(el => {
                                         return (
-                                            <ListItem key={el}>
+                                            <ListItem key={el} sx={{padding: '0', paddingLeft: '1rem'}}>
                                                 <ListItemText primary={el} />
                                             </ListItem>
                                         )
@@ -49,7 +53,7 @@ export default function BreedCard({ breeds }) {
                             </Stack>
 
                             <Container sx={{ display: 'flex' }}>
-                                <Typography variant='caption' sx={{ display: 'flex', marginLeft: 'auto' }}>
+                                <Typography component='caption' sx={{ display: 'flex', marginLeft: 'auto' }}>
                                     {el.source}
                                 </Typography>
                             </Container>
