@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import TemperSearch from "./Searcher/TemperSearch.jsx";
 import NameSearch from './Searcher/NameSearch.jsx';
+import Options from './Searcher/Options.jsx';
 
 export default function NavBar() {
     return (
@@ -28,6 +29,7 @@ export default function NavBar() {
                     spacing={2}>
                     <TemperSearch />
                     <NameSearch />
+                    <Options />
                 </Stack>
             </Toolbar>
         </AppBar>
