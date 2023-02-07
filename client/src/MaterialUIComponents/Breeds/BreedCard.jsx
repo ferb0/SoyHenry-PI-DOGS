@@ -36,7 +36,7 @@ export default function BreedCard({ breeds }) {
                                         Weight:
                                     </Typography>
 
-                                    <Typography component='subtitle2'>
+                                    <Typography variant='body1'>
                                         {el.weight[0]}Kg - {el.weight[1]}Kg
                                     </Typography>
                                 </Stack>
@@ -57,7 +57,7 @@ export default function BreedCard({ breeds }) {
                                 </Stack>
 
                                 <Container sx={{ display: 'flex' }}>
-                                    <Typography component='caption' sx={{ display: 'flex', marginLeft: 'auto' }}>
+                                    <Typography variant="caption" sx={{ display: 'flex', marginLeft: 'auto' }}>
                                         {el.source}
                                     </Typography>
                                 </Container>

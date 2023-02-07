@@ -47,7 +47,7 @@ export default function BreedDetail() {
                             <Typography variant='h6'>
                                 Weight:
                             </Typography>
-                            <Typography component='subtitle2'>
+                            <Typography component='body1'>
                                 {breed.weight[0]}Kg - {breed.weight[1]}Kg
                             </Typography>
 
