@@ -2,6 +2,9 @@ import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from '../../global/Const
 
 export function sortType(breed, sort) {
 
+    if (!sort)
+        return breed;
+
     if (sort === ALPHA_DES) {
         breed.sort((first, second) => {
             if (first.name.toLowerCase() < second.name.toLowerCase())
