@@ -8,6 +8,7 @@ import { Typography, Card, CardMedia, CardContent, Stack, List, ListItem, ListIt
 
 export default function BreedDetail() {
     const { id } = useParams();
+
     const dispatch = useDispatch();
 
     const { breed, loading } = useSelector(state => {
@@ -16,7 +17,7 @@ export default function BreedDetail() {
             loading: state.loadingBreed
         }
     });
-    console.log(breed)
+
     React.useEffect(() => {
         dispatch(getBreed(id))
         return function () {
