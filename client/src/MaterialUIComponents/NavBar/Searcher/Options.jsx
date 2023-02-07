@@ -15,7 +15,8 @@ export default function Options() {
 
     return (
         <Stack>
-            <Button variant="text" onClick={cleanAll} sx={{ color: 'white', padding: '0' }}>
+            <Button variant="text" onClick={cleanAll} 
+            sx={{ color: { sm: 'black', xs: 'black', md: 'white' } }}>
                 Clear All
             </Button>
         </Stack>
