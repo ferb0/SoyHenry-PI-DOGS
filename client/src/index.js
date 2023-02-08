@@ -11,11 +11,16 @@ import './global/GlobalStyle.css';
 // import Principal from './componets/Principal/Principal.jsx';
 import Principal from './MaterialUIComponents/Principal.jsx';
 
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './global/Theme.js';
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Principal />
+        <ThemeProvider theme={theme}>
+          <Principal />
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

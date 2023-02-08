@@ -27,6 +27,7 @@ export default function Principal() {
                 </ThemeProvider>
             </Route>
             <Route path='/detail/:id'>
+                <NavBar />
                 <BreedDetail />
             </Route>
         </Switch>
