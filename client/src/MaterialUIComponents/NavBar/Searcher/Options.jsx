@@ -1,5 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
+
 import { getTempers, cleanAllData, getAllBreeds } from '../../../redux/actions.js'
 
 import { Button, Stack, Tooltip } from "@mui/material";
@@ -8,8 +10,11 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 export default function Options() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     function cleanAll() {
+        if(history.location.pathname.includes('detail'))
+            history.push('/')
         dispatch(cleanAllData());
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
