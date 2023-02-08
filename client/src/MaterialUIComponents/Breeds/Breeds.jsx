@@ -73,7 +73,7 @@ export default function Breeds() {
                     </Stack>
                 </> : 
                 <Typography align='center' sx={{paddingTop: '3rem'}}>
-                    Without result.
+                    Without results.
                 </Typography>
                 :
                 <Container align='center' sx={{paddingTop: '3rem'}}>
