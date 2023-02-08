@@ -39,41 +39,41 @@ export default function BreedDetail() {
                             alt='DetailImage' />
 
                         <CardContent
-                        align='center'
+                            align='center'
                             sx={{ margin: '3rem' }}>
                             <Typography component='h5' variant='h5' align="center"
-                            sx={{'white-space': 'nowrap' }}>
+                                sx={{ 'white-space': 'nowrap' }}>
                                 {breed.name}
                             </Typography>
 
-                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
+                            <Typography variant='h6' sx={{ paddingTop: '0.6rem' }}>
                                 Life Span:
                             </Typography>
                             {breed.lifeSpan ?
-                            <Typography component='body2'>
-                                {breed.lifeSpan[0]}years - {breed.lifeSpan[1]}years
-                            </Typography> :
-                            null}
+                                <Typography component='body2'>
+                                    {breed.lifeSpan[0]}years - {breed.lifeSpan[1]}years
+                                </Typography> :
+                                null}
 
-                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
+                            <Typography variant='h6' sx={{ paddingTop: '0.6rem' }}>
                                 Height:
                             </Typography>
                             {breed.height ?
-                            <Typography component='body2'>
-                                {breed.height[0]}cm - {breed.height[1]}cm
-                            </Typography> :
-                            null}
+                                <Typography component='body2'>
+                                    {breed.height[0]}cm - {breed.height[1]}cm
+                                </Typography> :
+                                null}
 
-                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
+                            <Typography variant='h6' sx={{ paddingTop: '0.6rem' }}>
                                 Weight:
                             </Typography>
                             {breed.weight ?
-                            <Typography component='body2'>
-                                {breed.weight[0]}Kg - {breed.weight[1]}Kg
-                            </Typography> :
-                            null}
+                                <Typography component='body2'>
+                                    {breed.weight[0]}Kg - {breed.weight[1]}Kg
+                                </Typography> :
+                                null}
 
-                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
+                            <Typography variant='h6' sx={{ paddingTop: '0.6rem' }}>
                                 Temperaments:
                             </Typography>
                             <List dense={true} sx={{ padding: '0' }}>
