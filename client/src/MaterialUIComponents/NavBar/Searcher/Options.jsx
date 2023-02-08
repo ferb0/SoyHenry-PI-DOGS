@@ -13,11 +13,11 @@ export default function Options() {
     const history = useHistory();
 
     function cleanAll() {
-        if(history.location.pathname.includes('detail'))
-            history.push('/')
         dispatch(cleanAllData());
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
+        if (history.location.pathname.includes('detail'))
+            history.push('/')
     };
 
     const [open, setOpen] = React.useState(false);
