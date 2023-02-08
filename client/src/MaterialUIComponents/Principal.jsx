@@ -16,8 +16,7 @@ export default function Principal() {
     React.useEffect(() => {
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispatch]);
 
     return (
         <Switch>
