@@ -58,7 +58,7 @@ export default function BreedDetail() {
 
                         <CardContent
                             align='center'
-                            sx={{ margin: '3rem' }}>
+                            sx={{ margin: '3rem', marginTop: 'auto', marginBottom: 'auto' }}>
                             <Typography component='h5' variant='h5' align="center"
                                 sx={{ whiteSpace: 'nowrap' }}>
                                 {breed.name}
