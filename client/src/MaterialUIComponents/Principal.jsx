@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import NavBar from "./NavBar/NavBar.jsx";
 import Breeds from './Breeds/Breeds.jsx';
 import BreedDetail from './BreedDetail.jsx';
+import Footer from './Footer.jsx';
 
 export default function Principal() {
     const dispatch = useDispatch();
@@ -20,10 +21,12 @@ export default function Principal() {
             <Route exact path="/">
                 <NavBar />
                 <Breeds />
+                <Footer />
             </Route>
             <Route path='/detail/:id'>
                 <NavBar />
                 <BreedDetail />
+                <Footer />
             </Route>
         </Switch>
     )
