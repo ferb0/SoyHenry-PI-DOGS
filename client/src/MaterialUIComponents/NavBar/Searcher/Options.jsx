@@ -37,8 +37,8 @@ export default function Options() {
                 onClick={cleanAll}
                 size='small'
                 sx={{
-                    color: { sm: 'grey', xs: 'grey', md: 'white' },
-                    borderColor: { sm: 'grey', xs: 'grey', md: 'white' }
+                    color: { sm: 'grey', xs: 'grey', md: 'black' },
+                    borderColor: { sm: 'grey', xs: 'grey', md: 'black' }
                 }}>
                 Clear All
             </Button>
@@ -56,8 +56,8 @@ export default function Options() {
                         size='small'
                         onClick={handleTooltipOpen}
                         sx={{
-                            color: { sm: 'grey', xs: 'grey', md: 'white' },
-                            borderColor: { sm: 'grey', xs: 'grey', md: 'white' }
+                            color: { sm: 'grey', xs: 'grey', md: 'black' },
+                            borderColor: { sm: 'grey', xs: 'grey', md: 'black' }
                         }}>
                         New Breed
                     </Button>
