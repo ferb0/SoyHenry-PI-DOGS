@@ -23,8 +23,7 @@ export default function BreedDetail() {
         return function () {
             dispatch(cleanBreed());
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispatch, id]);
 
     return (
         <>
@@ -40,35 +39,55 @@ export default function BreedDetail() {
                             alt='DetailImage' />
 
                         <CardContent
+                        align='center'
                             sx={{ margin: '3rem' }}>
-                            <Typography component='h6' variant='h6' align="center">
+                            <Typography component='h5' variant='h5' align="center"
+                            sx={{'white-space': 'nowrap' }}>
                                 {breed.name}
                             </Typography>
 
-                            <Typography variant='h6'>
+                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
+                                Life Span:
+                            </Typography>
+                            {breed.lifeSpan ?
+                            <Typography component='body2'>
+                                {breed.lifeSpan[0]}years - {breed.lifeSpan[1]}years
+                            </Typography> :
+                            null}
+
+                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
+                                Height:
+                            </Typography>
+                            {breed.height ?
+                            <Typography component='body2'>
+                                {breed.height[0]}cm - {breed.height[1]}cm
+                            </Typography> :
+                            null}
+
+                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
                                 Weight:
                             </Typography>
-                            <Typography component='body1'>
+                            {breed.weight ?
+                            <Typography component='body2'>
                                 {breed.weight[0]}Kg - {breed.weight[1]}Kg
-                            </Typography>
+                            </Typography> :
+                            null}
 
-
-                            <Typography variant='h6'>
+                            <Typography variant='h6' sx={{paddingTop: '0.6rem'}}>
                                 Temperaments:
                             </Typography>
                             <List dense={true} sx={{ padding: '0' }}>
                                 {breed.temper?.map(el => {
                                     return (
                                         <ListItem key={el} sx={{ padding: '0', paddingLeft: '1rem' }}>
-                                            <ListItemText primary={el} />
+                                            <ListItemText align='center' primary={el} />
                                         </ListItem>
                                     )
                                 })}
                             </List>
                         </CardContent>
                     </Stack>
-                </Card >
-            }
+                </Card >}
         </>
     )
 };
