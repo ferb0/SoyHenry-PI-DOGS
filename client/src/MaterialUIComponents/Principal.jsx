@@ -7,9 +7,6 @@ import NavBar from "./NavBar/NavBar.jsx";
 import Breeds from './Breeds/Breeds.jsx';
 import BreedDetail from './BreedDetail.jsx';
 
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../global/Theme.js';
-
 export default function Principal() {
     const dispatch = useDispatch();
 
@@ -21,16 +18,13 @@ export default function Principal() {
     return (
         <Switch>
             <Route exact path="/">
-                <ThemeProvider theme={theme}>
-                    <NavBar />
-                    <Breeds />
-                </ThemeProvider>
+                <NavBar />
+                <Breeds />
             </Route>
             <Route path='/detail/:id'>
                 <NavBar />
                 <BreedDetail />
             </Route>
         </Switch>
-
     )
 };
