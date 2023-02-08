@@ -45,7 +45,8 @@ export default function NavBar() {
                     <MenuItem><Sort /></MenuItem>
                     <MenuItem><TemperSearch /></MenuItem>
                     <MenuItem><NameSearch /></MenuItem>
-                    <MenuItem onClick={handleClose}><Options /></MenuItem>
+                    {/* Cuando esté terminado New Breed agregar el handleClose*/}
+                    <MenuItem onClick={null}><Options /></MenuItem>
                 </Menu>
 
                 
