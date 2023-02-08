@@ -52,6 +52,11 @@ export default function Breeds() {
                 List of Breeds
             </Typography>
             {!loadingBreed ?
+                breeds === false ?
+                <Typography color='error' align='center' sx={{paddingTop: '3rem'}}>
+                    Error getting data.
+                </Typography>
+                :
                 breeds?.length !== 0 ?
                 <>
                     <Stack align='center'>
