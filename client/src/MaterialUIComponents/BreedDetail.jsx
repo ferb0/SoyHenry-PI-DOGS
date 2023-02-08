@@ -68,7 +68,7 @@ export default function BreedDetail() {
                                 Life Span:
                             </Typography>
                             {breed.lifeSpan ?
-                                <Typography component='p' variant='body2'>
+                                <Typography component='p' variant='body1'>
                                     {breed.lifeSpan[0]}years - {breed.lifeSpan[1]}years
                                 </Typography> :
                                 null}
@@ -77,7 +77,7 @@ export default function BreedDetail() {
                                 Height:
                             </Typography>
                             {breed.height ?
-                                <Typography component='p' variant='body2'>
+                                <Typography component='p' variant='body1'>
                                     {breed.height[0]}cm - {breed.height[1]}cm
                                 </Typography> :
                                 null}
@@ -86,7 +86,7 @@ export default function BreedDetail() {
                                 Weight:
                             </Typography>
                             {breed.weight ?
-                                <Typography component='p' variant='body2'>
+                                <Typography component='p' variant='body1'>
                                     {breed.weight[0]}Kg - {breed.weight[1]}Kg
                                 </Typography> :
                                 null}
