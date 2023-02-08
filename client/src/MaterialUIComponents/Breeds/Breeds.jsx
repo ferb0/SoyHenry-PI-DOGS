@@ -5,16 +5,17 @@ import { temperFilter, sourceFilter, cantFilter } from '../../controllers/Pagina
 import { sortType } from '../../controllers/Pagination/functiosSort.js';
 import { CANT_SUMMARIES } from '../../global/CantSummaries.js';
 
-import { Typography, Container, Pagination, Stack } from '@mui/material';
+import { Typography, Container, Pagination, Stack, CircularProgress } from '@mui/material';
 import BreedCard from './BreedCard.jsx';
 
 export default function Breeds() {
-    const { breeds, sourceSelected, temperSelected, sortSelected } = useSelector(state => {
+    const { breeds, sourceSelected, temperSelected, sortSelected, loadingBreed } = useSelector(state => {
         return {
             breeds: state.breeds,
             sourceSelected: state.filterType,
             temperSelected: state.temperSelected,
-            sortSelected: state.sortSelected
+            sortSelected: state.sortSelected,
+            loadingBreed: state.loadingBreed
         }
     });
     let [breedsFinal, setBreedsFinal] = useState(
@@ -50,7 +51,7 @@ export default function Breeds() {
             <Typography variant='h6' align='center'>
                 List of Breeds
             </Typography>
-            {breedsFinal[2].length !== 0 ?
+            {!loadingBreed ?
                 <>
                     <Stack align='center'>
                         <Pagination
@@ -70,9 +71,14 @@ export default function Breeds() {
                             sx={{ margin: 'auto', paddingBottom: '1rem', paddingTop: '1rem' }} />
                     </Stack>
                 </> :
-                <Typography align='center' sx={{ color: 'red' }}>
-                    There aren´t breeds to show.
-                </Typography>}
+                <Container align='center' sx={{paddingTop: '3rem'}}>
+                    <CircularProgress
+                        color="inherit"
+                        size='3rem' />
+                    <Typography>
+                        Loading...
+                    </Typography>
+                </Container>}
 
         </Container>
     )
