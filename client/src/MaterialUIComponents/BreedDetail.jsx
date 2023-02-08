@@ -4,7 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getBreed, cleanBreed } from '../redux/actions.js'
 
-import { Typography, Card, CardMedia, CardContent, Stack, List, ListItem, ListItemText } from '@mui/material';
+import {
+    Typography,
+    Card,
+    CardMedia,
+    CardContent,
+    Stack,
+    List,
+    ListItem,
+    ListItemText,
+    Container,
+    CircularProgress
+} from '@mui/material';
 
 export default function BreedDetail() {
     const { id } = useParams();
@@ -28,7 +39,14 @@ export default function BreedDetail() {
     return (
         <>
             {loading ?
-                <p>Cargando...</p> :
+                <Container align='center' sx={{ paddingTop: '3rem' }}>
+                    <CircularProgress
+                        color="inherit"
+                        size='3rem' />
+                    <Typography>
+                        Loading...
+                    </Typography>
+                </Container> :
                 <Card
                     sx={{ margin: '2rem', padding: '0.5rem' }}>
                     <Stack
