@@ -52,6 +52,7 @@ export default function Breeds() {
                 List of Breeds
             </Typography>
             {!loadingBreed ?
+                breeds?.length !== 0 ?
                 <>
                     <Stack align='center'>
                         <Pagination
@@ -70,7 +71,11 @@ export default function Breeds() {
                             onChange={handleClick}
                             sx={{ margin: 'auto', paddingBottom: '1rem', paddingTop: '1rem' }} />
                     </Stack>
-                </> :
+                </> : 
+                <Typography align='center' sx={{paddingTop: '3rem'}}>
+                    Without result.
+                </Typography>
+                :
                 <Container align='center' sx={{paddingTop: '3rem'}}>
                     <CircularProgress
                         color="inherit"
@@ -79,7 +84,6 @@ export default function Breeds() {
                         Loading...
                     </Typography>
                 </Container>}
-
         </Container>
     )
 };
