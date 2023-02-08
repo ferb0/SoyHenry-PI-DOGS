@@ -8,7 +8,6 @@ import store from './redux/store.js';
 
 import './global/GlobalStyle.css';
 
-// import Principal from './componets/Principal/Principal.jsx';
 import Principal from './MaterialUIComponents/Principal.jsx';
 
 import { ThemeProvider } from '@mui/material/styles';
