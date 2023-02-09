@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { getAllBreeds } from '../../../redux/actions.js'
 
 import { TextField } from "@mui/material";
 
 export default function NameSearch() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [input, SetInput] = React.useState("");
 
@@ -18,6 +20,7 @@ export default function NameSearch() {
             event.preventDefault();
             dispatch(getAllBreeds(input));
             SetInput("");
+            history.push('/');
         }
     };
 
