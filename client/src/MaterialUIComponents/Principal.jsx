@@ -18,14 +18,10 @@ export default function Principal() {
 
     return (
         <Switch>
-            <Route exact path="/">
+            <Route path="/">
                 <NavBar />
-                <Breeds />
-                <Footer />
-            </Route>
-            <Route path='/detail/:id'>
-                <NavBar />
-                <BreedDetail />
+                <Route exact path="/" component={Breeds} />
+                <Route path='/detail/:id' component={BreedDetail} />
                 <Footer />
             </Route>
         </Switch>
