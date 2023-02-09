@@ -19,7 +19,8 @@ const initialState = {
   temperSelected: null,
   sortSelected: null,
   loadingBreed: false,
-  loadingTemper: false
+  loadingTemper: false,
+  firstLoading: true
 };
 
 const rootReducer = (state = initialState, action) => {
