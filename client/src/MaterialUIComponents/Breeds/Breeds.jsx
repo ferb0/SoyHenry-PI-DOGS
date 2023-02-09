@@ -41,7 +41,7 @@ export default function Breeds() {
     useEffect(() => {
         if (tempers.length !== 0)
             dispatch(firstLoadingOff());
-    }, [tempers]);
+    }, [dispatch, tempers]);
 
     useEffect(() => {
         if (breeds !== false) {
