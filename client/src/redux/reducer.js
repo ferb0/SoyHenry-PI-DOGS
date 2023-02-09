@@ -85,8 +85,6 @@ const rootReducer = (state = initialState, action) => {
     case CLEAN_ALL_DATA:
       return {
         ...state,
-        breed: {},
-        tempers: [],
         filterType: null,
         temperSelected: null,
         sortSelected: null,
