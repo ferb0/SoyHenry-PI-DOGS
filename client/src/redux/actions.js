@@ -8,7 +8,7 @@ export const LOADING_BREED = "LOADING_BREED";
 export const SET_SORT_TYPE = "SET_SORT_TYPE";
 export const CLEAN_ALL_DATA = "CLEAN_ALL_DATA";
 export const LOADING_TEMPERS = "LOADING_TEMPERS";
-export const FIRST_LOAFING_OFF = "FIRST_LOAFING_OFF";
+export const FIRST_LOADING_OFF = "FIRST_LOADING_OFF";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -122,7 +122,6 @@ export const cleanAllData = () => {
 
 export const firstLoadingOff = () => {
     return {
-        type: FIRST_LOAFING_OFF,
-        payload: false
+        type: FIRST_LOADING_OFF
     }
 };

@@ -8,7 +8,8 @@ import {
   LOADING_BREED,
   SET_SORT_TYPE,
   CLEAN_ALL_DATA,
-  LOADING_TEMPERS
+  LOADING_TEMPERS,
+  FIRST_LOADING_OFF
 } from './actions.js';
 
 const initialState = {
@@ -90,6 +91,12 @@ const rootReducer = (state = initialState, action) => {
         sortSelected: null,
         loadingBreed: false,
         loadingTemper: false
+      };
+
+    case FIRST_LOADING_OFF:
+      return {
+        ...state,
+        firstLoading: false
       };
 
     default:
