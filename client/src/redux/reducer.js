@@ -16,7 +16,7 @@ const initialState = {
   breed: {},
   tempers: [],
   filterType: null,
-  temperSelected: "",
+  temperSelected: null,
   sortSelected: null,
   loadingBreed: false,
   loadingTemper: false
