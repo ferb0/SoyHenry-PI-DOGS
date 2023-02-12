@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
+import { getAllBreeds } from '../../redux/actions.js';
 import checker from '../../controllers/Created/checker.js';
 import formatData from '../../controllers/Created/formatData.js';
 import sendData from '../../controllers/Created/sendData.js';
@@ -10,6 +12,7 @@ import imagePaws from '../../global/images/paws.png';
 const sizeTextField = '7rem';
 
 export default function CreatedBreed() {
+    const dispatch = useDispatch();
     const [input, setInput] = React.useState({
         name: '',
         maxHeight: '',
@@ -37,6 +40,8 @@ export default function CreatedBreed() {
         img: false,
         temper: false
     });
+    // Desabilita boton al envier datos
+    const [disabledButton, SetDisabledButton] = React.useState(false);
 
     function handleOnChange(event) {
         setInput({
@@ -55,12 +60,15 @@ export default function CreatedBreed() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        SetDisabledButton(true);
 
         let response = await sendData(data);
         if (response.hasOwnProperty('msg'))
             setSend(true);
         else
             setSend(false);
+
+        dispatch(getAllBreeds(''));
     };
 
     const handleCloseSnackbar = (event, reason) => {
@@ -188,7 +196,7 @@ export default function CreatedBreed() {
 
                     <Button
                         variant='outlined'
-                        disabled={!data}
+                        disabled={!data || disabledButton}
                         onClick={handleSubmit}
                         endIcon={<SendIcon />}
                         sx={{ marginTop: '2rem' }}>
