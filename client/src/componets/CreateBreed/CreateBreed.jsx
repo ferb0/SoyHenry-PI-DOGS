@@ -1,8 +1,8 @@
 import React from "react";
 import Nav from "../Nav/Nav.jsx";
 
-import checker from "./controllers/checker.js";
-import formatData from "./controllers/formatData.js";
+import checker from "../../controllers/controllers/checker.js";
+import formatData from "../../controllers/controllers/formatData.js";
 
 import s from './CreateBreed.module.css';
 import imageCreate from '../../global/images/paws.png';
