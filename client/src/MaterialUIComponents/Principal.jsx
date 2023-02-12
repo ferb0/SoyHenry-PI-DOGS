@@ -7,6 +7,7 @@ import NavBar from "./NavBar/NavBar.jsx";
 import Breeds from './Breeds/Breeds.jsx';
 import BreedDetail from './BreedDetail.jsx';
 import Footer from './Footer.jsx';
+import CreatedBreed from './NavBar/CreatedBreed.jsx';
 
 export default function Principal() {
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export default function Principal() {
                 <NavBar />
                 <Route exact path="/" component={Breeds} />
                 <Route path='/detail/:id' component={BreedDetail} />
+                <Route path='/createdBreed' component={CreatedBreed} />
                 <Footer />
             </Route>
         </Switch>
