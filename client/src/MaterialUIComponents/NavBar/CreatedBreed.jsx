@@ -24,7 +24,7 @@ export default function CreatedBreed() {
     // input con formato de envio.
     const [data, setData] = React.useState(undefined);
     // Error cuando se envia los datos al server.
-    const [send, setSend] = React.useState(false);
+    const [send, setSend] = React.useState(undefined);
     //Error para formulario controlado
     const [error, setError] = React.useState({
         name: false,
