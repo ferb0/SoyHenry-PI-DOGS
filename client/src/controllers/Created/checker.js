@@ -1,14 +1,13 @@
 export default function checker(parameter, value) {
-    // Retorna true si no es correcto
-
+    // Retorna true si hay un error
     if (value && parameter === "name" && !value.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/i))
-        return false;
+        return true;
     else if (value && parameter === "img" && !value.match(/^http/))
-        return false;
+        return true;
     else if (value && parameter === "temper" && !value.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ,]+$/i))
-        return false;
+        return true;
     else if (value && (parameter.includes('min') || parameter.includes('max')) && !value.match(/^[1-9]\d*$/))
-        return false;
+        return true;
     else
-        return value;
+        return false;
 };
