@@ -21,6 +21,29 @@ const theme = createTheme({
             A700: grey,
         }
     },
+    components: {
+        MuiAlert: {
+            styleOverrides: {
+                standardSuccess: {
+                    backgroundColor: 'grey',
+                    color: 'white'
+                },
+                standardError: {
+                    backgroundColor: 'grey',
+                    color: 'white'
+                },
+                standardWarning: {
+                    backgroundColor: 'grey',
+                    color: 'white'
+                },
+                standardInfo: {
+                    backgroundColor: 'grey',
+                    color: 'white'
+                }
+            }
+        },
+
+    },
 });
 
 export default theme;
