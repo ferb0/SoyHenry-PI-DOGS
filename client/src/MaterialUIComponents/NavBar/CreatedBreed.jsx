@@ -89,7 +89,7 @@ export default function CreatedBreed() {
                     component='img'
                     src={input.img && !error.img ? input.img : imagePaws}
                     alt='imageDog'
-                    sx={{ border: '1px solid #f3f6f4', maxWidth: '20rem', margin: 'auto' }} />
+                    sx={{ border: '1px solid #f3f6f4', maxWidth: '30rem', margin: 'auto' }} />
                 <Box component='form' padding='1rem'
                     sx={{ display: 'flex', flexDirection: 'column', margin: 'auto' }}>
                     <TextField
