@@ -22,7 +22,7 @@ export default function NavBar() {
     };
 
     return (
-        <AppBar position="sticky" sx={{backgroundColor: 'grey'}}>
+        <AppBar position="sticky" sx={{ backgroundColor: 'grey' }}>
             <Toolbar>
                 <IconButton
                     aria-controls={open ? 'basic-menu' : undefined}
@@ -49,19 +49,18 @@ export default function NavBar() {
                     <MenuItem onClick={null}><Options /></MenuItem>
                 </Menu>
 
-                
-                    <Stack
-                        direction='row'
-                        spacing={1}
-                        sx={{ margin: { sm: 'auto', xs: 'auto', md: '0' } }}>
-                        <img src={imageLogo} width='35rem' alt='logo' />
-                        <Link to='/' style={{ textDecoration: "none", color: 'inherit' }}>
+                <Stack
+                    direction='row'
+                    spacing={1}
+                    sx={{ margin: { sm: 'auto', xs: 'auto', md: '0' } }}>
+                    <img src={imageLogo} width='35rem' alt='logo' />
+                    <Link to='/' style={{ textDecoration: "none", color: 'inherit' }}>
                         <Typography
                             variant="h6" >
                             InfoDog
                         </Typography>
-                        </Link>
-                    </Stack>
+                    </Link>
+                </Stack>
 
                 <Stack
                     direction="row"
