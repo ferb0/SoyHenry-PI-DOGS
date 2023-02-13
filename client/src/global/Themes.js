@@ -33,6 +33,15 @@ const theme = createTheme({
     },
 });
 
-
+export const styleTextInput = {
+    "& label.Mui-focused": {
+        color: black
+    },
+    "& .MuiOutlinedInput-root": {
+        "&.Mui-focused fieldset": {
+            borderColor: black
+        }
+    }
+};
 
 export default theme;
