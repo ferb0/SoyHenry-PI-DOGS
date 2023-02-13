@@ -4,6 +4,7 @@ import { setSortType } from '../../../redux/actions.js';
 import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../../global/ConstSort.js";
 
 import { Autocomplete, TextField } from '@mui/material';
+import { styleTextInput } from "../../../global/Themes.js";
 
 export default function Sort() {
 
@@ -15,7 +16,7 @@ export default function Sort() {
         <Autocomplete
             size="small"
             options={options}
-            sx={{ width: 175 }}
+            sx={{ ...styleTextInput, width: 175 }}
             renderInput={(params) => <TextField {...params} label="Sort" />}
             onChange={(event, value) => dispatch(setSortType(value))}
             value={sortSelected} />

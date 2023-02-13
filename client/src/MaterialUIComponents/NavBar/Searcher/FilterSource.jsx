@@ -3,6 +3,7 @@ import { setFilterType } from '../../../redux/actions.js';
 import { DB, API, ALL } from '../../../global/ConstSource.js';
 
 import { TextField, Autocomplete } from '@mui/material';
+import { styleTextInput } from "../../../global/Themes.js";
 
 export default function FilterSource() {
     const dispatch = useDispatch();
@@ -11,11 +12,11 @@ export default function FilterSource() {
 
     return (
         <Autocomplete
-                size="small"
-                options={options}
-                sx={{ width: 175 }}
-                renderInput={(params) => <TextField {...params} label="Source" />}
-                onChange={(event, value) => dispatch(setFilterType(value))} 
-                value={filterType} />
+            size="small"
+            options={options}
+            sx={{ ...styleTextInput, width: 175 }}
+            renderInput={(params) => <TextField {...params} label="Source" />}
+            onChange={(event, value) => dispatch(setFilterType(value))}
+            value={filterType} />
     )
 };

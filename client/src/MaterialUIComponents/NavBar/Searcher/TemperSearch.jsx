@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTemper } from '../../../redux/actions.js';
 
 import { TextField, Autocomplete } from '@mui/material';
+import { styleTextInput } from "../../../global/Themes.js";
 
 export default function TemperSearch() {
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function TemperSearch() {
         <Autocomplete
             size="small"
             options={tempers || []}
-            sx={{ width: 175 }}
+            sx={{ ...styleTextInput, width: 175 }}
             renderInput={(params) => <TextField {...params} label="Temperaments" />}
             onChange={(event, value) => handleOnChangeTempers(value)}
             value={temperSelected} />

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { getTempers, cleanAllData, getAllBreeds } from '../../../redux/actions.js'
 
 import { Button, Stack } from "@mui/material";
-
+import { styleTextInput } from "../../../global/Themes.js";
 
 export default function Options() {
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function Options() {
                 color='secondary'
                 onClick={cleanAll}
                 size='small'
-                sx={{ color: '#1e1e1e' }}>
+                sx={{ ...styleTextInput, color: '#1e1e1e' }}>
                 Clean All
             </Button>
 
@@ -38,7 +38,7 @@ export default function Options() {
                 size='small'
                 color='secondary'
                 onClick={handleNewBreed}
-                sx={{ color: '#1e1e1e' }}>
+                sx={{ ...styleTextInput, color: '#1e1e1e' }}>
                 New Breed
             </Button>
         </Stack>

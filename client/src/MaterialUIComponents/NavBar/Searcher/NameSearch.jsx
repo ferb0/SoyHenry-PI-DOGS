@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { getAllBreeds } from '../../../redux/actions.js'
+import { getAllBreeds } from '../../../redux/actions.js';
 
 import { TextField } from "@mui/material";
+import { styleTextInput } from "../../../global/Themes.js";
 
 export default function NameSearch() {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function NameSearch() {
     };
 
     return (<TextField
-        sx={{ width: 175 }}
+        sx={{ ...styleTextInput, width: 175 }}
         size="small"
         id="outlined-basic"
         label="Search"
