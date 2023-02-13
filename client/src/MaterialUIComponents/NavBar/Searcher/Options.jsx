@@ -32,7 +32,7 @@ export default function Options() {
                     color: { sm: 'grey', xs: 'grey', md: 'black' },
                     borderColor: { sm: 'grey', xs: 'grey', md: 'black' }
                 }}>
-                Clear All
+                Clean All
             </Button>
 
             <Button
