@@ -101,7 +101,7 @@ export default function CreatedBreed() {
                         value={input.name}
                         onChange={handleOnChange} />
 
-                    <Stack direction='row' spacing={1}>
+                    <Stack direction='row' spacing={1} paddingTop='0.5rem'>
                         <Stack width={sizeTextField}>
                             <Typography component='h6' variant='subtitle1' align='center'>
                                 Height
@@ -174,6 +174,7 @@ export default function CreatedBreed() {
                                 onChange={handleOnChange} />
                         </Stack>
                     </Stack>
+
                     <TextField
                         error={error.img}
                         variant='outlined'
