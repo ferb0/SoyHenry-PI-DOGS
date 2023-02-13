@@ -23,26 +23,22 @@ export default function Options() {
     };
 
     return (
-        <Stack>
+        <Stack spacing={1} padding='0.4rem'>
             <Button
-                variant="text"
+                variant="outlined"
+                color='secondary'
                 onClick={cleanAll}
                 size='small'
-                sx={{
-                    color: { sm: 'grey', xs: 'grey', md: 'black' },
-                    borderColor: { sm: 'grey', xs: 'grey', md: 'black' }
-                }}>
+                sx={{ color: '#1e1e1e' }}>
                 Clean All
             </Button>
 
             <Button
-                variant="text"
+                variant="outlined"
                 size='small'
+                color='secondary'
                 onClick={handleNewBreed}
-                sx={{
-                    color: { sm: 'grey', xs: 'grey', md: 'black' },
-                    borderColor: { sm: 'grey', xs: 'grey', md: 'black' }
-                }}>
+                sx={{ color: '#1e1e1e' }}>
                 New Breed
             </Button>
         </Stack>

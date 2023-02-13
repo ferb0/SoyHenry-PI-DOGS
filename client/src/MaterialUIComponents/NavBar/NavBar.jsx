@@ -22,7 +22,7 @@ export default function NavBar() {
     };
 
     return (
-        <AppBar position="sticky" sx={{ backgroundColor: 'grey' }}>
+        <AppBar position="sticky">
             <Toolbar>
                 <IconButton
                     aria-controls={open ? 'basic-menu' : undefined}
