@@ -23,7 +23,7 @@ export default function Options() {
     };
 
     return (
-        <Stack spacing={1} padding='0.4rem'>
+        <Stack spacing={0.5} padding='0.3rem'>
             <Button
                 variant="outlined"
                 color='secondary'
