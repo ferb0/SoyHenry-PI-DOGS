@@ -111,6 +111,9 @@ router.post('/', async (req, res) => {
     if (img && !img.match(/^http/))
         return res.status(500).json({ err: 'Bad format image.' });
 
+    if (!Array.isArray(temper))
+        return res.status(500).json({ err: 'Bad format temper.' });
+
     // Se convierte en numeros.
     height = height.map(Number);
     weight = weight.map(Number);
