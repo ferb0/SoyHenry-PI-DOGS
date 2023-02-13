@@ -8,7 +8,9 @@ export default function formatData(input) {
     if (!Array.isArray(input.temper?.replace(/\s/g, '').split(',')))
         return undefined;
 
-    if (input.minHeight > input.maxHeight || input.minWeight > input.maxWeight || input.minLifeSpan > input.maxLifeSpan)
+    if (parseInt(input.minHeight) > parseInt(input.maxHeight) ||
+        parseInt(input.minWeight) > parseInt(input.maxWeight) ||
+        parseInt(input.minLifeSpan) > parseInt(input.maxLifeSpan))
         return false;
 
     return {
