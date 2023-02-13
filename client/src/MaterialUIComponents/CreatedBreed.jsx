@@ -183,6 +183,7 @@ export default function CreatedBreed() {
                         name='img'
                         margin='dense'
                         value={input.img}
+                        helperText='Only one URL are allowed.'
                         onChange={handleOnChange} />
 
                     <TextField
@@ -192,6 +193,8 @@ export default function CreatedBreed() {
                         label='Temperaments'
                         name='temper'
                         margin='dense'
+                        multiline
+                        helperText='Add temperaments separated by commas.'
                         value={input.temper}
                         onChange={handleOnChange} />
 
