@@ -14,7 +14,8 @@ const {
 } = require('./controllers/formatDetail.js');
 const {
     formatSummaryAPIServer,
-    formatSummaryBDServer
+    formatSummaryBDServer,
+    formatSummaryBDServerMDB
 } = require('./controllers/formatSumary.js');
 
 const { checkData } = require('./controllers/checkdataPut.js');
@@ -66,22 +67,33 @@ router.get('/', async (req, res) => {
         let responseAPI = await axiosDogs({ method: 'get', url: 'v1/breeds' })
         responseAPI = responseAPI.data;
 
-        if (name) {
-            var paramSearch = {
-                where: {
-                    name: {
-                        [Sequelize.Op.iLike]: '%' + name + '%'
-                    }
-                },
-                include: Temper
-            };
+        let responseFilteredDB;
+        if (MONGODB === 'true') {
+            responseFilteredDB = await DogM.find(
+                { name: { $regex: name, $options: 'i' }, },
+                'name weight img temper');
+            responseFilteredDB = formatSummaryBDServerMDB(responseFilteredDB)
         }
         else {
-            var paramSearch = { include: Temper };
-        }
+            if (name) {
+                var paramSearch = {
+                    where: {
+                        name: {
+                            [Sequelize.Op.iLike]: '%' + name + '%'
+                        }
+                    },
+                    include: Temper
+                };
+            }
+            else {
+                var paramSearch = { include: Temper };
+            }
 
-        // Busqueda y ya filtrado en BD
-        let responseFilteredDB = await Dog.findAll(paramSearch);
+            // Busqueda y ya filtrado en BD
+            responseFilteredDB = await Dog.findAll(paramSearch);
+            // Se unifica formato
+            responseFilteredDB = formatSummaryAPIServer(responseFilteredAPI)
+        }
 
         // Filtrado en API
         let responseFilteredAPI = responseAPI.filter(el => {
@@ -94,7 +106,7 @@ router.get('/', async (req, res) => {
 
         res.json({
             msg: [...formatSummaryAPIServer(responseFilteredAPI),
-            ...formatSummaryBDServer(responseFilteredDB)]
+            ...responseFilteredDB]
         });
     }
     catch (e) {
