@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 import { getAllBreeds } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
@@ -198,9 +198,9 @@ export default function CreatedBreed() {
                         variant='outlined'
                         disabled={!data || disabledButton}
                         onClick={handleSubmit}
-                        endIcon={<SendIcon />}
+                        endIcon={<FileUploadIcon />}
                         sx={{ marginTop: '2rem' }}>
-                        Submit
+                        Load new breed
                     </Button>
                     <Snackbar
                         open={send}
