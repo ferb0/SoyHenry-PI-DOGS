@@ -31,12 +31,8 @@ router.get('/:idBreed', async (req, res) => {
         return res.status(500).json({ err: "Wrong parameter." });
 
     try {
-        if (MONGODB === 'true') {
-            let breed = (await DogM.findById(idBreed));
-            res.json({ msg: formatDetailBDServerMDB(breed) });
-        }
-        else if (idBreed < IDBASE) {
-            let response = (await axiosDogs({ method: 'get', url: 'v1/breeds' })).data;
+        if (idBreed < IDBASE) {
+            let response = (await axiosDogs({ method: 'get', url: 'v1/breeds/' })).data;
 
             let breed = response.find(el => {
                 return el.id === parseInt(idBreed);
@@ -46,6 +42,10 @@ router.get('/:idBreed', async (req, res) => {
                 return res.status(500).json({ err: "Without results." });
 
             res.json({ msg: formatDetailAPIServer(breed) });
+        }
+        else if (MONGODB === 'true') {
+            let breed = (await DogM.findById(idBreed));
+            res.json({ msg: formatDetailBDServerMDB(breed) });
         }
         else {
             let response = await Dog.findOne({
