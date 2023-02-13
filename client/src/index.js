@@ -11,7 +11,7 @@ import './global/GlobalStyle.css';
 import Principal from './MaterialUIComponents/Principal.jsx';
 
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './global/Theme.js';
+import theme from './global/Themes.js';
 
 ReactDOM.render(
   <React.StrictMode>
