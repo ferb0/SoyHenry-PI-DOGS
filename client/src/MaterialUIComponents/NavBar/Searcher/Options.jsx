@@ -15,8 +15,7 @@ export default function Options() {
         dispatch(cleanAllData());
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
-        if (history.location.pathname.includes('detail'))
-            history.push('/')
+        history.push('/')
     };
 
     const handleNewBreed = () => {
