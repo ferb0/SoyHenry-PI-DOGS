@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-import { getAllBreeds } from '../../redux/actions.js';
-import checker from '../../controllers/Created/checker.js';
-import formatData from '../../controllers/Created/formatData.js';
-import sendData from '../../controllers/Created/sendData.js';
+import { getAllBreeds } from '../redux/actions.js';
+import checker from '../controllers/Created/checker.js';
+import formatData from '../controllers/Created/formatData.js';
+import sendData from '../controllers/Created/sendData.js';
 
 import imagePaws from '../../global/images/paws.png';
 const sizeTextField = '7rem';
