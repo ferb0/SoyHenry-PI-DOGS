@@ -10,7 +10,8 @@ const IDBASE = require('../global/idDogsBase.js');
 //Funcones para formatos
 const {
     formatDetailAPIServer,
-    formatDetailBDServer
+    formatDetailBDServer,
+    formatDetailBDServerMDB
 } = require('./controllers/formatDetail.js');
 const {
     formatSummaryAPIServer,
@@ -26,11 +27,15 @@ let DogM = require('../../src/models-mongodb/Dog.js');
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
-    if (!idBreed.match(/^[0-9]+$/))
+    if (!MONGODB === 'true' && !idBreed.match(/^[0-9]+$/))
         return res.status(500).json({ err: "Wrong parameter." });
 
     try {
-        if (idBreed < IDBASE) {
+        if (MONGODB === 'true') {
+            let breed = (await DogM.findById(idBreed));
+            res.json({ msg: formatDetailBDServerMDB(breed) });
+        }
+        else if (idBreed < IDBASE) {
             let response = (await axiosDogs({ method: 'get', url: 'v1/breeds' })).data;
 
             let breed = response.find(el => {
@@ -68,6 +73,7 @@ router.get('/', async (req, res) => {
         responseAPI = responseAPI.data;
 
         let responseFilteredDB;
+
         if (MONGODB === 'true') {
             responseFilteredDB = await DogM.find(
                 { name: { $regex: name, $options: 'i' }, },
@@ -92,7 +98,7 @@ router.get('/', async (req, res) => {
             // Busqueda y ya filtrado en BD
             responseFilteredDB = await Dog.findAll(paramSearch);
             // Se unifica formato
-            responseFilteredDB = formatSummaryAPIServer(responseFilteredAPI)
+            responseFilteredDB = formatSummaryBDServer(responseFilteredDB)
         }
 
         // Filtrado en API
