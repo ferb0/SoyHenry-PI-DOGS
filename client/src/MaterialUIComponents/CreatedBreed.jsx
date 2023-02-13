@@ -8,7 +8,7 @@ import checker from '../controllers/Created/checker.js';
 import formatData from '../controllers/Created/formatData.js';
 import sendData from '../controllers/Created/sendData.js';
 
-import imagePaws from '../../global/images/paws.png';
+import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';
 
 export default function CreatedBreed() {
