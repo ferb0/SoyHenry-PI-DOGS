@@ -1,6 +1,6 @@
 // Funciones para darle formato a las respuestas del server.
 
-const {DB, API} = require('../../global/constSource.js');
+const { DB, API } = require('../../global/constSource.js');
 
 function formatSummaryAPIServer(breed) {
     // breed es siempre un array
@@ -32,5 +32,21 @@ function formatSummaryBDServer(breed) {
     return response;
 };
 
-module.exports = { formatSummaryAPIServer, formatSummaryBDServer }
+function formatSummaryBDServerMDB(breed) {
+    return breed?.map(el => {
+        return {
+            id: el._id,
+            name: el.name,
+            weight: [String(el.weight[0]), String(el.weight[1])],
+            img: el.img,
+            temper: el.temper,
+            source: DB
+        };
+    });
+};
+module.exports = {
+    formatSummaryAPIServer,
+    formatSummaryBDServer,
+    formatSummaryBDServerMDB
+}
 
