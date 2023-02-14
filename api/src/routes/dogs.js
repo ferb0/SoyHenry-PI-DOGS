@@ -1,30 +1,20 @@
 const { Router } = require('express');
 const router = Router();
 
-const { Sequelize } = require("sequelize");
-
+const { MONGODB } = process.env;
+const DogM = require('../../src/models-mongodb/Dog.js');
 const { Dog, Temper } = require('../db.js');
-const axiosDogs = require('../global/axiosInstance.js');
+
 // IdBase
 const IDBASE = require('../global/idDogsBase.js');
+const { DB, API, DBM } = require('../global/constSource.js');
+
 //Funcones para formatos
 const { formatDetail } = require('./controllers/formatDetail.js');
-const {
-    formatSummaryAPIServer,
-    formatSummaryBDServer,
-    formatSummaryBDServerMDB,
-    formatSumary
-} = require('./controllers/formatSumary.js');
-
+const { formatSummaryAPIServer, formatSumary } = require('./controllers/formatSumary.js');
 const { checkData } = require('./controllers/checkdataPut.js');
-
-const { MONGODB } = process.env;
-let DogM = require('../../src/models-mongodb/Dog.js');
-
 const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDataDetail.js');
 const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDataSumary.js');
-
-const { DB, API, DBM } = require('../global/constSource.js');
 
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
