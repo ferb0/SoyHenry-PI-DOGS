@@ -1,44 +1,22 @@
 const { Router } = require('express');
 const router = Router();
-const { Temper } = require('../db.js');
-
-const axiosTemperaments = require('../global/axiosInstance.js');
 
 const { MONGODB } = process.env;
-const DogM = require('../models-mongodb/Dog.js');
+const { getTempersAPI, getTempersDBM, getTempersDB } = require('./controllers/getDataTempers.js');
 
 router.get('/', async (req, res) => {
     try {
-        // Donde estarán todos los temperamentos
-        let temperaments = new Set();
-
         // Se busca en la API
-        let temperamentsAPI = (await axiosTemperaments({ method: 'get', url: 'v1/breeds' })).data;
-        temperamentsAPI?.forEach(el => {
-            if (el.temperament) {
-                el.temperament.split(", ").forEach(el => {
-                    temperaments.add(el);
-                });
-            }
-        });
+        let temperaments = await getTempersAPI();
 
         // Se busca en la BS
         if (MONGODB === 'true') {
-            let temperamentsDB = await DogM.find({}, 'temper');
-            temperamentsDB?.forEach(el => {
-                if (el.temper) {
-                    el.temper?.map(temp => temperaments.add(temp))
-                }
-            });
+            temperaments = [...temperaments, ... (await getTempersDBM())];
         }
         else {
-            let temperamentsDB = await Temper.findAll({ attributes: ['name'] });
-            temperamentsDB?.forEach(el => {
-                temperaments.add(el.name);
-            });
+            temperaments = [...temperaments, ... (await getTempersDB())];
         }
-
-        res.send({ msg: Array.from(temperaments) });
+        res.send({ msg: temperaments });
     }
     catch (e) {
         res.status(500).json({ err: e });
