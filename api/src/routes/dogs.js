@@ -8,11 +8,7 @@ const axiosDogs = require('../global/axiosInstance.js');
 // IdBase
 const IDBASE = require('../global/idDogsBase.js');
 //Funcones para formatos
-const {
-    formatDetailAPIServer,
-    formatDetailBDServer,
-    formatDetailBDServerMDB
-} = require('./controllers/formatDetail.js');
+const { formatDetail } = require('./controllers/formatDetail.js');
 const {
     formatSummaryAPIServer,
     formatSummaryBDServer,
@@ -25,6 +21,7 @@ const { MONGODB } = process.env;
 let DogM = require('../../src/models-mongodb/Dog.js');
 
 const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/conectToDB.js');
+const { DB, API, DBM } = require('../global/constSource.js');
 
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
@@ -33,20 +30,22 @@ router.get('/:idBreed', async (req, res) => {
         return res.status(500).json({ err: "Wrong parameter." });
 
     try {
-
+        let breed; let format;
         if (idBreed < IDBASE) {
-            let breed = await getDetailAPI(idBreed);
-            res.json({ msg: formatDetailAPIServer(breed) });
+            breed = await getDetailAPI(idBreed);
+            format = API;
         }
         else if (MONGODB === 'true') {
-            let breed = await getDetailMDB(idBreed);
-            res.json({ msg: formatDetailBDServerMDB(breed) });
+            breed = await getDetailMDB(idBreed);
+            format = DBM;
         }
         else {
-            let breed = await getDetailDB(idBreed);
-            res.json({ msg: formatDetailBDServer(breed?.get({ plain: true })) });
+            breed = await getDetailDB(idBreed);
+            // Se quita metadata
+            breed = breed.get({ plain: true });
+            format = DB;
         }
-
+        res.json({ msg: formatDetail(breed, format) });
     }
     catch (e) {
         res.status(500).json({ err: e.message });

@@ -1,6 +1,5 @@
 // Funciones para darle formato a las respuestas del server.
-
-const { DB, API } = require('../../global/constSource.js');
+const { DB, API, DBM } = require('../../global/constSource.js');
 
 function formatDetailAPIServer(breed) {
     return breed ? {
@@ -40,8 +39,16 @@ function formatDetailBDServerMDB(breed) {
         source: DB
     } : null;
 };
-module.exports = {
-    formatDetailAPIServer,
-    formatDetailBDServer,
-    formatDetailBDServerMDB
-}
+
+function formatDetail(breed, format) {
+    if (format === API)
+        return formatDetailAPIServer(breed);
+    if (format === DB)
+        return formatDetailBDServer(breed);
+    if (format === DBM)
+        return formatDetailBDServerMDB(breed);
+
+    return breed;
+};
+
+module.exports = { formatDetail }
