@@ -62,13 +62,12 @@ router.get('/', async (req, res) => {
         let responseFilteredAPI = await getSumaryAPI(name);
         let responseFiltered = formatSummaryAPIServer(responseFilteredAPI);
 
-        let responseFilteredDB;
         if (MONGODB === 'true') {
-            responseFilteredDB = await getSumaryDBM(name);
+            let responseFilteredDB = await getSumaryDBM(name);
             responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DBM)]
         }
         else {
-            responseFilteredDB = await getSumaryDB(name);
+            let responseFilteredDB = await getSumaryDB(name);
             responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DB)]
         }
 
