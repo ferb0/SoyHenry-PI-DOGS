@@ -22,10 +22,10 @@ const { conn } = require('./src/db.js');
 const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3001;
-const MONGODB = process.env.MONGODB || false;
+const MONGODB = process.env.MONGODB;
 const MONGODB_URL = process.env.MONGODB_URL;
 
-if (MONGODB === 'true') {
+if (MONGODB === 'active') {
   mongoose.set('strictQuery', true);
   mongoose.connect(MONGODB_URL)
     .then(() => {
@@ -43,5 +43,5 @@ else {
         console.log(`Server listening at ${PORT}`); // eslint-disable-line no-console
       });
     })
-    .catch(err => console.log('ERROR MONGODB: ', err));
+    .catch(err => console.log('ERROR SEQUELIZE: ', err));
 }

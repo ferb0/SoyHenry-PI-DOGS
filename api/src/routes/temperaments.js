@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
         let temperaments = await getTempersAPI();
 
         // Se busca en la BS
-        if (MONGODB === 'true') {
+        if (MONGODB === 'active') {
             temperaments = [...temperaments, ... (await getTempersDBM())];
         }
         else {

@@ -20,7 +20,7 @@ const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDa
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
-    if (!MONGODB === 'true' && !idBreed.match(/^[0-9]+$/))
+    if (!MONGODB === 'active' && !idBreed.match(/^[0-9]+$/))
         return res.status(500).json({ err: "Wrong parameter." });
 
     try {
@@ -29,7 +29,7 @@ router.get('/:idBreed', async (req, res) => {
             breed = await getDetailAPI(idBreed);
             format = API;
         }
-        else if (MONGODB === 'true') {
+        else if (MONGODB === 'active') {
             breed = await getDetailMDB(idBreed);
             format = DBM;
         }
@@ -53,7 +53,7 @@ router.get('/', async (req, res) => {
         let responseFilteredAPI = await getSumaryAPI(name);
         let responseFiltered = formatSummaryAPIServer(responseFilteredAPI);
 
-        if (MONGODB === 'true') {
+        if (MONGODB === 'active') {
             let responseFilteredDB = await getSumaryDBM(name);
             responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DBM)]
         }
@@ -98,7 +98,7 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        if (MONGODB === 'true') {
+        if (MONGODB === 'active') {
             const newDog = new DogM({
                 name,
                 height: [height[0], height[1]],
