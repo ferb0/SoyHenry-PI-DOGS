@@ -3,7 +3,6 @@ const { Router } = require('express');
 const router = Router();
 
 const MONGODB = process.env.MONGODB;
-console.log(MONGODB)
 const DogM = require('../../src/models-mongodb/Dog.js');
 const { Dog, Temper } = require('../db.js');
 
@@ -56,12 +55,10 @@ router.get('/', async (req, res) => {
 
         if (MONGODB === 'true') {
             let responseFilteredDB = await getSumaryDBM(name);
-            console.log(responseFilteredDB)
             responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DBM)]
         }
         else {
             let responseFilteredDB = await getSumaryDB(name);
-            console.log(responseFilteredDB)
             responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DB)]
         }
 
