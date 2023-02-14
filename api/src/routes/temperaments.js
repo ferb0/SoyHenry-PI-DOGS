@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 
         // Se busca en la BS
         if (MONGODB === 'true') {
-            let temperamentsDB = await DogM.find({});
+            let temperamentsDB = await DogM.find({}, 'temper');
             temperamentsDB?.forEach(el => {
                 if (el.temper) {
                     el.temper?.map(temp => temperaments.add(temp))
