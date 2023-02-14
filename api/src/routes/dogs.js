@@ -12,7 +12,8 @@ const { formatDetail } = require('./controllers/formatDetail.js');
 const {
     formatSummaryAPIServer,
     formatSummaryBDServer,
-    formatSummaryBDServerMDB
+    formatSummaryBDServerMDB,
+    formatSumary
 } = require('./controllers/formatSumary.js');
 
 const { checkData } = require('./controllers/checkdataPut.js');
@@ -21,6 +22,8 @@ const { MONGODB } = process.env;
 let DogM = require('../../src/models-mongodb/Dog.js');
 
 const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDataDetail.js');
+const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDataSumary.js');
+
 const { DB, API, DBM } = require('../global/constSource.js');
 
 router.get('/:idBreed', async (req, res) => {
@@ -56,49 +59,21 @@ router.get('/', async (req, res) => {
     let name = req.query.name;
 
     try {
-        let responseAPI = await axiosDogs({ method: 'get', url: 'v1/breeds' })
-        responseAPI = responseAPI.data;
+        let responseFilteredAPI = await getSumaryAPI(name);
+        responseFilteredAPI = formatSummaryAPIServer(responseFilteredAPI);
 
         let responseFilteredDB;
-
         if (MONGODB === 'true') {
-            responseFilteredDB = await DogM.find(
-                { name: { $regex: name, $options: 'i' }, },
-                'name weight img temper');
-            responseFilteredDB = formatSummaryBDServerMDB(responseFilteredDB)
+            responseFilteredDB = await getSumaryDBM(name);
+            responseFilteredDB = formatSumary(responseFilteredDB, DBM)
         }
         else {
-            if (name) {
-                var paramSearch = {
-                    where: {
-                        name: {
-                            [Sequelize.Op.iLike]: '%' + name + '%'
-                        }
-                    },
-                    include: Temper
-                };
-            }
-            else {
-                var paramSearch = { include: Temper };
-            }
-
-            // Busqueda y ya filtrado en BD
-            responseFilteredDB = await Dog.findAll(paramSearch);
-            // Se unifica formato
-            responseFilteredDB = formatSummaryBDServer(responseFilteredDB)
+            responseFilteredDB = await getSumaryDB(name);
+            responseFilteredDB = formatSumary(responseFilteredDB, DB)
         }
 
-        // Filtrado en API
-        let responseFilteredAPI = responseAPI.filter(el => {
-            if (!name)
-                return true;
-            else
-                return el.name.toLowerCase().includes(name.toLowerCase())
-        });
-
-
         res.json({
-            msg: [...formatSummaryAPIServer(responseFilteredAPI),
+            msg: [...responseFilteredAPI,
             ...responseFilteredDB]
         });
     }
