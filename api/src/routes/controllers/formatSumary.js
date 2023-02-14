@@ -53,7 +53,7 @@ function formatSumary(breeds, format) {
     if (format === DBM)
         return formatSummaryBDServerMDB(breeds);
 
-    return breed;
+    return breeds;
 };
 
 module.exports = {
