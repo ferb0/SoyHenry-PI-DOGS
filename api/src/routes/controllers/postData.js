@@ -1,5 +1,6 @@
-const DogM = require('../../../src/models-mongodb/Dog.js');
+const { DogM } = require('../../../src/models-mongodb/Dog.js');
 const { Dog, Temper } = require('../../db.js');
+const { TempersM } = require('../../models-mongodb/Tempers.js');
 
 async function postDBM({ name, height, weight, lifeSpan, img, temper }) {
     try {
@@ -8,9 +9,16 @@ async function postDBM({ name, height, weight, lifeSpan, img, temper }) {
             height: [height[0], height[1]],
             weight: [weight[0], weight[1]],
             lifeSpan: [lifeSpan[0], lifeSpan[1]],
-            img,
-            temper
+            img
         });
+
+        let resultArray= [];
+        for (const el of temper) {
+            let temp = new TempersM({name: el});
+            resultArray.push(await temp.save());
+        }
+
+        resultArray.map(el => newDog.temper.push(el));
         await newDog.save();
     }
     catch (error) {

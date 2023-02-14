@@ -1,12 +1,15 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const { temperSchema } = require('./Tempers.js');
 
-let dogSchema = new mongoose.Schema({
+const dogSchema = new mongoose.Schema({
     name: String,
     height: [Number],
     weight: [Number],
     lifeSpan: [Number],
     img: String,
-    temper: [String]
+    temper: [temperSchema]
 });
 
-module.exports = mongoose.model('Dog', dogSchema);
+const DogM = mongoose.model('Dog', dogSchema);
+
+module.exports = { DogM, dogSchema }
