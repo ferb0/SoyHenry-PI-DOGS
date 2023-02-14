@@ -3,9 +3,6 @@ const { Router } = require('express');
 const router = Router();
 
 const MONGODB = process.env.MONGODB;
-const DogM = require('../../src/models-mongodb/Dog.js');
-const { Dog, Temper } = require('../db.js');
-
 // IdBase
 const IDBASE = require('../global/idDogsBase.js');
 const { DB, API, DBM } = require('../global/constSource.js');
@@ -16,6 +13,7 @@ const { formatSummaryAPIServer, formatSumary } = require('./controllers/formatSu
 const { checkData } = require('./controllers/checkdataPut.js');
 const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDataDetail.js');
 const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDataSumary.js');
+const { postDBM, postDB } = require('./controllers/postData.js');
 
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
@@ -98,38 +96,10 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        if (MONGODB === 'active') {
-            const newDog = new DogM({
-                name,
-                height: [height[0], height[1]],
-                weight: [weight[0], weight[1]],
-                lifeSpan: [lifeSpan[0], lifeSpan[1]],
-                img,
-                temper
-            });
-            await newDog.save();
-        }
-        else {        // Obtener la cantidad de elementos en la tabla.
-            const id = await Dog.count();
-            // Se crea la raza.
-            const newBreed = await Dog.create({
-                id,
-                name,
-                minHeight: height[0],
-                maxHeight: height[1],
-                minWeight: weight[0],
-                maxWeight: weight[1],
-                minLifeSpan: lifeSpan[0],
-                maxLifeSpan: lifeSpan[1],
-                img
-            });
-
-            let promiseTempers = temper.map(element => {
-                return Temper.create({ name: element });
-            });
-            let newTempers = await Promise.all(promiseTempers);
-            await newBreed.addTempers(newTempers);
-        }
+        if (MONGODB === 'active')
+            await postDBM({ name, height, weight, lifeSpan, img, temper });
+        else    
+            await postDB({ name, height, weight, lifeSpan, img, temper });
 
         res.send({ msg: "New race successfully created." });
     }
