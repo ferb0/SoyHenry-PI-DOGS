@@ -20,7 +20,7 @@ const { checkData } = require('./controllers/checkdataPut.js');
 const { MONGODB } = process.env;
 let DogM = require('../../src/models-mongodb/Dog.js');
 
-const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/conectToDB.js');
+const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDataDetail.js');
 const { DB, API, DBM } = require('../global/constSource.js');
 
 router.get('/:idBreed', async (req, res) => {
