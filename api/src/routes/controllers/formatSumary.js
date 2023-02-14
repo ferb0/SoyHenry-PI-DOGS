@@ -45,7 +45,7 @@ function formatSummaryBDServerMDB(breeds) {
     });
 };
 
-function formatSumary(breeds) {
+function formatSumary(breeds, format) {
     if (format === API)
         return formatSummaryAPIServer(breeds);
     if (format === DB)
