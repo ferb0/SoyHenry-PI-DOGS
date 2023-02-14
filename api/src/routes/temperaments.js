@@ -4,12 +4,16 @@ const { Temper } = require('../db.js');
 
 const axiosTemperaments = require('../global/axiosInstance.js');
 
+const { MONGODB } = process.env;
+const DogM = require('../models-mongodb/Dog.js');
+
 router.get('/', async (req, res) => {
     try {
+        // Donde estarán todos los temperamentos
+        let temperaments = new Set();
+
         // Se busca en la API
         let temperamentsAPI = (await axiosTemperaments({ method: 'get', url: 'v1/breeds' })).data;
-
-        let temperaments = new Set();
         temperamentsAPI?.forEach(el => {
             if (el.temperament) {
                 el.temperament.split(", ").forEach(el => {
@@ -19,10 +23,20 @@ router.get('/', async (req, res) => {
         });
 
         // Se busca en la BS
-        let temperamentsBd = await Temper.findAll({ attributes: ['name'] });
-        temperamentsBd?.forEach(el => {
-            temperaments.add(el.name);
-        });
+        if (MONGODB === 'true') {
+            let temperamentsDB = await DogM.find({});
+            temperamentsDB?.forEach(el => {
+                if (el.temper) {
+                    el.temper?.map(temp => temperaments.add(temp))
+                }
+            });
+        }
+        else {
+            let temperamentsDB = await Temper.findAll({ attributes: ['name'] });
+            temperamentsDB?.forEach(el => {
+                temperaments.add(el.name);
+            });
+        }
 
         res.send({ msg: Array.from(temperaments) });
     }
