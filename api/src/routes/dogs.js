@@ -24,6 +24,8 @@ const { checkData } = require('./controllers/checkdataPut.js');
 const { MONGODB } = process.env;
 let DogM = require('../../src/models-mongodb/Dog.js');
 
+const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/conectToDB.js');
+
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
@@ -31,32 +33,18 @@ router.get('/:idBreed', async (req, res) => {
         return res.status(500).json({ err: "Wrong parameter." });
 
     try {
+
         if (idBreed < IDBASE) {
-            let response = (await axiosDogs({ method: 'get', url: 'v1/breeds/' })).data;
-
-            let breed = response.find(el => {
-                return el.id === parseInt(idBreed);
-            });
-
-            if (!breed)
-                return res.status(500).json({ err: "Without results." });
-
+            let breed = await getDetailAPI(idBreed);
             res.json({ msg: formatDetailAPIServer(breed) });
         }
         else if (MONGODB === 'true') {
-            let breed = (await DogM.findById(idBreed));
+            let breed = await getDetailMDB(idBreed);
             res.json({ msg: formatDetailBDServerMDB(breed) });
         }
         else {
-            let response = await Dog.findOne({
-                where: { id: idBreed },
-                include: Temper
-            });
-
-            if (!response)
-                return res.status(500).json({ err: "Without results." });
-
-            res.json({ msg: formatDetailBDServer(response?.get({ plain: true })) });
+            let breed = await getDetailDB(idBreed);
+            res.json({ msg: formatDetailBDServer(breed?.get({ plain: true })) });
         }
 
     }
