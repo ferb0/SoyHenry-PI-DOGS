@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
-import { getTempers, getAllBreeds } from '../redux/actions.js';
+import { getTempers, getAllBreeds, setNumberBreedDB } from '../redux/actions.js';
 import { Route, Switch } from 'react-router-dom';
 
 import NavBar from "./NavBar/NavBar.jsx";
@@ -15,6 +15,7 @@ export default function Principal() {
     React.useEffect(() => {
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
+        dispatch(setNumberBreedDB());
     }, [dispatch]);
 
     return (
