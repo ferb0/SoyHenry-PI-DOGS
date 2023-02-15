@@ -15,6 +15,7 @@ const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDa
 const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDataSumary.js');
 const { postDBM, postDB } = require('./controllers/postData.js');
 const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/getBreedsNumberDB.js');
+const { deleteDBM } = require('./controllers/deleteBreedDB.js');
 
 router.get('/breedsNumber', async (req, res) => {
     try {
@@ -125,6 +126,24 @@ router.post('/', async (req, res) => {
     catch (e) {
         res.status(500).json({ err: e.message });
     }
+});
+
+router.delete('/delete/:idBreed', async (req, res) => {
+    const { idBreed } = req.params;
+
+    try {
+        if (MONGODB === 'active') {
+            await deleteDBM(idBreed);
+        }
+        else {
+
+        }
+        res.json({ msg: `The breed ${idBreed} eliminated.` });
+    }
+    catch (error) {
+        res.status(500).json({ err: e.message });
+    }
+
 });
 
 module.exports = router;
