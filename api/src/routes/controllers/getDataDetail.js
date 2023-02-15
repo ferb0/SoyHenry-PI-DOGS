@@ -1,5 +1,5 @@
 const axiosDogs = require('../../global/axiosInstance.js');
-const DogM = require('../../models-mongodb/Dog.js');
+const { DogM } = require('../../models-mongodb/Dog.js');
 const { Dog, Temper } = require('../../db.js');
 
 async function getDetailAPI(idBreed) {
@@ -19,7 +19,10 @@ async function getDetailAPI(idBreed) {
 
 async function getDetailMDB(idBreed) {
     try {
-        return await DogM.findById(idBreed);
+        let breed = await DogM.findById(idBreed);
+        breed = breed.toObject();
+        breed.temper = breed.temper?.map(el => el.name);
+        return breed;
     }
     catch (error) {
         throw error;
