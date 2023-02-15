@@ -8,7 +8,6 @@ async function deleteDBM(idBreed) {
         let dog = await DogM.find({ _id: idBreed });
         // Se eliminan tempers        
         dog[0].temper?.map(async el => {
-            console.log(el._id)
             await TempersM.deleteOne({ _id: el._id });
         });
         // Se elimina dog
