@@ -21,7 +21,8 @@ const initialState = {
   sortSelected: null,
   loadingBreed: false,
   loadingTemper: false,
-  firstLoading: true
+  firstLoading: true,
+  numberBreedsDB: null
 };
 
 const rootReducer = (state = initialState, action) => {
