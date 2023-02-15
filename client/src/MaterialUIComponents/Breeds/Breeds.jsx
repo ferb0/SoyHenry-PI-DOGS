@@ -75,7 +75,7 @@ export default function Breeds() {
                         Error getting data.
                     </Typography>
                     :
-                    breeds?.length !== 0 ?
+                    breedsFinal[2]?.length !== 0 ?
                         <>
                             <Stack align='center'>
                                 <Pagination
