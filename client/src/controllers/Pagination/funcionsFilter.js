@@ -9,7 +9,7 @@ export function temperFilter(breeds, temperSelected) {
 };
 
 export function sourceFilter(breeds, sourceSelected) {
-    if (sourceSelected !== ALL) {
+    if (sourceSelected && sourceSelected !== ALL) {
         if (sourceSelected === DB) {
             return breeds?.filter(el => el.source === DB);
         }

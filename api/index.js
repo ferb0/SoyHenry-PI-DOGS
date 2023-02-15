@@ -19,11 +19,29 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const PORT = process.env.PORT || 3001;
+const mongoose = require('mongoose');
 
-// Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(PORT, () => {
-    console.log(`Server listening at ${PORT}`); // eslint-disable-line no-console
-  });
-});
+const PORT = process.env.PORT || 3001;
+const MONGODB = process.env.MONGODB;
+const MONGODB_URL = process.env.MONGODB_URL;
+
+if (MONGODB === 'active') {
+  mongoose.set('strictQuery', true);
+  mongoose.connect(MONGODB_URL)
+    .then(() => {
+      server.listen(PORT, () => {
+        console.log(`Server listening at ${PORT}`); // eslint-disable-line no-console
+      });
+    })
+    .catch(err => console.log('ERROR MONGODB: ', err));
+}
+else {
+  // Syncing all the models at once.
+  conn.sync({ force: false })
+    .then(() => {
+      server.listen(PORT, () => {
+        console.log(`Server listening at ${PORT}`); // eslint-disable-line no-console
+      });
+    })
+    .catch(err => console.log('ERROR SEQUELIZE: ', err));
+}

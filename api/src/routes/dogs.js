@@ -1,55 +1,43 @@
+require('dotenv').config();
 const { Router } = require('express');
 const router = Router();
 
-const { Sequelize } = require("sequelize");
-
-const { Dog, Temper } = require('../db.js');
-const axiosDogs = require('../global/axiosInstance.js');
+const MONGODB = process.env.MONGODB;
 // IdBase
 const IDBASE = require('../global/idDogsBase.js');
-//Funcones para formatos
-const {
-    formatDetailAPIServer,
-    formatDetailBDServer
-} = require('./controllers/formatDetail.js');
-const {
-    formatSummaryAPIServer,
-    formatSummaryBDServer
-} = require('./controllers/formatSumary.js');
+const { DB, API, DBM } = require('../global/constSource.js');
 
+//Funcones para formatos
+const { formatDetail } = require('./controllers/formatDetail.js');
+const { formatSummaryAPIServer, formatSumary } = require('./controllers/formatSumary.js');
 const { checkData } = require('./controllers/checkdataPut.js');
+const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDataDetail.js');
+const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDataSumary.js');
+const { postDBM, postDB } = require('./controllers/postData.js');
 
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
-    if (!idBreed.match(/^[0-9]+$/))
+    if (!MONGODB === 'active' && !idBreed.match(/^[0-9]+$/))
         return res.status(500).json({ err: "Wrong parameter." });
 
     try {
+        let breed; let format;
         if (idBreed < IDBASE) {
-            let response = (await axiosDogs({ method: 'get', url: 'v1/breeds' })).data;
-
-            let breed = response.find(el => {
-                return el.id === parseInt(idBreed);
-            });
-
-            if (!breed)
-                return res.status(500).json({ err: "Without results." });
-
-            res.json({ msg: formatDetailAPIServer(breed) });
+            breed = await getDetailAPI(idBreed);
+            format = API;
+        }
+        else if (MONGODB === 'active') {
+            breed = await getDetailMDB(idBreed);
+            format = DBM;
         }
         else {
-            let response = await Dog.findOne({
-                where: { id: idBreed },
-                include: Temper
-            });
-
-            if (!response)
-                return res.status(500).json({ err: "Without results." });
-
-            res.json({ msg: formatDetailBDServer(response?.get({ plain: true })) });
+            breed = await getDetailDB(idBreed);
+            // Se quita metadata
+            breed = breed.get({ plain: true });
+            format = DB;
         }
-
+        res.json({ msg: formatDetail(breed, format) });
     }
     catch (e) {
         res.status(500).json({ err: e.message });
@@ -60,39 +48,19 @@ router.get('/', async (req, res) => {
     let name = req.query.name;
 
     try {
-        let responseAPI = await axiosDogs({ method: 'get', url: 'v1/breeds' })
-        responseAPI = responseAPI.data;
+        let responseFilteredAPI = await getSumaryAPI(name);
+        let responseFiltered = formatSummaryAPIServer(responseFilteredAPI);
 
-        if (name) {
-            var paramSearch = {
-                where: {
-                    name: {
-                        [Sequelize.Op.iLike]: '%' + name + '%'
-                    }
-                },
-                include: Temper
-            };
+        if (MONGODB === 'active') {
+            let responseFilteredDB = await getSumaryDBM(name);
+            responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DBM)]
         }
         else {
-            var paramSearch = { include: Temper };
+            let responseFilteredDB = await getSumaryDB(name);
+            responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DB)]
         }
 
-        // Busqueda y ya filtrado en BD
-        let responseFilteredDB = await Dog.findAll(paramSearch);
-
-        // Filtrado en API
-        let responseFilteredAPI = responseAPI.filter(el => {
-            if (!name)
-                return true;
-            else
-                return el.name.toLowerCase().includes(name.toLowerCase())
-        });
-
-
-        res.json({
-            msg: [...formatSummaryAPIServer(responseFilteredAPI),
-            ...formatSummaryBDServer(responseFilteredDB)]
-        });
+        res.json({ msg: responseFiltered });
     }
     catch (e) {
         res.status(500).json({ err: e.message });
@@ -107,6 +75,9 @@ router.post('/', async (req, res) => {
 
     if (img && !img.match(/^http/))
         return res.status(500).json({ err: 'Bad format image.' });
+
+    if (!Array.isArray(temper))
+        return res.status(500).json({ err: 'Bad format temper.' });
 
     // Se convierte en numeros.
     height = height.map(Number);
@@ -125,26 +96,10 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        // Obtener la cantidad de elementos en la tabla.
-        const id = await Dog.count();
-        // Se crea la raza.
-        const newBreed = await Dog.create({
-            id,
-            name,
-            minHeight: height[0],
-            maxHeight: height[1],
-            minWeight: weight[0],
-            maxWeight: weight[1],
-            minLifeSpan: lifeSpan[0],
-            maxLifeSpan: lifeSpan[1],
-            img
-        });
-
-        let promiseTempers = temper.map(element => {
-            return Temper.create({ name: element });
-        });
-        let newTempers = await Promise.all(promiseTempers);
-        await newBreed.addTempers(newTempers);
+        if (MONGODB === 'active')
+            await postDBM({ name, height, weight, lifeSpan, img, temper });
+        else    
+            await postDB({ name, height, weight, lifeSpan, img, temper });
 
         res.send({ msg: "New race successfully created." });
     }
