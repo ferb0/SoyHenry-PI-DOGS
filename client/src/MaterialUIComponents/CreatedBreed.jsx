@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
@@ -12,6 +12,7 @@ import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';
 
 export default function CreatedBreed() {
+    const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
     const dispatch = useDispatch();
     const [input, setInput] = React.useState({
         name: '',
@@ -200,12 +201,13 @@ export default function CreatedBreed() {
 
                     <Button
                         variant='outlined'
-                        disabled={!data || disabledButton}
+                        disabled={!data || disabledButton || maxNewBreeds}
                         onClick={handleSubmit}
                         endIcon={<FileUploadIcon />}
                         sx={{ marginTop: '2rem' }}>
                         Load new breed
                     </Button>
+
                     <Snackbar
                         open={send}
                         autoHideDuration={6000}
