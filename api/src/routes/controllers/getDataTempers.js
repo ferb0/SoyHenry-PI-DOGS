@@ -1,5 +1,5 @@
 const axiosTemperaments = require('../../global/axiosInstance.js');
-const { DogM } = require('../../models-mongodb/Dog.js');
+const { TempersM } = require('../../models-mongodb/Tempers.js');
 const { Temper } = require('../../db.js');
 
 async function getTempersAPI() {
@@ -26,12 +26,8 @@ async function getTempersDBM() {
     try {
         let temperaments = new Set();
 
-        let temperamentsDB = await DogM.find({}, 'temper');
-        temperamentsDB?.forEach(el => {
-            if (el.temper) {
-                el.temper?.map(temp => temperaments.add(temp))
-            }
-        });
+        let temperamentsDBM = await TempersM.find({}, 'name');
+        temperamentsDBM?.forEach(el => temperaments.add(el.name));
 
         return Array.from(temperaments);
     }
