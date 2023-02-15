@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useSelector} from "react-redux";
 
 import TemperSearch from "./Searcher/TemperSearch.jsx";
 import NameSearch from './Searcher/NameSearch.jsx';
@@ -13,7 +12,6 @@ import imageLogo from '../../global/images/favicon.ico';
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
-    const numberBreedDB = useSelector(state => state.numberBreedsDB);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
