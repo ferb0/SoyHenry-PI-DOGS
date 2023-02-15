@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Router } = require('express');
 const router = Router();
 
-const MONGODB = process.env.MONGODB;
+const { MONGODB, NUMBER_MAX_ITEMS_DB } = process.env;
 // IdBase
 const IDBASE = require('../global/idDogsBase.js');
 const { DB, API, DBM } = require('../global/constSource.js');
@@ -23,7 +23,11 @@ router.get('/breedsNumber', async (req, res) => {
             number = await getBreedsNumberDBM();
         else
             number = await getBreedsNumberDB();
-        res.json({ msg: number });
+
+        if (NUMBER_MAX_ITEMS_DB < number)
+            res.json({ msg: true });
+        else
+            res.json({ msg: false });
     }
     catch (error) {
         res.status(500).json({ err: err.message });
