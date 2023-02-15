@@ -14,6 +14,21 @@ const { checkData } = require('./controllers/checkdataPut.js');
 const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDataDetail.js');
 const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDataSumary.js');
 const { postDBM, postDB } = require('./controllers/postData.js');
+const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/getBreedsNumberDB.js');
+
+router.get('/breedsNumber', async (req, res) => {
+    try {
+        let number = 0;
+        if (MONGODB === 'active')
+            number = await getBreedsNumberDBM();
+        else
+            number = await getBreedsNumberDB();
+        res.json({ msg: number });
+    }
+    catch (error) {
+        res.status(500).json({ err: err.message });
+    }
+});
 
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
@@ -98,7 +113,7 @@ router.post('/', async (req, res) => {
     try {
         if (MONGODB === 'active')
             await postDBM({ name, height, weight, lifeSpan, img, temper });
-        else    
+        else
             await postDB({ name, height, weight, lifeSpan, img, temper });
 
         res.send({ msg: "New race successfully created." });
