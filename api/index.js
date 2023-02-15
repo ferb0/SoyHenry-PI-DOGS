@@ -30,7 +30,7 @@ if (MONGODB === 'active') {
   mongoose.connect(MONGODB_URL)
     .then(() => {
       server.listen(PORT, () => {
-        console.log(`Server listening at ${PORT}`); // eslint-disable-line no-console
+        console.log(`Server listening at ${PORT} with MongoDB`); // eslint-disable-line no-console
       });
     })
     .catch(err => console.log('ERROR MONGODB: ', err));
@@ -40,7 +40,7 @@ else {
   conn.sync({ force: false })
     .then(() => {
       server.listen(PORT, () => {
-        console.log(`Server listening at ${PORT}`); // eslint-disable-line no-console
+        console.log(`Server listening at ${PORT} with Postgres.`); // eslint-disable-line no-console
       });
     })
     .catch(err => console.log('ERROR SEQUELIZE: ', err));
