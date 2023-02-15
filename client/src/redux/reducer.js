@@ -100,6 +100,12 @@ const rootReducer = (state = initialState, action) => {
         firstLoading: false
       };
 
+      case GET_NUMBER_BREEDS_DB:
+        return {
+          ...state,
+          numberBreedsDB: action.payload
+        }
+
     default:
       return state;
   }

@@ -9,6 +9,7 @@ export const SET_SORT_TYPE = "SET_SORT_TYPE";
 export const CLEAN_ALL_DATA = "CLEAN_ALL_DATA";
 export const LOADING_TEMPERS = "LOADING_TEMPERS";
 export const FIRST_LOADING_OFF = "FIRST_LOADING_OFF";
+export const GET_NUMBER_BREEDS_DB = "GET_NUMBER_BREEDS_DB";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -123,5 +124,19 @@ export const cleanAllData = () => {
 export const firstLoadingOff = () => {
     return {
         type: FIRST_LOADING_OFF
+    }
+};
+
+export const setNumberBreedDB = () => {
+    return function (dispatch) {
+        return fetch(REACT_APP_API_BASE_URL + `/dogs/breedsNumber`)
+            .then(response => response.json())
+            .then((response) => {
+                if (response.hasOwnProperty('msg'))
+                    dispatch({ type: GET_NUMBER_BREEDS_DB, payload: response.msg })
+                if (response.hasOwnProperty('err'))
+                    dispatch({ type: GET_NUMBER_BREEDS_DB, payload: false })
+            })
+            .catch(() => dispatch({ type: GET_NUMBER_BREEDS_DB, payload: false }));
     }
 };
