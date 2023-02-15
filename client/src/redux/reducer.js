@@ -9,7 +9,8 @@ import {
   SET_SORT_TYPE,
   CLEAN_ALL_DATA,
   LOADING_TEMPERS,
-  FIRST_LOADING_OFF
+  FIRST_LOADING_OFF,
+  GET_NUMBER_BREEDS_DB
 } from './actions.js';
 
 const initialState = {
