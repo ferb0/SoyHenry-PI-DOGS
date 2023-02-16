@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import { Typography, Grid, Card, CardMedia, CardContent, List, ListItem, ListItemText, Stack, Container } from '@mui/material';
 
+import imageDefault from '../../global/images/paws.png';
+
 export default function BreedCard({ breeds }) {
     return (
         <Grid
@@ -18,7 +20,7 @@ export default function BreedCard({ breeds }) {
 
                             <CardMedia
                                 component="img"
-                                image={el.img}
+                                image={el.img ? el.img : imageDefault}
                                 alt="imageDog"
                                 sx={{ border: '1px solid #f3f6f4' }} />
 

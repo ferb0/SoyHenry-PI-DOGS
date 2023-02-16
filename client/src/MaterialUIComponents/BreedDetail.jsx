@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getBreed, cleanBreed } from '../redux/actions.js'
 
+import imageDefault from '../global/images/paws.png';
+
 import {
     Typography,
     Card,
@@ -53,8 +55,9 @@ export default function BreedDetail() {
                         direction={{ sm: 'column', md: 'row', lg: 'row' }}>
                         <CardMedia
                             component="img"
-                            src={breed.img}
-                            alt='DetailImage' />
+                            src={breed.img ? breed.img : imageDefault}
+                            alt='DetailImage'
+                            sx={{ maxWidth: '50%', margin: 'auto' }} />
 
                         <CardContent
                             align='center'
