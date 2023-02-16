@@ -10,7 +10,8 @@ import {
   CLEAN_ALL_DATA,
   LOADING_TEMPERS,
   FIRST_LOADING_OFF,
-  GET_NUMBER_NEW_BREEDS_DB_REACHED
+  GET_NUMBER_NEW_BREEDS_DB_REACHED,
+  DELETE_BREED
 } from './actions.js';
 
 const initialState = {
@@ -23,7 +24,8 @@ const initialState = {
   loadingBreed: false,
   loadingTemper: false,
   firstLoading: true,
-  numberNewBreedsDBReached: null
+  numberNewBreedsDBReached: null,
+  deleteBreed: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -101,11 +103,17 @@ const rootReducer = (state = initialState, action) => {
         firstLoading: false
       };
 
-      case GET_NUMBER_NEW_BREEDS_DB_REACHED:
-        return {
-          ...state,
-          numberNewBreedsDBReached: action.payload
-        }
+    case GET_NUMBER_NEW_BREEDS_DB_REACHED:
+      return {
+        ...state,
+        numberNewBreedsDBReached: action.payload
+      };
+
+    case DELETE_BREED:
+      return {
+        ...state,
+        deleteBreed: action.payload
+      };
 
     default:
       return state;
