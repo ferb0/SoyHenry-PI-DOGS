@@ -1,12 +1,22 @@
 import { Link } from 'react-router-dom';
-
-import { Typography, Grid, Card, CardMedia, CardContent, List, ListItem, ListItemText, Stack, Container, Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 import { DB } from '../../global/ConstSource.js';
+import { postdeleteBreed, getTempers, getAllBreeds } from '../../redux/actions.js';
+
+import { Typography, Grid, Card, CardMedia, CardContent, List, ListItem, ListItemText, Stack, Container, Button } from '@mui/material';
 
 import imageDefault from '../../global/images/paws.png';
 
 export default function BreedCard({ breeds }) {
+    const dispatch = useDispatch();
+
+    const handleDelete = (e) => {
+        dispatch(postdeleteBreed(e.target.value));
+        dispatch(getTempers());
+        dispatch(getAllBreeds(''));
+    };
+
     return (
         <Grid
             container
@@ -16,8 +26,7 @@ export default function BreedCard({ breeds }) {
                     item
                     key={el.name}
                     xs={12} sm={6} md={4} lg={3}>
-                    <Card
-                        sx={{ padding: '1rem' }}>
+                    <Card sx={{ padding: '1rem' }}>
                         <Link to={`/detail/${el.id}`} style={{ textDecoration: "none" }}>
                             <CardMedia
                                 component="img"
@@ -25,6 +34,7 @@ export default function BreedCard({ breeds }) {
                                 alt="imageDog"
                                 sx={{ border: '1px solid #f3f6f4' }} />
                         </Link>
+
                         <CardContent>
                             <Typography align='center' component='h6' variant='h6' sx={{ paddingBottom: '0.20rem' }}>
                                 {el.name}
@@ -61,12 +71,14 @@ export default function BreedCard({ breeds }) {
 
                             {el.source === DB ?
                                 <Container
-                                sx={{display: 'flex', paddingTop: '2rem'}}>
+                                    sx={{ display: 'flex', paddingTop: '2rem' }}>
                                     <Button
                                         variant="outlined"
                                         size='small'
                                         color='secondary'
-                                        sx={{ margin: 'auto' }}>
+                                        value={el.id}
+                                        sx={{ margin: 'auto' }}
+                                        onClick={(e) => handleDelete(e)}>
                                         Delete
                                     </Button>
                                     <Button
