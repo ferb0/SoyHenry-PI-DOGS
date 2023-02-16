@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
-import { getAllBreeds } from '../redux/actions.js';
+import { getAllBreeds, getTempers } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
 import formatData from '../controllers/Created/formatData.js';
 import sendData from '../controllers/Created/sendData.js';
@@ -70,6 +70,7 @@ export default function CreatedBreed() {
             setSend(false);
 
         dispatch(getAllBreeds(''));
+        dispatch(getTempers());
     };
 
     const handleCloseSnackbar = (event, reason) => {
