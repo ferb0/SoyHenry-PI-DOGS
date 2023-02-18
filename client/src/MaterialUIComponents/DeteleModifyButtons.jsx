@@ -1,15 +1,22 @@
 import { useDispatch } from 'react-redux';
-import { postdeleteBreed, getTempers, getAllBreeds } from '../redux/actions.js';
+import { useHistory } from 'react-router-dom';
+import { postdeleteBreed, getTempers, getAllBreeds, getBreed } from '../redux/actions.js';
 
 import { Container, Button } from '@mui/material';
 
 const DeteleModifyButtons = ({ id }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleDelete = (e) => {
         dispatch(postdeleteBreed(e.target.value));
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
+    };
+
+    const handleModify = () => {
+        dispatch(getBreed(id));
+        history.push(`/modifyBreed`);
     };
 
     return (
@@ -28,8 +35,8 @@ const DeteleModifyButtons = ({ id }) => {
                 variant="outlined"
                 size='small'
                 color='secondary'
-                disabled
-                sx={{ margin: 'auto' }}>
+                sx={{ margin: 'auto' }}
+                onClick={handleModify}>
                 Modify
             </Button>
         </Container>

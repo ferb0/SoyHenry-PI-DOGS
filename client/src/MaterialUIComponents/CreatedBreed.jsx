@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
@@ -11,19 +11,20 @@ import sendData from '../controllers/Created/sendData.js';
 import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';
 
-export default function CreatedBreed() {
+function CreatedBreed({ breed }) {
+    console.log(breed)
     const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
     const dispatch = useDispatch();
     const [input, setInput] = React.useState({
-        name: '',
-        maxHeight: '',
-        minHeight: '',
-        maxWeight: '',
-        minWeight: '',
-        minLifeSpan: '',
-        maxLifeSpan: '',
-        img: '',
-        temper: []
+        name: breed.name,
+        maxHeight: breed.height && breed.height[0],
+        minHeight: breed.height && breed.height[1],
+        maxWeight: breed.weight && breed.weight[0],
+        minWeight: breed.weight && breed.weight[1],
+        minLifeSpan: breed.lifeSpan && breed.lifeSpan[0],
+        maxLifeSpan: breed.lifeSpan && breed.lifeSpan[0],
+        img: breed.img,
+        temper: [] // Ya lo edito
     });
     // input con formato de envio.
     const [data, setData] = React.useState(undefined);
@@ -57,7 +58,7 @@ export default function CreatedBreed() {
 
     React.useEffect(() => {
         setData(formatData(input));
-    }, [input]);
+    }, [input, breed]);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -232,3 +233,9 @@ export default function CreatedBreed() {
         </>
     )
 };
+
+function mapStateToProps(state) {
+    return { breed: state.breed }
+};
+
+export default connect(mapStateToProps)(CreatedBreed);

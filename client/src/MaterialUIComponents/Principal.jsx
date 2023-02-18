@@ -25,6 +25,7 @@ export default function Principal() {
                 <Route exact path="/" component={Breeds} />
                 <Route path='/detail/:id' component={BreedDetail} />
                 <Route path='/createdBreed' component={CreatedBreed} />
+                <Route path='/modifyBreed' component={CreatedBreed} />
                 <Footer />
             </Route>
         </Switch>
