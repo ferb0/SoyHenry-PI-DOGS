@@ -1,22 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import { DB } from '../../global/ConstSource.js';
-import { postdeleteBreed, getTempers, getAllBreeds } from '../../redux/actions.js';
 
-import { Typography, Grid, Card, CardMedia, CardContent, List, ListItem, ListItemText, Stack, Container, Button } from '@mui/material';
+import { Typography, Grid, Card, CardMedia, CardContent, List, ListItem, ListItemText, Stack, Container } from '@mui/material';
+import DeteleModifyButtons from '../DeteleModifyButtons.jsx';
 
 import imageDefault from '../../global/images/paws.png';
 
 export default function BreedCard({ breeds }) {
-    const dispatch = useDispatch();
-
-    const handleDelete = (e) => {
-        dispatch(postdeleteBreed(e.target.value));
-        dispatch(getTempers());
-        dispatch(getAllBreeds(''));
-    };
-
     return (
         <Grid
             container
@@ -70,26 +61,7 @@ export default function BreedCard({ breeds }) {
                             </Stack>
 
                             {el.source === DB ?
-                                <Container
-                                    sx={{ display: 'flex', paddingTop: '2rem' }}>
-                                    <Button
-                                        variant="outlined"
-                                        size='small'
-                                        color='secondary'
-                                        value={el.id}
-                                        sx={{ margin: 'auto' }}
-                                        onClick={(e) => handleDelete(e)}>
-                                        Delete
-                                    </Button>
-                                    <Button
-                                        variant="outlined"
-                                        size='small'
-                                        color='secondary'
-                                        disabled
-                                        sx={{ margin: 'auto' }}>
-                                        Modify
-                                    </Button>
-                                </Container>
+                                <DeteleModifyButtons id={el.id} />
                                 :
                                 null}
 
