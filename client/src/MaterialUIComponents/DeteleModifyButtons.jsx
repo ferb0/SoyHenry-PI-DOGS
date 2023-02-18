@@ -5,7 +5,6 @@ import { Container, Button } from '@mui/material';
 
 const DeteleModifyButtons = ({ id }) => {
     const dispatch = useDispatch();
-    console.log(id)
 
     const handleDelete = (e) => {
         dispatch(postdeleteBreed(e.target.value));
