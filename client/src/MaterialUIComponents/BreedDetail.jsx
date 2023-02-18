@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getBreed, cleanBreed } from '../redux/actions.js'
 
+import DeteleModifyButtons from "./DeteleModifyButtons.jsx";
+import { DB } from "../global/ConstSource.js";
 import imageDefault from '../global/images/paws.png';
 
 import {
@@ -106,6 +108,11 @@ export default function BreedDetail() {
                                     )
                                 })}
                             </List>
+
+                            {breed.source === DB ?
+                                <DeteleModifyButtons id={id} />
+                                :
+                                null}
                         </CardContent>
                     </Stack>
                 </Card >}
