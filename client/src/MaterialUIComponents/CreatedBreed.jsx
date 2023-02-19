@@ -17,8 +17,8 @@ function CreatedBreed() {
     const loading = useSelector(state => state.loadingBreed);
     const breed = useSelector(state => state.breed);
     const { id } = useParams();
-
     const dispatch = useDispatch();
+
     const [input, setInput] = React.useState({
         name: breed.name,
         maxHeight: breed.height && breed.height[1],
@@ -28,7 +28,7 @@ function CreatedBreed() {
         minLifeSpan: breed.lifeSpan && breed.lifeSpan[0],
         maxLifeSpan: breed.lifeSpan && breed.lifeSpan[1],
         img: breed.img,
-        temper: [] // Ya lo edito
+        temper: breed.temper?.join()
     });
     // input con formato de envio.
     const [data, setData] = React.useState(undefined);
@@ -98,13 +98,13 @@ function CreatedBreed() {
     return (
         <>{loading ?
             <Container align='center' sx={{ paddingTop: '3rem' }}>
-                    <CircularProgress
-                        color="inherit"
-                        size='3rem' />
-                    <Typography>
-                        Loading...
-                    </Typography>
-                </Container> :
+                <CircularProgress
+                    color="inherit"
+                    size='3rem' />
+                <Typography>
+                    Loading...
+                </Typography>
+            </Container> :
             <>
                 <Typography component='h5' variant='h5' align='center' padding='1rem'>
                     Create a New Breed
