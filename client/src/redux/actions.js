@@ -11,6 +11,7 @@ export const LOADING_TEMPERS = "LOADING_TEMPERS";
 export const FIRST_LOADING_OFF = "FIRST_LOADING_OFF";
 export const GET_NUMBER_NEW_BREEDS_DB_REACHED = "GET_NUMBER_NEW_BREEDS_DB_REACHED";
 export const DELETE_BREED = "DELETE_BREED";
+export const MODIFY_BREED = "MODIFY_BREED";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -154,5 +155,20 @@ export const postdeleteBreed = (idBreed) => {
                     dispatch({ type: DELETE_BREED, payload: false })
             })
             .catch(() => dispatch({ type: DELETE_BREED, payload: false }));
+    }
+};
+
+export const putModifyBreed = (idBreed) => {
+    return function (dispatch) {
+        return fetch(REACT_APP_API_BASE_URL + `/dogs/modify/${idBreed}`,
+            { method: "PUT" })
+            .then(response => response.json())
+            .then((response) => {
+                if (response.hasOwnProperty('msg'))
+                    dispatch({ type: MODIFY_BREED, payload: true })
+                if (response.hasOwnProperty('err'))
+                    dispatch({ type: MODIFY_BREED, payload: false })
+            })
+            .catch(() => dispatch({ type: MODIFY_BREED, payload: false }));
     }
 };

@@ -11,7 +11,8 @@ import {
   LOADING_TEMPERS,
   FIRST_LOADING_OFF,
   GET_NUMBER_NEW_BREEDS_DB_REACHED,
-  DELETE_BREED
+  DELETE_BREED,
+  MODIFY_BREED
 } from './actions.js';
 
 const initialState = {
@@ -25,7 +26,8 @@ const initialState = {
   loadingTemper: false,
   firstLoading: true,
   numberNewBreedsDBReached: null,
-  deleteBreed: null
+  deleteBreed: null,
+  modifyBreed: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -114,6 +116,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         deleteBreed: action.payload
       };
+
+    case MODIFY_BREED:
+      return {
+        ...state,
+        modifyBreed: action.payload
+      }
 
     default:
       return state;
