@@ -12,7 +12,6 @@ import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';
 
 function CreatedBreed({ breed }) {
-    console.log(breed)
     const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
     const dispatch = useDispatch();
     const [input, setInput] = React.useState({
