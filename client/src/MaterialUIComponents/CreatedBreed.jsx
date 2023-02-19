@@ -75,18 +75,19 @@ function CreatedBreed() {
         e.preventDefault();
         SetDisabledButton(true);
 
-        let response = await sendData(data);
-        if (response.hasOwnProperty('msg'))
-            setSend(true);
-        else
-            setSend(false);
+        if (id) {
+            dispatch(putModifyBreed(breed.id, data));
+        }
+        else {
+            let response = await sendData(data);
+            if (response.hasOwnProperty('msg'))
+                setSend(true);
+            else
+                setSend(false);
+        }
 
         dispatch(getAllBreeds(''));
         dispatch(getTempers());
-    };
-
-    function handleUpdate() {
-        dispatch(putModifyBreed(breed.id));
     };
 
     const handleCloseSnackbar = (event, reason) => {
@@ -229,7 +230,7 @@ function CreatedBreed() {
                             <Button
                                 variant='outlined'
                                 disabled={!data || disabledButton || maxNewBreeds}
-                                onClick={handleUpdate}
+                                onClick={handleSubmit}
                                 endIcon={<FileUploadIcon />}
                                 sx={{ marginTop: '2rem' }}>
                                 Update breed

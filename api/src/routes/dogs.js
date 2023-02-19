@@ -16,6 +16,7 @@ const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDa
 const { postDBM, postDB } = require('./controllers/postData.js');
 const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/getBreedsNumberDB.js');
 const { deleteDBM } = require('./controllers/deleteBreedDB.js');
+const { putDBM, putDB } = require('./controllers/putData.js');
 
 router.get('/breedsNumber', async (req, res) => {
     try {
@@ -147,7 +148,44 @@ router.delete('/delete/:idBreed', async (req, res) => {
 });
 
 router.put('/update/:idBreed', async (req, res) => {
-    res.json({ msg: req.params })
+    const { idBreed } = req.params;
+    let { name, height, weight, lifeSpan, img, temper } = req.body;
+
+    if (!name || !height || !weight || !lifeSpan || !temper)
+        return res.status(500).json({ err: 'Insufficient data.' });
+
+    if (img && !img.match(/^http/))
+        return res.status(500).json({ err: 'Bad format image.' });
+
+    if (!Array.isArray(temper))
+        return res.status(500).json({ err: 'Bad format temper.' });
+
+    // Se convierte en numeros.
+    height = height.map(Number);
+    weight = weight.map(Number);
+    lifeSpan = lifeSpan.map(Number);
+
+    // Convertir primera letra en mayúscula.
+    temper = temper.map((el) => {
+        return el.charAt(0).toUpperCase() + el.slice(1);
+    });
+
+    // Se chequea consistencia.
+    let responseCheck = checkData(height, weight, lifeSpan);
+    if (responseCheck) {
+        return res.status(500).json({ err: responseCheck });
+    }
+    try {
+        if (MONGODB === 'active')
+            await putDBM({ idBreed, name, height, weight, lifeSpan, img, temper });
+        else
+            await putDB({ idBreed, name, height, weight, lifeSpan, img, temper });
+
+        res.send({ msg: "New race successfully update." });
+    }
+    catch (e) {
+        res.status(500).json({ err: e.message });
+    }
 });
 
 module.exports = router;

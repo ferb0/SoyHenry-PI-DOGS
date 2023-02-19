@@ -158,10 +158,14 @@ export const postdeleteBreed = (idBreed) => {
     }
 };
 
-export const putModifyBreed = (idBreed) => {
+export const putModifyBreed = (idBreed, data) => {
     return function (dispatch) {
         return fetch(REACT_APP_API_BASE_URL + `/dogs/update/${idBreed}`,
-            { method: "PUT" })
+            {
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: { "Content-type": "application/json; charset=UTF-8" }
+            })
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
