@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { postdeleteBreed, getTempers, getAllBreeds, getBreed } from '../redux/actions.js';
+import { postdeleteBreed, getTempers, getAllBreeds } from '../redux/actions.js';
 
 import { Container, Button } from '@mui/material';
 
@@ -15,8 +15,7 @@ const DeteleModifyButtons = ({ id }) => {
     };
 
     const handleModify = () => {
-        dispatch(getBreed(id));
-        history.push(`/modifyBreed`);
+        history.push(`/modifyBreed/${id}`);
     };
 
     return (

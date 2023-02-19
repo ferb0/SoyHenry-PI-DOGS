@@ -147,7 +147,7 @@ router.delete('/delete/:idBreed', async (req, res) => {
 });
 
 router.put('/update/:idBreed', async (req, res) => {
-    res.json({ msg: req.body })
+    res.json({ msg: req.params })
 });
 
 module.exports = router;

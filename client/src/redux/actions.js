@@ -160,7 +160,7 @@ export const postdeleteBreed = (idBreed) => {
 
 export const putModifyBreed = (idBreed) => {
     return function (dispatch) {
-        return fetch(REACT_APP_API_BASE_URL + `/dogs/modify/${idBreed}`,
+        return fetch(REACT_APP_API_BASE_URL + `/dogs/update/${idBreed}`,
             { method: "PUT" })
             .then(response => response.json())
             .then((response) => {
