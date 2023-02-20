@@ -6,31 +6,25 @@ async function putDBM({ idBreed, name, height, weight, lifeSpan, img, temper }) 
     try {
         // Se obtiene dog
         let dog = await DogM.findById(idBreed);
-        // Se eliminan tempers        
-        dog.temper?.map(async el => {
-            await TempersM.deleteOne({ _id: el._id });
-        });
-        // Se elimina dog
-        await DogM.deleteOne({ _id: idBreed });
+        // Se eliminan tempers
+        await TempersM.deleteMany({ dogId: dog._id.toString() });
 
-        // Se crea nuevo dog
-        const newDog = new DogM(
-            {
-                name,
-                height: [height[0], height[1]],
-                weight: [weight[0], weight[1]],
-                lifeSpan: [lifeSpan[0], lifeSpan[1]],
-                img
-            });
+        // // Se elimina dog
+        // await DogM.deleteOne({ _id: idBreed });
 
-        let resultArray = [];
+        // Se edita dog
+        dog.name = name;
+        dog.height = [height[0], height[1]];
+        dog.weight = [weight[0], weight[1]];
+        dog.lifeSpan = [lifeSpan[0], lifeSpan[1]];
+        dog.img = img;
+
+        dog.save();
+
         for (const el of temper) {
-            let temp = new TempersM({ name: el });
-            resultArray.push(await temp.save());
+            let temp = new TempersM({ name: el, dogId: dog._id.toString() });
+            temp.save();
         }
-
-        resultArray.map(el => newDog.temper.push(el));
-        await newDog.save();
     }
     catch (error) {
         throw error;
