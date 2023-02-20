@@ -16,20 +16,32 @@ function CreatedBreed() {
     const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
     const loading = useSelector(state => state.loadingBreed);
     const breed = useSelector(state => state.breed);
+    // Con id determino si es para editar o para modificar
     const { id } = useParams();
     const dispatch = useDispatch();
 
-    const [input, setInput] = React.useState({
-        name: breed.name,
-        maxHeight: breed.height && breed.height[1],
-        minHeight: breed.height && breed.height[0],
-        maxWeight: breed.weight && breed.weight[1],
-        minWeight: breed.weight && breed.weight[0],
-        minLifeSpan: breed.lifeSpan && breed.lifeSpan[0],
-        maxLifeSpan: breed.lifeSpan && breed.lifeSpan[1],
-        img: breed.img,
-        temper: breed.temper?.join()
-    });
+    const [input, setInput] = React.useState(
+        id ? {
+            name: breed.name,
+            maxHeight: breed.height && breed.height[1],
+            minHeight: breed.height && breed.height[0],
+            maxWeight: breed.weight && breed.weight[1],
+            minWeight: breed.weight && breed.weight[0],
+            minLifeSpan: breed.lifeSpan && breed.lifeSpan[0],
+            maxLifeSpan: breed.lifeSpan && breed.lifeSpan[1],
+            img: breed.img,
+            temper: breed.temper?.join()
+        } : {
+            name: '',
+            maxHeight: '',
+            minHeight: '',
+            maxWeight: '',
+            minWeight: '',
+            minLifeSpan: '',
+            maxLifeSpan: '',
+            img: '',
+            temper: []
+        });
     // input con formato de envio.
     const [data, setData] = React.useState(undefined);
     // Error cuando se envia los datos al server.
@@ -61,7 +73,9 @@ function CreatedBreed() {
     };
 
     React.useEffect(() => {
-        dispatch(getBreed(id));
+        if (id)
+            dispatch(getBreed(id));
+
         return function () {
             dispatch(cleanBreed());
         }
@@ -75,9 +89,8 @@ function CreatedBreed() {
         e.preventDefault();
         SetDisabledButton(true);
 
-        if (id) {
+        if (id)
             dispatch(putModifyBreed(breed.id, data));
-        }
         else {
             let response = await sendData(data);
             if (response.hasOwnProperty('msg'))
