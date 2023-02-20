@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { postdeleteBreed, getTempers, getAllBreeds } from '../redux/actions.js';
 
-import { Container, Button } from '@mui/material';
+import { Container, Button, Stack } from '@mui/material';
 
 const DeteleModifyButtons = ({ id }) => {
     const dispatch = useDispatch();
@@ -20,8 +20,8 @@ const DeteleModifyButtons = ({ id }) => {
     };
 
     return (
-        <Container
-            sx={{ display: 'flex', paddingTop: '2rem' }}>
+        <Stack spacing={2} direction='row'
+        sx={{ paddingTop: '2rem' }}>
             <Button
                 variant="outlined"
                 size='small'
@@ -39,7 +39,7 @@ const DeteleModifyButtons = ({ id }) => {
                 onClick={handleModify}>
                 Modify
             </Button>
-        </Container>
+        </Stack>
     );
 }
 
