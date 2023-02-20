@@ -11,15 +11,16 @@ async function postDBM({ name, height, weight, lifeSpan, img, temper }) {
             lifeSpan: [lifeSpan[0], lifeSpan[1]],
             img
         });
-
-        let resultArray= [];
-        for (const el of temper) {
-            let temp = new TempersM({name: el});
-            resultArray.push(await temp.save());
-        }
-
-        resultArray.map(el => newDog.temper.push(el));
         await newDog.save();
+
+        for (const el of temper) {
+            let temp = new TempersM(
+                {
+                    name: el,
+                    dogId: newDog._id.toString()
+                });
+            temp.save();
+        }
     }
     catch (error) {
         throw error;
