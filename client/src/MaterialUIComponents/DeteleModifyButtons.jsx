@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { postdeleteBreed, getTempers, getAllBreeds } from '../redux/actions.js';
 
-import { Container, Button, Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 
 const DeteleModifyButtons = ({ id }) => {
     const dispatch = useDispatch();

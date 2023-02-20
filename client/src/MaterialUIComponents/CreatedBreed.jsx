@@ -240,6 +240,7 @@ function CreatedBreed() {
                             onChange={handleOnChange} />
 
                         {id ?
+                        <>
                             <Button
                                 variant='outlined'
                                 disabled={!data || disabledButton || maxNewBreeds}
@@ -248,6 +249,15 @@ function CreatedBreed() {
                                 sx={{ marginTop: '2rem' }}>
                                 Update breed
                             </Button>
+                            <Button
+                                variant='outlined'
+                                disabled={!data || disabledButton || maxNewBreeds}
+                                onClick={handleSubmit}
+                                endIcon={<FileUploadIcon />}
+                                sx={{ marginTop: '2rem' }}>
+                                Cancel
+                            </Button>
+                            </>
                             :
                             <Button
                                 variant='outlined'
