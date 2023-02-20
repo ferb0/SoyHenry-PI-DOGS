@@ -15,13 +15,15 @@ import {
   MODIFY_BREED
 } from './actions.js';
 
+import { ALPHA_ASC } from '../global/ConstSort.js'
+
 const initialState = {
   breeds: [],
   breed: {},
   tempers: [],
   filterType: null,
   temperSelected: null,
-  sortSelected: null,
+  sortSelected: ALPHA_ASC,
   loadingBreed: false,
   loadingTemper: false,
   firstLoading: true,
