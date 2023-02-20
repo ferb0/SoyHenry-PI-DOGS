@@ -1,5 +1,5 @@
 // Constantes para marcar origen de los datos
-const DB = 'DB';
+const DB = 'LOCAL';
 const API = 'API';
 const BDM = 'DBM';
 
