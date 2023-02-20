@@ -1,7 +1,7 @@
-const axiosDogs = require('../../global/axiosInstance.js');
-const { DogM } = require('../../models-mongodb/Dog.js');
-const { TempersM } = require('../../models-mongodb/Tempers.js');
-const { Dog, Temper } = require('../../db.js');
+const axiosDogs = require('../../../global/axiosInstance.js');
+const { DogM } = require('../../../models-mongodb/Dog.js');
+const { TempersM } = require('../../../models-mongodb/Tempers.js');
+const { Dog, Temper } = require('../../../db.js');
 
 async function getSumaryAPI(name) {
     try {
@@ -35,7 +35,7 @@ async function getSumaryDBM(name) {
             tempers = tempers.map(el => el.name);
             completeBreeds.push({ ...el, temper: tempers })
         }
-        console.log('3', completeBreeds)
+
         return completeBreeds;
     } catch (error) {
         throw error;

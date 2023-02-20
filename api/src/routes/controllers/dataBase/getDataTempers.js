@@ -1,6 +1,6 @@
-const axiosTemperaments = require('../../global/axiosInstance.js');
-const { TempersM } = require('../../models-mongodb/Tempers.js');
-const { Temper } = require('../../db.js');
+const axiosTemperaments = require('../../../global/axiosInstance.js');
+const { TempersM } = require('../../../models-mongodb/Tempers.js');
+const { Temper } = require('../../../db.js');
 
 async function getTempersAPI() {
     try {

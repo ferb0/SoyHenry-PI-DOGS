@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 const { MONGODB } = process.env;
-const { getTempersAPI, getTempersDBM, getTempersDB } = require('./controllers/getDataTempers.js');
+const { getTempersAPI, getTempersDBM, getTempersDB } = require('./controllers/dataBase/getDataTempers.js');
 
 router.get('/', async (req, res) => {
     try {

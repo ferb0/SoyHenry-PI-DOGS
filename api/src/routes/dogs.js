@@ -11,12 +11,12 @@ const { DB, API, DBM } = require('../global/constSource.js');
 const { formatDetail } = require('./controllers/formatDetail.js');
 const { formatSummaryAPIServer, formatSumary } = require('./controllers/formatSumary.js');
 const { checkData } = require('./controllers/checkdataPut.js');
-const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/getDataDetail.js');
-const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/getDataSumary.js');
-const { postDBM, postDB } = require('./controllers/postData.js');
-const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/getBreedsNumberDB.js');
-const { deleteDBM } = require('./controllers/deleteBreedDB.js');
-const { putDBM, putDB } = require('./controllers/putData.js');
+const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/dataBase/getDataDetail.js');
+const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/dataBase/getDataSumary.js');
+const { postDBM, postDB } = require('./controllers/dataBase/postData.js');
+const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/dataBase/getBreedsNumberDB.js');
+const { deleteDBM } = require('./controllers/dataBase/deleteBreedDB.js');
+const { putDBM, putDB } = require('./controllers/dataBase/putData.js');
 
 router.get('/breedsNumber', async (req, res) => {
     try {
