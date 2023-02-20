@@ -1,5 +1,6 @@
 const axiosDogs = require('../../global/axiosInstance.js');
 const { DogM } = require('../../models-mongodb/Dog.js');
+const { TempersM } = require('../../models-mongodb/Tempers.js');
 const { Dog, Temper } = require('../../db.js');
 
 async function getSumaryAPI(name) {
@@ -22,9 +23,20 @@ async function getSumaryAPI(name) {
 
 async function getSumaryDBM(name) {
     try {
-        return await DogM.find(
+        let breeds = await DogM.find(
             { name: { $regex: name, $options: 'i' }, },
-            'name weight img temper');
+            'name weight img'
+        );
+        breeds = breeds.map(el => el.toObject());
+
+        let completeBreeds = [];
+        for (const el of breeds) {
+            let tempers = await TempersM.find({ dogId: el._id.toString() });
+            tempers = tempers.map(el => el.name);
+            completeBreeds.push({ ...el, temper: tempers })
+        }
+        console.log('3', completeBreeds)
+        return completeBreeds;
     } catch (error) {
         throw error;
     }

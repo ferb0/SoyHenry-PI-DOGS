@@ -39,7 +39,7 @@ function formatSummaryBDServerMDB(breeds) {
             name: el.name,
             weight: [String(el.weight[0]), String(el.weight[1])],
             img: el.img,
-            temper: el.temper?.map(el => el.name),
+            temper: el.temper,
             source: DB
         };
     });
