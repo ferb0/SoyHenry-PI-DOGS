@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { temperSchema } = require('./Tempers.js');
 
 const dogSchema = new mongoose.Schema({
     name: String,
@@ -7,7 +6,6 @@ const dogSchema = new mongoose.Schema({
     weight: [Number],
     lifeSpan: [Number],
     img: String,
-    temper: [temperSchema]
 });
 
 const DogM = mongoose.model('Dog', dogSchema);
