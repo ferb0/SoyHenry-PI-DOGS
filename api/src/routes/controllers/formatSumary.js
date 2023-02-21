@@ -1,10 +1,32 @@
 // Funciones para darle formato a las respuestas del server.
 
 const { DB, API, DBM } = require('../../global/constSource.js');
+const { ExcludesM } = require('../../models-mongodb/ExcludedBreeds.js');
 
-function formatSummaryAPIServer(breeds) {
-    // breeds es siempre un array
-    return breeds.map(el => {
+async function filterExcludedBreed(breeds) {
+    try {
+        let results = await ExcludesM.find({});
+        breeds = breeds.filter(el => {
+            for (const elRe of results) {
+                if (el.id === elRe.breed)
+                    return false;
+            }
+            return true;
+        });
+        console.log(breeds[0], breeds[1], breeds[2])
+        return breeds;
+    }
+    catch (error) {
+        console.log('ERROR en filtro de breeds API: ', error)
+        return breeds;
+    }
+};
+
+async function formatSummaryAPIServer(breeds) {
+    // se filtran breeds.
+    let filteredBreeds = await filterExcludedBreed(breeds);
+    // Se da formato
+    return filteredBreeds.map(el => {
         return {
             id: el.id,
             name: el.name,

@@ -1,9 +1,15 @@
 const { DogM } = require('../../../../src/models-mongodb/Dog.js');
 const { Dog, Temper } = require('../../../db.js');
+const { ExcludesM } = require('../../../models-mongodb/ExcludedBreeds.js');
 const { TempersM } = require('../../../models-mongodb/Tempers.js');
 
-async function postDBM({ name, height, weight, lifeSpan, img, temper }) {
+async function postDBM({ id, name, height, weight, lifeSpan, img, temper }) {
     try {
+        if (id) {
+            const newExcludedBreed = new ExcludesM({ breed: id });
+            await newExcludedBreed.save();
+        }
+
         const newDog = new DogM({
             name,
             height: [height[0], height[1]],

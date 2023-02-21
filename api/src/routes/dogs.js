@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
 
     try {
         let responseFilteredAPI = await getSumaryAPI(name);
-        let responseFiltered = formatSummaryAPIServer(responseFilteredAPI);
+        let responseFiltered = await formatSummaryAPIServer(responseFilteredAPI);
 
         if (MONGODB === 'active') {
             let responseFilteredDB = await getSumaryDBM(name);
@@ -89,7 +89,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    let { name, height, weight, lifeSpan, img, temper } = req.body;
+    let { id, name, height, weight, lifeSpan, img, temper } = req.body;
 
     if (!name || !height || !weight || !lifeSpan || !temper)
         return res.status(500).json({ err: 'Insufficient data.' });
@@ -118,7 +118,7 @@ router.post('/', async (req, res) => {
 
     try {
         if (MONGODB === 'active')
-            await postDBM({ name, height, weight, lifeSpan, img, temper });
+            await postDBM({ id, name, height, weight, lifeSpan, img, temper });
         else
             await postDB({ name, height, weight, lifeSpan, img, temper });
 
