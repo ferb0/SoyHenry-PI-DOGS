@@ -160,9 +160,9 @@ export const postdeleteBreed = (idBreed) => {
     }
 };
 
-export const putModifyBreed = (idBreed, data) => {
+export const putModifyBreed = (data) => {
     return function (dispatch) {
-        return fetch(REACT_APP_API_BASE_URL + `/dogs/update/${idBreed}`,
+        return fetch(REACT_APP_API_BASE_URL + `/dogs/update/${data.id}`,
             {
                 method: "PUT",
                 body: JSON.stringify(data),

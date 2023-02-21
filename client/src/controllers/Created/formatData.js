@@ -1,4 +1,4 @@
-export default function formatData(input) {
+export default function formatData(id, input) {
     // Se le da formato para enviar.
 
     if (!input.name || !input.minHeight || !input.maxHeight || !input.minWeight || !input.maxWeight || !input.minLifeSpan || !input.maxLifeSpan || !input.temper || input.temper.length === 0) {
@@ -14,6 +14,7 @@ export default function formatData(input) {
         return false;
 
     return {
+        id: id,
         name: input.name,
         height: [input.minHeight, input.maxHeight],
         weight: [input.minWeight, input.maxWeight],

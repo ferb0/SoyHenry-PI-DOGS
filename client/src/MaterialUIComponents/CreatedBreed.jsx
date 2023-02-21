@@ -83,15 +83,15 @@ function CreatedBreed() {
     }, [dispatch, id]);
 
     React.useEffect(() => {
-        setData(formatData(input));
-    }, [input]);
+        setData(formatData(breed.id, input));
+    }, [input, breed.id]);
 
     async function handleSubmit(e) {
         e.preventDefault();
         SetDisabledButton(true);
 
-        if (id)
-            dispatch(putModifyBreed(breed.id, data));
+        if (isNaN(id))
+            dispatch(putModifyBreed(data));
         else {
             dispatch(postCreateBreed(data));
         }
