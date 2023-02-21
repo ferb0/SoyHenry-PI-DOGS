@@ -5,10 +5,9 @@ import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar, 
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
 
-import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed } from '../redux/actions.js';
+import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed, postCreateBreed, cleanStatusCreateBreed } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
 import formatData from '../controllers/Created/formatData.js';
-import sendData from '../controllers/Created/sendData.js';
 
 import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';
@@ -18,6 +17,7 @@ function CreatedBreed() {
     const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
     const loading = useSelector(state => state.loadingBreed);
     const breed = useSelector(state => state.breed);
+    const send = useSelector(state => state.createdBreed);
     // Con id determino si es para editar o para modificar
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -46,8 +46,6 @@ function CreatedBreed() {
         });
     // input con formato de envio.
     const [data, setData] = React.useState(undefined);
-    // Error cuando se envia los datos al server.
-    const [send, setSend] = React.useState(undefined);
     //Error para formulario controlado
     const [error, setError] = React.useState({
         name: false,
@@ -80,6 +78,7 @@ function CreatedBreed() {
 
         return function () {
             dispatch(cleanBreed());
+            dispatch(cleanStatusCreateBreed());
         }
     }, [dispatch, id]);
 
@@ -94,11 +93,7 @@ function CreatedBreed() {
         if (id)
             dispatch(putModifyBreed(breed.id, data));
         else {
-            let response = await sendData(data);
-            if (response.hasOwnProperty('msg'))
-                setSend(true);
-            else
-                setSend(false);
+            dispatch(postCreateBreed(data));
         }
 
         dispatch(getAllBreeds(''));
@@ -108,7 +103,7 @@ function CreatedBreed() {
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway')
             return;
-        setSend(undefined);
+        dispatch(cleanStatusCreateBreed());
     };
 
     return (

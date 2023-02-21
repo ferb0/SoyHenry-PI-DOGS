@@ -12,6 +12,8 @@ export const FIRST_LOADING_OFF = "FIRST_LOADING_OFF";
 export const GET_NUMBER_NEW_BREEDS_DB_REACHED = "GET_NUMBER_NEW_BREEDS_DB_REACHED";
 export const DELETE_BREED = "DELETE_BREED";
 export const MODIFY_BREED = "MODIFY_BREED";
+export const CREATED_BREED = "CREATED_BREED";
+export const CLEAN_STATUS_CREATED_BREED = "CLEAN_STATUS_CREATED_BREED";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -174,5 +176,31 @@ export const putModifyBreed = (idBreed, data) => {
                     dispatch({ type: MODIFY_BREED, payload: false })
             })
             .catch(() => dispatch({ type: MODIFY_BREED, payload: false }));
+    }
+};
+
+export const postCreateBreed = (data) => {
+    return function (dispatch) {
+        return fetch(
+            REACT_APP_API_BASE_URL + `/dogs`,
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { "Content-type": "application/json; charset=UTF-8" }
+            })
+            .then(response => response.json())
+            .then((response) => {
+                if (response.hasOwnProperty('msg'))
+                    dispatch({ type: CREATED_BREED, payload: true })
+                if (response.hasOwnProperty('err'))
+                    dispatch({ type: CREATED_BREED, payload: false })
+            })
+            .catch(() => dispatch({ type: CREATED_BREED, payload: false }));
+    }
+};
+
+export const cleanStatusCreateBreed = () => {
+    return {
+        type: CLEAN_STATUS_CREATED_BREED
     }
 };
