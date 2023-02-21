@@ -79,6 +79,8 @@ function CreatedBreed() {
         return function () {
             dispatch(cleanBreed());
             dispatch(cleanStatusCreateBreed());
+            dispatch(getAllBreeds(''));
+            dispatch(getTempers());
         }
     }, [dispatch, id]);
 
@@ -95,9 +97,6 @@ function CreatedBreed() {
         else {
             dispatch(postCreateBreed(data));
         }
-
-        dispatch(getAllBreeds(''));
-        dispatch(getTempers());
     };
 
     const handleCloseSnackbar = (event, reason) => {
