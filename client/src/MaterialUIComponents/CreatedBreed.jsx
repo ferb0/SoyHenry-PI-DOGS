@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar, CircularProgress, Container } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
@@ -13,6 +13,7 @@ import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';
 
 function CreatedBreed() {
+    const history = useHistory();
     const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
     const loading = useSelector(state => state.loadingBreed);
     const breed = useSelector(state => state.breed);
@@ -240,24 +241,25 @@ function CreatedBreed() {
                             onChange={handleOnChange} />
 
                         {id ?
-                        <>
-                            <Button
-                                variant='outlined'
-                                disabled={!data || disabledButton || maxNewBreeds}
-                                onClick={handleSubmit}
-                                endIcon={<FileUploadIcon />}
-                                sx={{ marginTop: '2rem' }}>
-                                Update breed
-                            </Button>
-                            <Button
-                                variant='outlined'
-                                disabled={!data || disabledButton || maxNewBreeds}
-                                onClick={handleSubmit}
-                                endIcon={<FileUploadIcon />}
-                                sx={{ marginTop: '2rem' }}>
-                                Cancel
-                            </Button>
-                            </>
+                            <Stack
+                                direction='row'
+                                spacing={2}
+                                marginTop='2rem'
+                                justifyContent='center'>
+                                <Button
+                                    variant='outlined'
+                                    disabled={!data || disabledButton || maxNewBreeds}
+                                    onClick={handleSubmit}
+                                    endIcon={<FileUploadIcon />}>
+                                    Update breed
+                                </Button>
+                                <Button
+                                    variant='outlined'
+                                    onClick={() => history.goBack()}
+                                    endIcon={<FileUploadIcon />}>
+                                    Cancel
+                                </Button>
+                            </Stack>
                             :
                             <Button
                                 variant='outlined'
@@ -267,8 +269,6 @@ function CreatedBreed() {
                                 sx={{ marginTop: '2rem' }}>
                                 Load new breed
                             </Button>}
-
-
 
                         <Snackbar
                             open={send}
