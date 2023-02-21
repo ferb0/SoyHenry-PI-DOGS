@@ -99,7 +99,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filterType: null,
         temperSelected: null,
-        sortSelected: null,
+        sortSelected: ALPHA_ASC,
         loadingBreed: false,
         loadingTemper: false
       };
