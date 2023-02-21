@@ -90,7 +90,7 @@ function CreatedBreed() {
         e.preventDefault();
         SetDisabledButton(true);
 
-        if (isNaN(id))
+        if (id && isNaN(id))
             dispatch(putModifyBreed(data));
         else {
             dispatch(postCreateBreed(data));
