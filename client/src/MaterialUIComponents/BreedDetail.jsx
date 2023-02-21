@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 
-import { getBreed, cleanBreed } from '../redux/actions.js'
+import { getBreed, cleanBreed, setNumberBreedDB } from '../redux/actions.js'
 
 import DeteleModifyButtons from "./DeteleModifyButtons.jsx";
 import { API } from "../global/ConstSource.js";
@@ -37,6 +37,7 @@ export default function BreedDetail() {
         dispatch(getBreed(id))
         return function () {
             dispatch(cleanBreed());
+            dispatch(setNumberBreedDB());
         }
     }, [dispatch, id]);
 

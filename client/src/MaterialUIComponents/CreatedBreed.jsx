@@ -5,7 +5,7 @@ import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar, 
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
 
-import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed, postCreateBreed, cleanStatusCreateBreed } from '../redux/actions.js';
+import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed, postCreateBreed, cleanStatusCreateBreed, setNumberBreedDB } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
 import formatData from '../controllers/Created/formatData.js';
 
@@ -81,6 +81,7 @@ function CreatedBreed() {
             dispatch(cleanStatusCreateBreed());
             dispatch(getAllBreeds(''));
             dispatch(getTempers());
+            dispatch(setNumberBreedDB());
         }
     }, [dispatch, id]);
 
@@ -243,7 +244,7 @@ function CreatedBreed() {
                                 justifyContent='center'>
                                 <Button
                                     variant='outlined'
-                                    disabled={!data || disabledButton || maxNewBreeds}
+                                    disabled={!data || disabledButton}
                                     onClick={handleSubmit}
                                     endIcon={<FileUploadIcon />}>
                                     Update breed

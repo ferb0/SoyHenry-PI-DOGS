@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
 import { getTempers, cleanAllData, getAllBreeds } from '../../../redux/actions.js'
@@ -10,10 +10,10 @@ import FiberNewIcon from '@mui/icons-material/FiberNew';
 
 import { styleTextInput } from "../../../global/Themes.js";
 
-export default function Options() {
+function Options({maxNewBreeds}) {
+    console.log(maxNewBreeds)
     const dispatch = useDispatch();
     const history = useHistory();
-    const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
 
     function cleanAll() {
         dispatch(cleanAllData());
@@ -51,3 +51,11 @@ export default function Options() {
         </Stack>
     )
 };
+
+function mapStateToProps(state) {
+    return {
+        maxNewBreeds: state.numberNewBreedsDBReached
+    }
+}
+
+export default connect(mapStateToProps, null)(Options)
