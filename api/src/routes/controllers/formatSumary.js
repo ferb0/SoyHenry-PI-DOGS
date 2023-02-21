@@ -8,12 +8,12 @@ async function filterExcludedBreed(breeds) {
         let results = await ExcludesM.find({});
         breeds = breeds.filter(el => {
             for (const elRe of results) {
-                if (el.id === elRe.breed)
+                if (el.id === elRe.idBreedAPI)
                     return false;
             }
             return true;
         });
-        console.log(breeds[0], breeds[1], breeds[2])
+
         return breeds;
     }
     catch (error) {

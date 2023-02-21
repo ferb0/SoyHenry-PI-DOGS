@@ -5,11 +5,6 @@ const { TempersM } = require('../../../models-mongodb/Tempers.js');
 
 async function postDBM({ id, name, height, weight, lifeSpan, img, temper }) {
     try {
-        if (id) {
-            const newExcludedBreed = new ExcludesM({ breed: id });
-            await newExcludedBreed.save();
-        }
-
         const newDog = new DogM({
             name,
             height: [height[0], height[1]],
@@ -27,6 +22,15 @@ async function postDBM({ id, name, height, weight, lifeSpan, img, temper }) {
                 });
             temp.save();
         }
+
+        if (id) {
+            const newExcludedBreed = new ExcludesM({
+                idBreedAPI: id,
+                idDog: newDog._id.toString()
+            });
+            await newExcludedBreed.save();
+        }
+
     }
     catch (error) {
         throw error;

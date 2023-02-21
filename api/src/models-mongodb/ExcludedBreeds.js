@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const excludesSchema = new mongoose.Schema({
-    breed: Number
+    idBreedAPI: Number,
+    idDog: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Dog'
+    }
 });
 
 const ExcludesM = mongoose.model('Excludes', excludesSchema);
