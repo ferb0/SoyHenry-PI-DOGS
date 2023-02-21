@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { postdeleteBreed, getTempers, getAllBreeds } from '../redux/actions.js';
 
 import { Button, Stack, Modal, Typography } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const style = {
     position: 'absolute',
@@ -45,16 +48,14 @@ const DeteleModifyButtons = ({ id }) => {
                 sx={{ paddingTop: '2rem', margin: 'auto', justifyContent: 'center' }}>
                 <Button
                     variant='outlined'
-                    size='small'
-                    color='secondary'
-                    onClick={handleOpen}>
+                    onClick={handleOpen}
+                    endIcon={<CancelIcon />}>
                     Delete
                 </Button>
                 <Button
                     variant='outlined'
-                    size='small'
-                    color='secondary'
-                    onClick={handleModify}>
+                    onClick={handleModify}
+                    endIcon={<ChangeCircleIcon />}>
                     Modify
                 </Button>
             </Stack>
@@ -65,27 +66,27 @@ const DeteleModifyButtons = ({ id }) => {
                 aria-labelledby='modal-modal-title'
                 aria-describedby='modal-modal-description'>
                 <Stack
-                spacing={2}
-                align='center'
-                sx={style}>
+                    spacing={2}
+                    align='center'
+                    sx={style}>
                     <Typography>
                         Are you sure?
                     </Typography>
-                        <Button
-                            variant='outlined'
-                            size='small'
-                            color='secondary'
-                            onClick={e => handleDelete(e)}>
-                            Yes
-                        </Button>
-                        <Button
-                            variant='outlined'
-                            size='small'
-                            color='secondary'
-                            onClick={handleClose}>
-                            No
-                        </Button>
-                    </Stack>
+                    <Button
+                        variant='outlined'
+                        size='small'
+                        onClick={e => handleDelete(e)}
+                        endIcon={<CheckCircleIcon />}>
+                        Yes
+                    </Button>
+                    <Button
+                        variant='outlined'
+                        size='small'
+                        onClick={handleClose}
+                        endIcon={<CancelIcon />}>
+                        No
+                    </Button>
+                </Stack>
             </Modal>
         </>
 

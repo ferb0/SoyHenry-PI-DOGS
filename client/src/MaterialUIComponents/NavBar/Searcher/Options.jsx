@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { getTempers, cleanAllData, getAllBreeds } from '../../../redux/actions.js'
 
 import { Button, Stack } from "@mui/material";
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
+
 import { styleTextInput } from "../../../global/Themes.js";
 
 export default function Options() {
@@ -30,7 +33,8 @@ export default function Options() {
                 color='secondary'
                 onClick={cleanAll}
                 size='small'
-                sx={{ ...styleTextInput, color: '#1e1e1e' }}>
+                sx={{ ...styleTextInput, color: '#1e1e1e' }}
+                endIcon={<CleaningServicesIcon />}>
                 Clean All
             </Button>
 
@@ -40,7 +44,8 @@ export default function Options() {
                 color='secondary'
                 disabled={maxNewBreeds}
                 onClick={handleNewBreed}
-                sx={{ ...styleTextInput, color: '#1e1e1e' }}>
+                sx={{ ...styleTextInput, color: '#1e1e1e' }}
+                endIcon={<FiberNewIcon />}>
                 New Breed
             </Button>
         </Stack>

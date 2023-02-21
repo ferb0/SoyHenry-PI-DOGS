@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar, CircularProgress, Container } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
@@ -122,7 +123,7 @@ function CreatedBreed() {
             </Container> :
             <>
                 <Typography component='h5' variant='h5' align='center' padding='1rem'>
-                    Create a New Breed
+                    {id ? 'Modify a New Breed' : 'Create a New Breed'}
                 </Typography>
 
                 <Stack
@@ -256,7 +257,7 @@ function CreatedBreed() {
                                 <Button
                                     variant='outlined'
                                     onClick={() => history.goBack()}
-                                    endIcon={<FileUploadIcon />}>
+                                    endIcon={<CancelIcon />}>
                                     Cancel
                                 </Button>
                             </Stack>
