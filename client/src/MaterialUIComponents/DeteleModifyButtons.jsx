@@ -22,7 +22,9 @@ const style = {
     // justifyContent: 'center'
 };
 
-const DeteleModifyButtons = ({ id }) => {
+const DeteleModifyButtons = ({ id, api }) => {
+    // id es el id del breed a modificar
+    // api indica si el oprigen es de la api
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -48,6 +50,7 @@ const DeteleModifyButtons = ({ id }) => {
                 sx={{ paddingTop: '2rem', margin: 'auto', justifyContent: 'center' }}>
                 <Button
                     variant='outlined'
+                    disabled={api}
                     onClick={handleOpen}
                     endIcon={<CancelIcon />}>
                     Delete
