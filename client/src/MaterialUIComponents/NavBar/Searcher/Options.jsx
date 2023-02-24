@@ -11,7 +11,6 @@ import FiberNewIcon from '@mui/icons-material/FiberNew';
 import { styleTextInput } from "../../../global/Themes.js";
 
 function Options({maxNewBreeds}) {
-    console.log(maxNewBreeds)
     const dispatch = useDispatch();
     const history = useHistory();
 
