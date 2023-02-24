@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
-import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar, CircularProgress, Container } from '@mui/material';
+import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar} from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
+
+import LoadingAnimation from './Suport/LoadingAnimation.jsx';
 
 import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed, postCreateBreed, cleanStatusCreateBreed, setNumberBreedDB } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
@@ -108,14 +110,10 @@ function CreatedModifyBreed() {
 
     return (
         <>{loading ?
-            <Container align='center' sx={{ paddingTop: '3rem' }}>
-                <CircularProgress
-                    color="inherit"
-                    size='3rem' />
-                <Typography>
-                    Loading...
-                </Typography>
-            </Container> :
+            <LoadingAnimation
+            ArrayMessage={['Loading...']}
+            style={{ paddingTop: '3rem', paddingBottom: '2rem' }} />
+            :
             <>
                 <Typography component='h5' variant='h5' align='center' padding='1rem'>
                     {id ? 'Modify a New Breed' : 'Create a New Breed'}
