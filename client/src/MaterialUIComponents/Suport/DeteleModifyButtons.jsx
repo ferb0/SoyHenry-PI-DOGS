@@ -37,6 +37,7 @@ const DeteleModifyButtons = ({ id, api }) => {
         dispatch(postdeleteBreed(id));
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
+        handleClose();
     };
 
     const handleModify = () => {

@@ -20,7 +20,7 @@ export default function Breeds() {
         sourceSelected,
         temperSelected,
         sortSelected,
-        loadingBreed,
+        loadingAllBreed,
         firstLoading } = useSelector(state => {
             return {
                 breeds: state.breeds,
@@ -28,7 +28,7 @@ export default function Breeds() {
                 sourceSelected: state.filterType,
                 temperSelected: state.temperSelected,
                 sortSelected: state.sortSelected,
-                loadingBreed: state.loadingBreed,
+                loadingAllBreed: state.loadingAllBreed,
                 firstLoading: state.firstLoading
             }
         });
@@ -71,7 +71,7 @@ export default function Breeds() {
             <Typography variant='h6' align='center'>
                 List of Breeds
             </Typography>
-            {!loadingBreed ?
+            {!loadingAllBreed ?
                 breeds === false ?
                     <Typography color='error' align='center' sx={{ paddingTop: '3rem' }}>
                         Error getting data.

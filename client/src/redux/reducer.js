@@ -14,7 +14,8 @@ import {
   DELETE_BREED,
   MODIFY_BREED,
   CREATED_BREED,
-  CLEAN_STATUS_CREATED_BREED
+  CLEAN_STATUS_CREATED_BREED,
+  LOADING_ALL_BREED
 } from './actions.js';
 
 import { ALPHA_ASC } from '../global/ConstSort.js'
@@ -32,7 +33,8 @@ const initialState = {
   numberNewBreedsDBReached: null,
   deleteBreed: null,
   modifyBreed: null,
-  createdBreed: null
+  createdBreed: null,
+  loadingAllBreed: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -41,7 +43,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         breeds: action.payload,
-        loadingBreed: false
+        loadingAllBreed: false
       };
 
     case SET_FILTERTYPE:
@@ -139,6 +141,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         createdBreed: undefined
       };
+
+      case LOADING_ALL_BREED:
+        return {
+          ...state,
+          loadingAllBreed: true
+        };
+  
 
     default:
       return state;

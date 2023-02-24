@@ -14,12 +14,20 @@ export const DELETE_BREED = "DELETE_BREED";
 export const MODIFY_BREED = "MODIFY_BREED";
 export const CREATED_BREED = "CREATED_BREED";
 export const CLEAN_STATUS_CREATED_BREED = "CLEAN_STATUS_CREATED_BREED";
+export const LOADING_ALL_BREED = "LOADING_ALL_BREED";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
+export const loadingAllBreed = () => {
+    return {
+        type: LOADING_ALL_BREED,
+        payload: true
+    }
+};
+
 export const getAllBreeds = (breed) => {
     return function (dispatch) {
-        dispatch(loadingBreed());
+        dispatch(loadingAllBreed());
         return fetch(REACT_APP_API_BASE_URL + `/dogs?name=${breed}`)
             .then(response => response.json())
             .then((response) => {
