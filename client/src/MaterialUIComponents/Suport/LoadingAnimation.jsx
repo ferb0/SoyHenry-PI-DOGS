@@ -10,7 +10,7 @@ export default function LoadingAnimation({ ArrayMessage, style, firstLoading }) 
 
             <Container sx={{ paddingTop: '2rem' }}>
                 {ArrayMessage?.map(el =>
-                    <Typography>
+                    <Typography key={el}>
                         {el}
                     </Typography>)}
             </Container>
