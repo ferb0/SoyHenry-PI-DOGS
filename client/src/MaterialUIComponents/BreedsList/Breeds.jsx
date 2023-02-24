@@ -6,7 +6,9 @@ import { sortType } from '../../controllers/Pagination/functiosSort.js';
 import { CANT_SUMMARIES } from '../../global/CantSummaries.js';
 import { firstLoadingOff } from '../../redux/actions.js';
 
-import { Typography, Container, Pagination, Stack, CircularProgress } from '@mui/material';
+import LoadingAnimation from '../Suport/LoadingAnimation.jsx';
+
+import { Typography, Container, Pagination, Stack } from '@mui/material';
 import BreedCard from './BreedCard.jsx';
 
 export default function Breeds() {
@@ -99,18 +101,7 @@ export default function Breeds() {
                             Without results.
                         </Typography>
                 :
-                <Container align='center' sx={{ paddingTop: '3rem' }}>
-                    <CircularProgress
-                        color="inherit"
-                        size='3rem' />
-                    <Typography>
-                        Loading...
-                    </Typography>
-                    {firstLoading ?
-                        <Typography component='p' variant='caption'>
-                            The first upload may be very slow due to technical characteristics of the server. Please wait.
-                        </Typography> : null}
-                </Container>}
+                <LoadingAnimation firstLoading={firstLoading} ArrayMessage={['Loading...']} style={{ paddingTop: '3rem' }} />}
         </Container>
     )
 };
