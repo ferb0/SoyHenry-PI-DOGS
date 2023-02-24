@@ -1,8 +1,17 @@
 import { Link } from 'react-router-dom';
 
-import { Typography, Grid, Card, CardMedia, CardContent, List, ListItem, ListItemText, Stack, Container } from '@mui/material';
-// import DeteleModifyButtons from '../DeteleModifyButtons.jsx';
-// import { DB } from '../../global/ConstSource.js';
+import {
+    Typography,
+    Grid,
+    Card,
+    CardMedia,
+    CardContent,
+    List,
+    ListItem,
+    ListItemText,
+    Stack,
+    Container
+} from '@mui/material';
 
 import imageDefault from '../../global/images/paws.png';
 
@@ -58,11 +67,6 @@ export default function BreedCard({ breeds }) {
                                     })}
                                 </List>
                             </Stack>
-
-                            {/* {el.source === DB ?
-                                <DeteleModifyButtons id={el.id} />
-                                :
-                                null} */}
 
                             <Container sx={{ display: 'flex', paddingTop: '1rem' }}>
                                 <Typography variant="caption" sx={{ display: 'flex', marginLeft: 'auto' }}>

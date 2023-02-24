@@ -4,10 +4,10 @@ import { getTempers, getAllBreeds, setNumberBreedDB } from '../redux/actions.js'
 import { Route, Switch } from 'react-router-dom';
 
 import NavBar from "./NavBar/NavBar.jsx";
-import Breeds from './Breeds/Breeds.jsx';
+import Breeds from './BreedsList/Breeds.jsx';
 import BreedDetail from './BreedDetail.jsx';
 import Footer from './Footer.jsx';
-import CreatedBreed from './CreatedBreed.jsx';
+import CreatedModifyBreed from './CreatedModifyBreed.jsx';
 
 export default function Principal() {
     const dispatch = useDispatch();
@@ -24,8 +24,8 @@ export default function Principal() {
                 <NavBar />
                 <Route exact path="/" component={Breeds} />
                 <Route path='/detail/:id' component={BreedDetail} />
-                <Route path='/createdBreed' component={CreatedBreed} />
-                <Route path='/modifyBreed/:id' component={CreatedBreed} />
+                <Route path='/createdBreed' component={CreatedModifyBreed} />
+                <Route path='/modifyBreed/:id' component={CreatedModifyBreed} />
                 <Footer />
             </Route>
         </Switch>

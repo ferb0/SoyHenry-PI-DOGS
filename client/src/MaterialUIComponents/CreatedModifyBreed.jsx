@@ -12,7 +12,7 @@ import formatData from '../controllers/Created/formatData.js';
 import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';
 
-function CreatedBreed() {
+function CreatedModifyBreed() {
     const history = useHistory();
     const maxNewBreeds = useSelector(state => state.numberNewBreedsDBReached);
     const loading = useSelector(state => state.loadingBreed);
@@ -292,4 +292,4 @@ function CreatedBreed() {
     )
 };
 
-export default CreatedBreed;
+export default CreatedModifyBreed;

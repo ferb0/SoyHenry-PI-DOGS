@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getBreed, cleanBreed, setNumberBreedDB } from '../redux/actions.js'
 
-import DeteleModifyButtons from "./DeteleModifyButtons.jsx";
+import DeteleModifyButtons from "./Suport/DeteleModifyButtons.jsx";
 import { API } from "../global/ConstSource.js";
 import imageDefault from '../global/images/paws.png';
 
