@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBreed, cleanBreed, setNumberBreedDB } from '../redux/actions.js'
 
 import DeteleModifyButtons from "./Suport/DeteleModifyButtons.jsx";
+import LoadingAnimation from './Suport/LoadingAnimation.jsx';
 import { API } from "../global/ConstSource.js";
 import imageDefault from '../global/images/paws.png';
 
@@ -16,9 +17,7 @@ import {
     Stack,
     List,
     ListItem,
-    ListItemText,
-    Container,
-    CircularProgress
+    ListItemText
 } from '@mui/material';
 
 export default function BreedDetail() {
@@ -44,14 +43,10 @@ export default function BreedDetail() {
     return (
         <>
             {loading ?
-                <Container align='center' sx={{ paddingTop: '3rem' }}>
-                    <CircularProgress
-                        color="inherit"
-                        size='3rem' />
-                    <Typography>
-                        Loading...
-                    </Typography>
-                </Container> :
+                <LoadingAnimation
+                    ArrayMessage={['Loading Details...']}
+                    style={{ paddingTop: '3rem', paddingBottom: '2rem' }} />
+                :
                 <Card
                     sx={{ margin: '2rem', padding: '0.5rem' }}>
                     <Stack
