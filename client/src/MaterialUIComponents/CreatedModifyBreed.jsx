@@ -8,7 +8,16 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import LoadingAnimation from './Suport/LoadingAnimation.jsx';
 import Notifications from './Suport/Notifications.jsx';
 
-import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed, postCreateBreed, cleanStatusCreateBreed, setNumberBreedDB } from '../redux/actions.js';
+import {
+    cleanBreed,
+    getAllBreeds,
+    getBreed,
+    getTempers,
+    putModifyBreed,
+    postCreateBreed,
+    setNumberBreedDB,
+    cleanStatusCreateBreed
+} from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
 import formatData from '../controllers/Created/formatData.js';
 
@@ -21,6 +30,7 @@ function CreatedModifyBreed() {
     const loading = useSelector(state => state.loadingBreed);
     const breed = useSelector(state => state.breed);
     const send = useSelector(state => state.createdBreed);
+    const sendModifyBreed = useSelector(state => state.modifyBreed);
     // Con id determino si es para editar o para modificar
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -82,6 +92,7 @@ function CreatedModifyBreed() {
         return function () {
             dispatch(cleanBreed());
             dispatch(cleanStatusCreateBreed());
+
             dispatch(getAllBreeds(''));
             dispatch(getTempers());
             dispatch(setNumberBreedDB());
@@ -259,7 +270,10 @@ function CreatedModifyBreed() {
                                 Load new breed
                             </Button>}
 
-                        <Notifications condition={send} />
+                        {id ?
+                            <Notifications condition={sendModifyBreed} />
+                            :
+                            <Notifications condition={send} />}
                     </Box>
                 </Stack>
             </>}

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Alert, Snackbar } from '@mui/material';
 
-import { cleanStatusCreateBreed } from '../../redux/actions.js';
+import { cleanStatusCreateBreed, cleanStatuModifyBreed } from '../../redux/actions.js';
 
 export default function Notifications({ condition }) {
     const dispatch = useDispatch();
@@ -10,6 +10,7 @@ export default function Notifications({ condition }) {
         if (reason === 'clickaway')
             return;
         dispatch(cleanStatusCreateBreed());
+        dispatch(cleanStatuModifyBreed());
     };
 
     return (
