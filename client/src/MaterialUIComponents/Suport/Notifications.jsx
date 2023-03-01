@@ -9,6 +9,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway')
             return;
+        // Limpia todas las modificaciones.
         dispatch(cleanStatusCreateBreed());
         dispatch(cleanStatuModifyBreed());
     };
