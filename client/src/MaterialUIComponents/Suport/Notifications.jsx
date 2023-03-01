@@ -14,7 +14,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
 
         setOpen(false);
     };
-    console.log(condition, open)
+
     return (
         <>
             <Snackbar
