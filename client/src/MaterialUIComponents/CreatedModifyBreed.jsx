@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
-import { Alert, Box, TextField, Typography, CardMedia, Button, Stack, Snackbar} from '@mui/material';
+import { Box, TextField, Typography, CardMedia, Button, Stack } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
 
 import LoadingAnimation from './Suport/LoadingAnimation.jsx';
+import Notifications from './Suport/Notifications.jsx';
 
 import { cleanBreed, getAllBreeds, getBreed, getTempers, putModifyBreed, postCreateBreed, cleanStatusCreateBreed, setNumberBreedDB } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
@@ -102,17 +103,11 @@ function CreatedModifyBreed() {
         }
     };
 
-    const handleCloseSnackbar = (event, reason) => {
-        if (reason === 'clickaway')
-            return;
-        dispatch(cleanStatusCreateBreed());
-    };
-
     return (
         <>{loading ?
             <LoadingAnimation
-            ArrayMessage={['Loading...']}
-            style={{ paddingTop: '3rem', paddingBottom: '2rem' }} />
+                ArrayMessage={['Loading...']}
+                style={{ paddingTop: '3rem', paddingBottom: '2rem' }} />
             :
             <>
                 <Typography component='h5' variant='h5' align='center' padding='1rem'>
@@ -264,24 +259,7 @@ function CreatedModifyBreed() {
                                 Load new breed
                             </Button>}
 
-                        <Snackbar
-                            open={send}
-                            autoHideDuration={6000}
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                            onClose={handleCloseSnackbar}>
-                            <Alert onClose={handleCloseSnackbar} severity='success' sx={{ width: '100%' }}>
-                                Breed successfully created.
-                            </Alert>
-                        </Snackbar>
-                        <Snackbar
-                            open={send === false}
-                            autoHideDuration={6000}
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                            onClose={handleCloseSnackbar}>
-                            <Alert onClose={handleCloseSnackbar} severity='error' sx={{ width: '100%' }}>
-                                Something went wrong.
-                            </Alert>
-                        </Snackbar>
+                        <Notifications value={send} />
                     </Box>
                 </Stack>
             </>}
