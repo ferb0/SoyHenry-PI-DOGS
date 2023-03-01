@@ -274,12 +274,12 @@ function CreatedModifyBreed() {
                             <Notifications
                                 condition={sendModifyBreed}
                                 positiveMessage={'Breed successfully modified.'}
-                                negativeMessage={'Something went wrong.'} />
+                                negativeMessage={'Something went wrong with the modification.'} />
                             :
                             <Notifications
                                 condition={send}
                                 positiveMessage={'Breed successfully created.'}
-                                negativeMessage={'Something went wrong.'} />}
+                                negativeMessage={'Something went wrong with the creation.'} />}
                     </Box>
                 </Stack>
             </>}
