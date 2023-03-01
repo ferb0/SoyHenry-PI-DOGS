@@ -259,7 +259,7 @@ function CreatedModifyBreed() {
                                 Load new breed
                             </Button>}
 
-                        <Notifications value={send} />
+                        <Notifications condition={send} />
                     </Box>
                 </Stack>
             </>}

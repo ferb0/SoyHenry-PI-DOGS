@@ -3,7 +3,7 @@ import { Alert, Snackbar } from '@mui/material';
 
 import { cleanStatusCreateBreed } from '../../redux/actions.js';
 
-export default function Notifications({ value }) {
+export default function Notifications({ condition }) {
     const dispatch = useDispatch();
 
     const handleCloseSnackbar = (event, reason) => {
@@ -15,7 +15,7 @@ export default function Notifications({ value }) {
     return (
         <>
             <Snackbar
-                open={value}
+                open={condition}
                 autoHideDuration={6000}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
@@ -24,7 +24,7 @@ export default function Notifications({ value }) {
                 </Alert>
             </Snackbar>
             <Snackbar
-                open={value === false}
+                open={condition === false}
                 autoHideDuration={6000}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
