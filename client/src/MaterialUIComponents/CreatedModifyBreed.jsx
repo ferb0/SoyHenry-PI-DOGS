@@ -16,7 +16,8 @@ import {
     putModifyBreed,
     postCreateBreed,
     setNumberBreedDB,
-    cleanStatusCreateBreed
+    cleanStatusCreateBreed,
+    cleanStatuModifyBreed
 } from '../redux/actions.js';
 import checker from '../controllers/Created/checker.js';
 import formatData from '../controllers/Created/formatData.js';
@@ -92,6 +93,7 @@ function CreatedModifyBreed() {
         return function () {
             dispatch(cleanBreed());
             dispatch(cleanStatusCreateBreed());
+            dispatch(cleanStatuModifyBreed());
 
             dispatch(getAllBreeds(''));
             dispatch(getTempers());

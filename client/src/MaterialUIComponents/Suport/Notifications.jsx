@@ -1,31 +1,24 @@
-import { useDispatch } from "react-redux";
 import { Alert, Snackbar } from '@mui/material';
 
-import {
-    cleanStatusCreateBreed,
-    cleanStatuModifyBreed,
-    cleanStatuDeleteBreed
-} from '../../redux/actions.js';
+import { useState } from "react";
 
 // Tiempo en milisegundos
 const timeNotification = 4000;
 
 export default function Notifications({ condition, positiveMessage, negativeMessage }) {
-    const dispatch = useDispatch();
+    const [open, setOpen] = useState(true);
 
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway')
             return;
-        // Limpia todas las modificaciones.
-        dispatch(cleanStatusCreateBreed());
-        dispatch(cleanStatuModifyBreed());
-        dispatch(cleanStatuDeleteBreed());
-    };
 
+        setOpen(false);
+    };
+    console.log(condition, open)
     return (
         <>
             <Snackbar
-                open={condition}
+                open={condition && open}
                 autoHideDuration={timeNotification}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
@@ -34,7 +27,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
                 </Alert>
             </Snackbar>
             <Snackbar
-                open={condition === false}
+                open={condition === false && open}
                 autoHideDuration={timeNotification}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
