@@ -1,7 +1,11 @@
 import { useDispatch } from "react-redux";
 import { Alert, Snackbar } from '@mui/material';
 
-import { cleanStatusCreateBreed, cleanStatuModifyBreed } from '../../redux/actions.js';
+import {
+    cleanStatusCreateBreed,
+    cleanStatuModifyBreed,
+    cleanStatuDeleteBreed
+} from '../../redux/actions.js';
 
 export default function Notifications({ condition, positiveMessage, negativeMessage }) {
     const dispatch = useDispatch();
@@ -12,6 +16,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
         // Limpia todas las modificaciones.
         dispatch(cleanStatusCreateBreed());
         dispatch(cleanStatuModifyBreed());
+        dispatch(cleanStatuDeleteBreed());
     };
 
     return (
