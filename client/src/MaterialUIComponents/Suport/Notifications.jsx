@@ -23,7 +23,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
         <>
             <Snackbar
                 open={condition}
-                autoHideDuration={6000}
+                autoHideDuration={4000}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity='success' sx={{ width: '100%' }}>
@@ -32,7 +32,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
             </Snackbar>
             <Snackbar
                 open={condition === false}
-                autoHideDuration={6000}
+                autoHideDuration={4000}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity='error' sx={{ width: '100%' }}>
