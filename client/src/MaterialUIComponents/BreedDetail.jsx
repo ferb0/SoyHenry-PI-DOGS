@@ -6,6 +6,8 @@ import { getBreed, cleanBreed, setNumberBreedDB } from '../redux/actions.js'
 
 import DeteleModifyButtons from "./Suport/DeteleModifyButtons.jsx";
 import LoadingAnimation from './Suport/LoadingAnimation.jsx';
+import Notifications from "./Suport/Notifications.jsx";
+
 import { API } from "../global/ConstSource.js";
 import imageDefault from '../global/images/paws.png';
 
@@ -25,10 +27,11 @@ export default function BreedDetail() {
 
     const dispatch = useDispatch();
 
-    const { breed, loading } = useSelector(state => {
+    const { breed, loading, deleteBreed } = useSelector(state => {
         return {
             breed: state.breed,
-            loading: state.loadingBreed
+            loading: state.loadingBreed,
+            deleteBreed: state.deleteBreed
         }
     });
 
@@ -107,6 +110,12 @@ export default function BreedDetail() {
 
 
                             <DeteleModifyButtons id={id} api={breed.source === API} />
+
+                            <Notifications
+                                condition={deleteBreed}
+                                positiveMessage={'Breed successfully deleted.'}
+                                negativeMessage={'Something went wrong with the deleting.'} />
+
                         </CardContent>
                     </Stack>
                 </Card >}
