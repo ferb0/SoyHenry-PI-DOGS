@@ -15,7 +15,8 @@ import {
   MODIFY_BREED,
   CREATED_BREED,
   CLEAN_STATUS_CREATED_BREED,
-  LOADING_ALL_BREED
+  LOADING_ALL_BREED,
+  CLEAN_STATUS_MODIFY_BREED
 } from './actions.js';
 
 import { ALPHA_ASC } from '../global/ConstSort.js'
@@ -142,12 +143,17 @@ const rootReducer = (state = initialState, action) => {
         createdBreed: undefined
       };
 
-      case LOADING_ALL_BREED:
-        return {
-          ...state,
-          loadingAllBreed: true
-        };
-  
+    case LOADING_ALL_BREED:
+      return {
+        ...state,
+        loadingAllBreed: true
+      };
+
+    case CLEAN_STATUS_MODIFY_BREED:
+      return {
+        ...state,
+        modifyBreed: null
+      };
 
     default:
       return state;

@@ -15,6 +15,7 @@ export const MODIFY_BREED = "MODIFY_BREED";
 export const CREATED_BREED = "CREATED_BREED";
 export const CLEAN_STATUS_CREATED_BREED = "CLEAN_STATUS_CREATED_BREED";
 export const LOADING_ALL_BREED = "LOADING_ALL_BREED";
+export const CLEAN_STATUS_MODIFY_BREED = "CLEAN_STATUS_MODIFY_BREED";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -210,5 +211,11 @@ export const postCreateBreed = (data) => {
 export const cleanStatusCreateBreed = () => {
     return {
         type: CLEAN_STATUS_CREATED_BREED
+    }
+};
+
+export const cleanStatuModifyBreed = () => {
+    return {
+        type: CLEAN_STATUS_MODIFY_BREED
     }
 };
