@@ -3,7 +3,7 @@ import { Alert, Snackbar } from '@mui/material';
 
 import { cleanStatusCreateBreed, cleanStatuModifyBreed } from '../../redux/actions.js';
 
-export default function Notifications({ condition }) {
+export default function Notifications({ condition, positiveMessage, negativeMessage }) {
     const dispatch = useDispatch();
 
     const handleCloseSnackbar = (event, reason) => {
@@ -21,7 +21,7 @@ export default function Notifications({ condition }) {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity='success' sx={{ width: '100%' }}>
-                    Breed successfully created.
+                    {positiveMessage}
                 </Alert>
             </Snackbar>
             <Snackbar
@@ -30,7 +30,7 @@ export default function Notifications({ condition }) {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity='error' sx={{ width: '100%' }}>
-                    Something went wrong.
+                    {negativeMessage}
                 </Alert>
             </Snackbar>
         </>
