@@ -7,6 +7,9 @@ import {
     cleanStatuDeleteBreed
 } from '../../redux/actions.js';
 
+// Tiempo en milisegundos
+const timeNotification = 4000;
+
 export default function Notifications({ condition, positiveMessage, negativeMessage }) {
     const dispatch = useDispatch();
 
@@ -23,7 +26,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
         <>
             <Snackbar
                 open={condition}
-                autoHideDuration={4000}
+                autoHideDuration={timeNotification}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity='success' sx={{ width: '100%' }}>
@@ -32,7 +35,7 @@ export default function Notifications({ condition, positiveMessage, negativeMess
             </Snackbar>
             <Snackbar
                 open={condition === false}
-                autoHideDuration={4000}
+                autoHideDuration={timeNotification}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity='error' sx={{ width: '100%' }}>
