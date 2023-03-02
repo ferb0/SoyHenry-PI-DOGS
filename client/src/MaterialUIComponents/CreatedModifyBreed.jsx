@@ -272,7 +272,7 @@ function CreatedModifyBreed() {
                                 Load new breed
                             </Button>}
 
-                        {id ?
+                        {id && isNaN(id) ?
                             <Notifications
                                 condition={sendModifyBreed}
                                 positiveMessage={'Breed successfully modified.'}
@@ -280,7 +280,10 @@ function CreatedModifyBreed() {
                             :
                             <Notifications
                                 condition={send}
-                                positiveMessage={'Breed successfully created.'}
+                                positiveMessage={
+                                    isNaN(id) ?
+                                        'Breed successfully created.' :
+                                        'Breed successfully modified.'}
                                 negativeMessage={'Something went wrong with the creation.'} />}
                     </Box>
                 </Stack>
