@@ -49,7 +49,10 @@ export default function BreedCard({ breeds }) {
                                 </Typography>
 
                                 <Typography component='p' variant='body1'>
-                                    {el.weight[0]}Kg - {el.weight[1]}Kg
+                                    {el.weight[0] && el.weight[1] ?
+                                        el.weight[0].toString() + 'Kg' + ' - ' + el.weight[1].toString() + 'Kg'
+                                        :
+                                        'No data.'}
                                 </Typography>
                             </Stack>
 
@@ -58,13 +61,16 @@ export default function BreedCard({ breeds }) {
                                     Temperaments:
                                 </Typography>
                                 <List dense={true} sx={{ padding: '0' }}>
-                                    {el.temper?.map(el => {
-                                        return (
-                                            <ListItem key={el} sx={{ padding: '0', paddingLeft: '1rem' }}>
-                                                <ListItemText primary={el} />
-                                            </ListItem>
-                                        )
-                                    })}
+                                    {el.temper && el.temper.lenght !== 0 ?
+                                        el.temper?.map(el => {
+                                            return (
+                                                <ListItem key={el} sx={{ padding: '0', paddingLeft: '1rem' }}>
+                                                    <ListItemText primary={el} />
+                                                </ListItem>
+                                            )
+                                        })
+                                        :
+                                        'No data.'}
                                 </List>
                             </Stack>
 
