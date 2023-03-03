@@ -75,7 +75,7 @@ export default function BreedDetail() {
                             {breed.lifeSpan ?
                                 <Typography component='p' variant='body1'>
                                     {breed.lifeSpan[0] && breed.lifeSpan[1] ?
-                                        breed.lifeSpan[0].toString() + 'years' + '-' + breed.lifeSpan[1].toString() + 'years'
+                                        breed.lifeSpan[0].toString() + ' years' + ' - ' + breed.lifeSpan[1].toString() + ' years'
                                         :
                                         'No data.'}
                                 </Typography> :
@@ -87,7 +87,7 @@ export default function BreedDetail() {
                             {breed.height ?
                                 <Typography component='p' variant='body1'>
                                     {breed.height[0] && breed.height[1] ?
-                                        breed.height[0].toString() + 'cm' + '-' + breed.height[1].toString() + 'cm'
+                                        breed.height[0].toString() + 'cm' + ' - ' + breed.height[1].toString() + 'cm'
                                         :
                                         'No data.'}
                                 </Typography> :
