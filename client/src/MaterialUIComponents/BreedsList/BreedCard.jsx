@@ -50,7 +50,7 @@ export default function BreedCard({ breeds }) {
 
                                 <Typography component='p' variant='body1'>
                                     {el.weight[0] && el.weight[1] ?
-                                        el.weight[0].toString() + 'Kg' + ' - ' + el.weight[1].toString() + 'Kg'
+                                        `${el.weight[0].toString()}Kg - ${el.weight[1].toString()}Kg`
                                         :
                                         'No data.'}
                                 </Typography>
