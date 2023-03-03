@@ -74,7 +74,10 @@ export default function BreedDetail() {
                             </Typography>
                             {breed.lifeSpan ?
                                 <Typography component='p' variant='body1'>
-                                    {breed.lifeSpan[0]}years - {breed.lifeSpan[1]}years
+                                    {breed.lifeSpan[0] && breed.lifeSpan[1] ?
+                                        breed.lifeSpan[0].toString() + 'years' + '-' + breed.lifeSpan[1].toString() + 'years'
+                                        :
+                                        'No data.'}
                                 </Typography> :
                                 null}
 
@@ -83,7 +86,10 @@ export default function BreedDetail() {
                             </Typography>
                             {breed.height ?
                                 <Typography component='p' variant='body1'>
-                                    {breed.height[0]}cm - {breed.height[1]}cm
+                                    {breed.height[0] && breed.height[1] ?
+                                        breed.height[0].toString() + 'cm' + '-' + breed.height[1].toString() + 'cm'
+                                        :
+                                        'No data.'}
                                 </Typography> :
                                 null}
 
@@ -100,13 +106,16 @@ export default function BreedDetail() {
                                 Temperaments:
                             </Typography>
                             <List dense={true} sx={{ padding: '0' }}>
-                                {breed.temper?.map(el => {
-                                    return (
-                                        <ListItem key={el} sx={{ padding: '0', paddingLeft: '1rem' }}>
-                                            <ListItemText align='center' primary={el} />
-                                        </ListItem>
-                                    )
-                                })}
+                                {breed.temper && breed.temper.lenght !== 0 ?
+                                    breed.temper?.map(el => {
+                                        return (
+                                            <ListItem key={el} sx={{ padding: '0', paddingLeft: '1rem' }}>
+                                                <ListItemText align='center' primary={el} />
+                                            </ListItem>
+                                        )
+                                    })
+                                    :
+                                    'No data.'}
                             </List>
 
 
