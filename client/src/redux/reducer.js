@@ -21,13 +21,12 @@ import {
 } from './actions.js';
 
 import { ALPHA_ASC } from '../global/ConstSort.js'
+import { combineReducers } from 'redux';
 
-const initialState = {
+const defaultState = {
   breeds: [],
   breed: {},
-  tempers: [],
   filterType: null,
-  temperSelected: null,
   sortSelected: ALPHA_ASC,
   loadingBreed: false,
   loadingTemper: false,
@@ -39,7 +38,12 @@ const initialState = {
   loadingAllBreed: null
 };
 
-const rootReducer = (state = initialState, action) => {
+const tempersState = {
+  tempers: [],
+  temperSelected: null,
+};
+
+const defaultReducer = (state = defaultState, action) => {
   switch (action.type) {
     case GET_ALL_BREED:
       return {
@@ -52,19 +56,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filterType: action.payload
-      };
-
-    case GET_TEMPERS:
-      return {
-        ...state,
-        tempers: action.payload,
-        loadingTemper: false
-      }
-
-    case SET_TEMPER:
-      return {
-        ...state,
-        temperSelected: action.payload
       };
 
     case SET_BREEDS:
@@ -102,7 +93,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filterType: null,
-        temperSelected: null,
         sortSelected: ALPHA_ASC,
         loadingBreed: false,
         loadingTemper: false
@@ -165,5 +155,30 @@ const rootReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const temperReducer = (state = tempersState, action) => {
+  switch (action.type) {
+    case GET_TEMPERS:
+      return {
+        ...state,
+        tempers: action.payload,
+        loadingTemper: false
+      };
+
+      case SET_TEMPER:
+        return {
+          ...state,
+          temperSelected: action.payload
+        };
+
+    default:
+      return state;
+  }
+};
+
+let rootReducer = combineReducers({
+  defaultReducer,
+  temperReducer
+});
 
 export default rootReducer;
