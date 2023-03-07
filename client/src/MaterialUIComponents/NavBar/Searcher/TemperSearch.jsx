@@ -8,8 +8,8 @@ import { styleTextInput } from "../../../global/Themes.js";
 export default function TemperSearch() {
     const dispatch = useDispatch();
 
-    let tempers = useSelector(state => state.tempers);
-    let temperSelected = useSelector(state => state.temperSelected);
+    let tempers = useSelector(state => state.temperReducer.tempers);
+    let temperSelected = useSelector(state => state.temperReducer.temperSelected);
 
     function handleOnChangeTempers(temper) {
         dispatch(setTemper(temper));

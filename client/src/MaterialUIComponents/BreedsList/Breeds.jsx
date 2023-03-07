@@ -23,13 +23,13 @@ export default function Breeds() {
         loadingAllBreed,
         firstLoading } = useSelector(state => {
             return {
-                breeds: state.breeds,
-                tempers: state.tempers,
-                sourceSelected: state.filterType,
-                temperSelected: state.temperSelected,
-                sortSelected: state.sortSelected,
-                loadingAllBreed: state.loadingAllBreed,
-                firstLoading: state.firstLoading
+                tempers: state.temperReducer.tempers,
+                temperSelected: state.temperReducer.temperSelected,
+                breeds: state.defaultReducer.breeds,
+                sourceSelected: state.defaultReducer.filterType,
+                sortSelected: state.defaultReducer.sortSelected,
+                loadingAllBreed: state.defaultReducer.loadingAllBreed,
+                firstLoading: state.defaultReducer.firstLoading
             }
         });
 

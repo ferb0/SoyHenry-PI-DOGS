@@ -9,7 +9,7 @@ import { styleTextInput } from "../../../global/Themes.js";
 export default function Sort() {
 
     const dispatch = useDispatch();
-    const sortSelected = useSelector(state => state.sortSelected);
+    const sortSelected = useSelector(state => state.defaultReducer.sortSelected);
     const options = [ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES];
 
     return (

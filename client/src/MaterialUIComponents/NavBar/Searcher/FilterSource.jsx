@@ -8,7 +8,7 @@ import { styleTextInput } from "../../../global/Themes.js";
 export default function FilterSource() {
     const dispatch = useDispatch();
     const options = [DB, API, ALL];
-    const filterType = useSelector(state => state.filterType);
+    const filterType = useSelector(state => state.defaultReducer.filterType);
 
     return (
         <Autocomplete
