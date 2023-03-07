@@ -29,7 +29,6 @@ const defaultState = {
   filterType: null,
   sortSelected: ALPHA_ASC,
   loadingBreed: false,
-  loadingTemper: false,
   firstLoading: true,
   numberNewBreedsDBReached: null,
   deleteBreed: null,
@@ -41,6 +40,7 @@ const defaultState = {
 const tempersState = {
   tempers: [],
   temperSelected: null,
+  loadingTemper: false,
 };
 
 const defaultReducer = (state = defaultState, action) => {
@@ -165,11 +165,11 @@ const temperReducer = (state = tempersState, action) => {
         loadingTemper: false
       };
 
-      case SET_TEMPER:
-        return {
-          ...state,
-          temperSelected: action.payload
-        };
+    case SET_TEMPER:
+      return {
+        ...state,
+        temperSelected: action.payload
+      };
 
     default:
       return state;

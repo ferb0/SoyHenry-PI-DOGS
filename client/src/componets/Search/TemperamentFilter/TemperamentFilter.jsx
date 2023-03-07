@@ -10,9 +10,9 @@ export default function TemperamentFilter() {
 
     let { tempers, temperSelected, loading } = useSelector(state => {
         return {
-            tempers: state.tempers,
-            temperSelected: state.temperSelected,
-            loading: state.loadingTemper
+            tempers: state.temperReducer.tempers,
+            temperSelected: state.temperReducer.temperSelected,
+            loading: state.temperReducer.loadingTemper
         }
     });
 
