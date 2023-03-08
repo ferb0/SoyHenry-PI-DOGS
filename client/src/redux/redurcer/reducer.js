@@ -18,9 +18,9 @@ import {
   LOADING_ALL_BREED,
   CLEAN_STATUS_MODIFY_BREED,
   CLEAN_STATUS_DELETE_BREED
-} from './actions.js';
+} from '../actions.js';
 
-import { ALPHA_ASC } from '../global/ConstSort.js'
+import { ALPHA_ASC } from '../../global/ConstSort.js'
 import { combineReducers } from 'redux';
 
 const defaultState = {
