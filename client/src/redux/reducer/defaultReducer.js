@@ -2,7 +2,7 @@ import {
   SET_FILTERTYPE,
   SET_SORT_TYPE,
   FIRST_LOADING_OFF
-} from '../actions.js';
+} from '../actions/defaultActions.js';
 import { ALPHA_ASC } from '../../global/ConstSort.js'
 
 const defaultState = {

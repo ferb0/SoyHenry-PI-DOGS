@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { temperFilter, sourceFilter, cantFilter } from '../../controllers/Pagination/funcionsFilter.js';
 import { sortType } from '../../controllers/Pagination/functiosSort.js';
 import { CANT_SUMMARIES } from '../../global/CantSummaries.js';
-import { firstLoadingOff } from '../../redux/actions.js';
+import { firstLoadingOff } from '../../redux/actions/defaultActions.js';
 
 import LoadingAnimation from '../Suport/LoadingAnimation.jsx';
 

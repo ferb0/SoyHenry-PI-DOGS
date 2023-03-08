@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { postdeleteBreed, getTempers, getAllBreeds } from '../../redux/actions.js';
+import { postdeleteBreed, getTempers, getAllBreeds } from '../../redux/actions/defaultActions.js';
 
 import { Button, Stack, Modal, Typography } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';

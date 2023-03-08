@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBreeds, getTempers, cleanAllData } from '../../redux/actions.js'
+import { getAllBreeds, getTempers, cleanAllData } from '../../redux/actions/defaultActions.js'
 import { Link } from "react-router-dom";
 
 import TemperamentFilter from "./TemperamentFilter/TemperamentFilter.jsx";

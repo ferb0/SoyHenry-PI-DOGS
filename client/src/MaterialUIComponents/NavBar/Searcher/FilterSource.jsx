@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setFilterType } from '../../../redux/actions.js';
+import { setFilterType } from '../../../redux/actions/defaultActions.js';
 import { DB, API, ALL } from '../../../global/ConstSource.js';
 
 import { TextField, Autocomplete } from '@mui/material';

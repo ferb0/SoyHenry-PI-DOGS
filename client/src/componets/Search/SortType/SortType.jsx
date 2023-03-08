@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setSortType } from '../../../redux/actions.js';
+import { setSortType } from '../../../redux/actions/defaultActions.js';
 
 import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../../global/ConstSort.js";
 

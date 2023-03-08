@@ -2,7 +2,7 @@ import {
     GET_TEMPERS,
     SET_TEMPER,
     LOADING_TEMPERS
-} from '../actions.js';
+} from '../actions/defaultActions.js';
 
 const tempersState = {
     tempers: [],

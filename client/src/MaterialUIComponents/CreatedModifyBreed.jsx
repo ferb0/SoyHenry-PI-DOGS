@@ -18,7 +18,7 @@ import {
     setNumberBreedDB,
     cleanStatusCreateBreed,
     cleanStatuModifyBreed
-} from '../redux/actions.js';
+} from '../redux/actions/defaultActions.js';
 import checker from '../controllers/Created/checker.js';
 import formatData from '../controllers/Created/formatData.js';
 

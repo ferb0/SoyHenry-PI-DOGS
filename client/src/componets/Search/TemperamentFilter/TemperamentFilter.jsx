@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setTemper } from '../../../redux/actions.js'
+import { setTemper } from '../../../redux/actions/defaultActions.js'
 
 import '../GlobalSearch.css';
 import s from './TemperamentFilter.module.css';

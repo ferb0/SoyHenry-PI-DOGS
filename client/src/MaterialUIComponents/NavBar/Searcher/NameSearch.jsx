@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { getAllBreeds } from '../../../redux/actions.js';
+import { getAllBreeds } from '../../../redux/actions/defaultActions.js';
 
 import { TextField } from "@mui/material";
 import { styleTextInput } from "../../../global/Themes.js";
