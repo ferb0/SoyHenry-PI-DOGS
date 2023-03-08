@@ -10,13 +10,13 @@ router.get('/', async (req, res) => {
         let temperaments = await getTempersAPI();
 
         // Se busca en la BS
-        if (MONGODB === 'active') {
+        if (MONGODB === 'active')
             temperaments = [...temperaments, ... (await getTempersDBM())];
-        }
-        else {
+        else
             temperaments = [...temperaments, ... (await getTempersDB())];
-        }
-        res.send({ msg: temperaments });
+
+        // Se converte en Set para eliminar duplicados.
+        res.send({ msg: Array.from(new Set(temperaments)) });
     }
     catch (e) {
         res.status(500).json({ err: e });
