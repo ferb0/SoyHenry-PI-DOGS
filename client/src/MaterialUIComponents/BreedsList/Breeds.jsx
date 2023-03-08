@@ -25,10 +25,10 @@ export default function Breeds() {
             return {
                 tempers: state.temperReducer.tempers,
                 temperSelected: state.temperReducer.temperSelected,
-                breeds: state.defaultReducer.breeds,
+                breeds: state.breedsReducer.breeds,
+                loadingAllBreed: state.breedsReducer.loadingAllBreed,
                 sourceSelected: state.defaultReducer.filterType,
                 sortSelected: state.defaultReducer.sortSelected,
-                loadingAllBreed: state.defaultReducer.loadingAllBreed,
                 firstLoading: state.defaultReducer.firstLoading
             }
         });

@@ -27,11 +27,11 @@ const sizeTextField = '7rem';
 
 function CreatedModifyBreed() {
     const history = useHistory();
-    const maxNewBreeds = useSelector(state => state.defaultReducer.numberNewBreedsDBReached);
-    const loading = useSelector(state => state.defaultReducer.loadingBreed);
-    const breed = useSelector(state => state.defaultReducer.breed);
-    const send = useSelector(state => state.defaultReducer.createdBreed);
-    const sendModifyBreed = useSelector(state => state.defaultReducer.modifyBreed);
+    const maxNewBreeds = useSelector(state => state.breedsReducer.numberNewBreedsDBReached);
+    const loading = useSelector(state => state.breedsReducer.loadingBreed);
+    const breed = useSelector(state => state.breedsReducer.breed);
+    const send = useSelector(state => state.breedsReducer.createdBreed);
+    const sendModifyBreed = useSelector(state => state.breedsReducer.modifyBreed);
     // Con id determino si es para editar o para modificar
     const { id } = useParams();
     const dispatch = useDispatch();

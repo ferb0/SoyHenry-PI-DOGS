@@ -29,9 +29,9 @@ export default function BreedDetail() {
 
     const { breed, loading, deleteBreed } = useSelector(state => {
         return {
-            breed: state.defaultReducer.breed,
-            loading: state.defaultReducer.loadingBreed,
-            deleteBreed: state.defaultReducer.deleteBreed
+            breed: state.breedsReducer.breed,
+            loading: state.breedsReducer.loadingBreed,
+            deleteBreed: state.breedsReducer.deleteBreed
         }
     });
 
