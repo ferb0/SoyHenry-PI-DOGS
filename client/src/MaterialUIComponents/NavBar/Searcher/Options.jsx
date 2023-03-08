@@ -28,6 +28,7 @@ function Options({maxNewBreeds}) {
     return (
         <Stack spacing={0.5} padding='0.3rem'>
             <Button
+                disabled
                 variant="outlined"
                 color='secondary'
                 onClick={cleanAll}
