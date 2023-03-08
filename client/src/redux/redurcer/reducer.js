@@ -1,8 +1,9 @@
+import { combineReducers } from 'redux';
+
+import { ALPHA_ASC } from '../../global/ConstSort.js'
 import {
   GET_ALL_BREED,
-  GET_TEMPERS,
   SET_FILTERTYPE,
-  SET_TEMPER,
   SET_BREEDS,
   GET_BREED,
   LOADING_BREED,
@@ -20,8 +21,7 @@ import {
   CLEAN_STATUS_DELETE_BREED
 } from '../actions.js';
 
-import { ALPHA_ASC } from '../../global/ConstSort.js'
-import { combineReducers } from 'redux';
+import temperReducer from './temperReducer.js';
 
 const defaultState = {
   breeds: [],
@@ -35,12 +35,6 @@ const defaultState = {
   modifyBreed: null,
   createdBreed: null,
   loadingAllBreed: null
-};
-
-const tempersState = {
-  tempers: [],
-  temperSelected: null,
-  loadingTemper: false,
 };
 
 const defaultReducer = (state = defaultState, action) => {
@@ -151,26 +145,6 @@ const defaultReducer = (state = defaultState, action) => {
         ...state,
         deleteBreed: null
       }
-    default:
-      return state;
-  }
-};
-
-const temperReducer = (state = tempersState, action) => {
-  switch (action.type) {
-    case GET_TEMPERS:
-      return {
-        ...state,
-        tempers: action.payload,
-        loadingTemper: false
-      };
-
-    case SET_TEMPER:
-      return {
-        ...state,
-        temperSelected: action.payload
-      };
-
     default:
       return state;
   }
