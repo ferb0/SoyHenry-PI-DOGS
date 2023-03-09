@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBreed, cleanBreed } from '../../redux/actions/defaultActions.js'
+import { getBreed, cleanBreed } from '../../redux/actions/breedActions.js';
 
 import Nav from "../Nav/Nav.jsx";
 

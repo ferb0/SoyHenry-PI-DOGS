@@ -2,8 +2,9 @@ import React from "react";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
-import { getTempers } from '../../../redux/actions/temperActions.js'
-import { cleanAllData, getAllBreeds } from '../../../redux/actions/defaultActions.js'
+import { getTempers } from '../../../redux/actions/temperActions.js';
+import { getAllBreeds } from '../../../redux/actions/breedActions.js';
+import { cleanAllData } from '../../../redux/actions/defaultActions.js'
 
 import { Button, Stack } from "@mui/material";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
