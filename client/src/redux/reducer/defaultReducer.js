@@ -1,7 +1,8 @@
 import {
   SET_FILTERTYPE,
   SET_SORT_TYPE,
-  FIRST_LOADING_OFF
+  FIRST_LOADING_OFF,
+  CLEAN_DATA_DEFAULT
 } from '../actions/defaultActions.js';
 import { ALPHA_ASC } from '../../global/ConstSort.js'
 
@@ -30,6 +31,9 @@ const defaultReducer = (state = defaultState, action) => {
         ...state,
         firstLoading: false
       };
+
+    case CLEAN_DATA_DEFAULT:
+      return defaultState;
 
     default:
       return state;
