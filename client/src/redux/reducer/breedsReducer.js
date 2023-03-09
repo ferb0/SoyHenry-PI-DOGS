@@ -102,7 +102,7 @@ const breedsReducer = (state = breedsState, action) => {
             };
 
         case CLEAN_DATA_BREED:
-            return state;
+            return breedsState;
 
         default:
             return state;

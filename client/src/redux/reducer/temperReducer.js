@@ -33,10 +33,7 @@ const temperReducer = (state = tempersState, action) => {
             };
 
         case CLEAN_TEMPERS:
-            return {
-                ...state,
-                temperSelected: null
-            };
+            return tempersState;
 
         default:
             return state;
