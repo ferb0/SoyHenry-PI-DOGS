@@ -2,9 +2,9 @@ import React from "react";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
-import { getTempers } from '../../../redux/actions/temperActions.js';
-import { getAllBreeds } from '../../../redux/actions/breedActions.js';
-import { cleanAllData } from '../../../redux/actions/defaultActions.js'
+import { getTempers, cleanTempers } from '../../../redux/actions/temperActions.js';
+import { getAllBreeds, cleanDataBreed } from '../../../redux/actions/breedActions.js';
+import { cleanDataDefault } from "../../../redux/actions/defaultActions.js";
 
 import { Button, Stack } from "@mui/material";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
@@ -17,7 +17,10 @@ function Options({ maxNewBreeds }) {
     const history = useHistory();
 
     function cleanAll() {
-        dispatch(cleanAllData());
+        dispatch(cleanTempers());
+        dispatch(cleanDataBreed());
+        dispatch(cleanDataDefault());
+
         dispatch(getTempers());
         dispatch(getAllBreeds(''));
         history.push('/')
@@ -30,7 +33,6 @@ function Options({ maxNewBreeds }) {
     return (
         <Stack spacing={0.5} padding='0.3rem'>
             <Button
-                disabled
                 variant="outlined"
                 color='secondary'
                 onClick={cleanAll}
