@@ -2,7 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 
-import { getBreed, cleanBreed, setNumberBreedDB, cleanStatuDeleteBreed } from '../redux/actions/breedActions.js';
+import { getBreed, cleanBreed, cleanStatuDeleteBreed } from '../redux/actions/breedActions.js';
+import { getNumberBreedDB } from "../redux/actions/configActions.js";
 
 import DeteleModifyButtons from "./Suport/DeteleModifyButtons.jsx";
 import LoadingAnimation from './Suport/LoadingAnimation.jsx';
@@ -40,7 +41,7 @@ export default function BreedDetail() {
         return function () {
             dispatch(cleanStatuDeleteBreed());
             dispatch(cleanBreed());
-            dispatch(setNumberBreedDB());
+            dispatch(getNumberBreedDB());
         }
     }, [dispatch, id]);
 
