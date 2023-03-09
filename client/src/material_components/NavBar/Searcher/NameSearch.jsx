@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { getAllBreeds } from '../../../redux/actions/breedActions.js';
 
 import { TextField } from "@mui/material";
-import { styleTextInput } from "../../../global/Themes.js";
+import { styleTextInput } from "../../../global/themes.js";
 
 export default function NameSearch() {
     const dispatch = useDispatch();

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterType } from '../../../redux/actions/defaultActions.js';
-import { DB, API, ALL } from '../../../global/ConstSource.js';
+import { DB, API, ALL } from '../../../global/const_source.js';
 
 import { TextField, Autocomplete } from '@mui/material';
-import { styleTextInput } from "../../../global/Themes.js";
+import { styleTextInput } from "../../../global/themes.js";
 
 export default function FilterSource() {
     const dispatch = useDispatch();

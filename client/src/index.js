@@ -6,12 +6,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
 
-import './global/GlobalStyle.css';
+import './global/global_style.css';
 
-import Principal from './MaterialUIComponents/Principal.jsx';
+import Principal from './material_components/Principal.jsx';
 
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './global/Themes.js';
+import theme from './global/themes.js';
 
 ReactDOM.render(
   <React.StrictMode>

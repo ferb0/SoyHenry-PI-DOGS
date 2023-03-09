@@ -9,7 +9,7 @@ import DeteleModifyButtons from "./Suport/DeteleModifyButtons.jsx";
 import LoadingAnimation from './Suport/LoadingAnimation.jsx';
 import Notifications from "./Suport/Notifications.jsx";
 
-import { API } from "../global/ConstSource.js";
+import { API } from "../global/const_source.js";
 import imageDefault from '../global/images/paws.png';
 
 import {

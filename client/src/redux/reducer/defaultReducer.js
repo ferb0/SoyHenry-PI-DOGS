@@ -4,7 +4,7 @@ import {
   FIRST_LOADING_OFF,
   CLEAN_DATA_DEFAULT
 } from '../actions/defaultActions.js';
-import { ALPHA_ASC } from '../../global/ConstSort.js'
+import { ALPHA_ASC } from '../../global/const_sort.js';
 
 const defaultState = {
   filterType: null,

@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSortType } from '../../../redux/actions/defaultActions.js';
 
-import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../../global/ConstSort.js";
+import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../../global/const_sort.js";
 
 import { Autocomplete, TextField } from '@mui/material';
-import { styleTextInput } from "../../../global/Themes.js";
+import { styleTextInput } from "../../../global/themes.js";
 
 export default function Sort() {
 

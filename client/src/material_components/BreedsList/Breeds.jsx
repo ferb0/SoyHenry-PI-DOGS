@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-import { temperFilter, sourceFilter, cantFilter } from '../../controllers/Pagination/funcionsFilter.js';
-import { sortType } from '../../controllers/Pagination/functiosSort.js';
+import { temperFilter, sourceFilter, cantFilter } from '../../controllers/pagination/funcions_filter.js';
+import { sortType } from '../../controllers/pagination/functios_sort.js';
 import { firstLoadingOff } from '../../redux/actions/defaultActions.js';
 
 import LoadingAnimation from '../Suport/LoadingAnimation.jsx';

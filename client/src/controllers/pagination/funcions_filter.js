@@ -1,5 +1,5 @@
-import { ALL, API, DB } from '../../global/ConstSource.js';
-import { BREEDS_FOR_PAGE } from '../../global/CantSummaries.js';
+import { ALL, API, DB } from '../../global/const_source.js';
+import { BREEDS_FOR_PAGE } from '../../global/cant_summaries.js';
 
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)

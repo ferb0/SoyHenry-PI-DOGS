@@ -1,5 +1,5 @@
 import { GET_NUMBER_NEW_BREEDS_DB_REACHED } from "../actions/configActions";
-import { BREEDS_FOR_PAGE } from '../../global/CantSummaries.js';
+import { BREEDS_FOR_PAGE } from '../../global/cant_summaries.js';
 
 const configState = {
     numberNewBreedsDBReached: null,

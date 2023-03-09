@@ -19,8 +19,8 @@ import {
     cleanStatusCreateBreed,
     cleanStatuModifyBreed
 } from '../redux/actions/breedActions.js';
-import checker from '../controllers/Created/checker.js';
-import formatData from '../controllers/Created/formatData.js';
+import checker from '../controllers/created/checker.js';
+import formatData from '../controllers/created/format_data.js';
 
 import imagePaws from '../global/images/paws.png';
 const sizeTextField = '7rem';

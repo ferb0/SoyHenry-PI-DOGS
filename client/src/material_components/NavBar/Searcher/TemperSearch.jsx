@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTemper } from '../../../redux/actions/temperActions.js';
 
 import { TextField, Autocomplete } from '@mui/material';
-import { styleTextInput } from "../../../global/Themes.js";
+import { styleTextInput } from "../../../global/themes.js";
 
 export default function TemperSearch() {
     const dispatch = useDispatch();

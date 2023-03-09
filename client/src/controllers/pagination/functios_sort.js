@@ -1,4 +1,4 @@
-import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from '../../global/ConstSort.js';
+import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from '../../global/const_sort.js';
 
 export function sortType(breed, sort) {
 

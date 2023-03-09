@@ -10,7 +10,7 @@ import { Button, Stack } from "@mui/material";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import FiberNewIcon from '@mui/icons-material/FiberNew';
 
-import { styleTextInput } from "../../../global/Themes.js";
+import { styleTextInput } from "../../../global/themes.js";
 
 function Options({ maxNewBreeds }) {
     const dispatch = useDispatch();
