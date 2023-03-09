@@ -17,8 +17,6 @@ router.get('/numberBreedForPage', async (req, res) => {
 router.put('/update', async (req, res) => {
     const { numberBreedsMaxDB } = req.body;
 
-    if (!numberBreedsMaxDB)
-        return res.status(500).json({ ree: 'Missing numberBreedsMaxDB.' });
     try {
         let config = await ConfigM.findOne();
 
