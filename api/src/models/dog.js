@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 
 // IdBase
-const IDBASE = require('../global/idDogsBase.js');
+const IDBASE = require('../global/id_dogs_base.js');
 
 module.exports = (sequelize) => {
   // defino el modelo

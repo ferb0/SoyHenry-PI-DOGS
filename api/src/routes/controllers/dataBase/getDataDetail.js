@@ -1,7 +1,7 @@
-const axiosDogs = require('../../../global/axiosInstance.js');
-const { DogM } = require('../../../models-mongodb/Dog.js');
+const axiosDogs = require('../../../global/axios_instance.js');
+const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog, Temper } = require('../../../db.js');
-const { TempersM } = require('../../../models-mongodb/Tempers.js');
+const { TempersM } = require('../../../models_mongodb/tempers.js');
 
 async function getDetailAPI(idBreed) {
     try {

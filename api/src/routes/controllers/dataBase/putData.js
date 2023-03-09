@@ -1,6 +1,6 @@
-const { DogM } = require('../../../../src/models-mongodb/Dog.js');
+const { DogM } = require('../../../../src/models_mongodb/dog.js');
 const { Dog, Temper } = require('../../../db.js');
-const { TempersM } = require('../../../models-mongodb/Tempers.js');
+const { TempersM } = require('../../../models_mongodb/tempers.js');
 
 async function putDBM({ idBreed, name, height, weight, lifeSpan, img, temper }) {
     try {

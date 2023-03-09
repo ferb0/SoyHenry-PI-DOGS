@@ -1,7 +1,7 @@
 // Funciones para darle formato a las respuestas del server.
 
-const { DB, API, DBM } = require('../../global/constSource.js');
-const { ExcludesM } = require('../../models-mongodb/ExcludedBreeds.js');
+const { DB, API, DBM } = require('../../global/const_source.js');
+const { ExcludesM } = require('../../models_mongodb/excluded_breeds.js');
 
 async function filterExcludedBreed(breeds) {
     try {

@@ -4,8 +4,8 @@ const router = Router();
 
 const { MONGODB, NUMBER_MAX_ITEMS_DB } = process.env;
 // IdBase
-const IDBASE = require('../global/idDogsBase.js');
-const { DB, API, DBM } = require('../global/constSource.js');
+const IDBASE = require('../global/id_dogs_base.js');
+const { DB, API, DBM } = require('../global/const_source.js');
 
 //Funcones para formatos
 const { formatDetail } = require('./controllers/formatDetail.js');

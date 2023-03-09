@@ -1,5 +1,5 @@
 // Funciones para darle formato a las respuestas del server.
-const { DB, API, DBM } = require('../../global/constSource.js');
+const { DB, API, DBM } = require('../../global/const_source.js');
 
 function formatDetailAPIServer(breed) {
     return breed ? {

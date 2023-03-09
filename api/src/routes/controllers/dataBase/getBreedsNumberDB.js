@@ -1,4 +1,4 @@
-const { DogM } = require('../../../models-mongodb/Dog.js');
+const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog } = require('../../../db.js');
 
 async function getBreedsNumberDBM() {
