@@ -4,7 +4,6 @@ export const GET_ALL_BREED = "GET_ALL_BREED";
 export const SET_BREEDS = "SET_BREEDS";
 export const GET_BREED = "GET_BREED";
 export const LOADING_BREED = "LOADING_BREED";
-export const GET_NUMBER_NEW_BREEDS_DB_REACHED = "GET_NUMBER_NEW_BREEDS_DB_REACHED";
 export const DELETE_BREED = "DELETE_BREED";
 export const MODIFY_BREED = "MODIFY_BREED";
 export const CREATED_BREED = "CREATED_BREED";
@@ -69,20 +68,6 @@ export const cleanBreed = () => {
     return {
         type: GET_BREED,
         payload: {}
-    }
-};
-
-export const setNumberBreedDB = () => {
-    return function (dispatch) {
-        return fetch(REACT_APP_API_BASE_URL + `/dogs/breedsNumber`)
-            .then(response => response.json())
-            .then((response) => {
-                if (response.hasOwnProperty('msg'))
-                    dispatch({ type: GET_NUMBER_NEW_BREEDS_DB_REACHED, payload: response.msg })
-                if (response.hasOwnProperty('err'))
-                    dispatch({ type: GET_NUMBER_NEW_BREEDS_DB_REACHED, payload: false })
-            })
-            .catch(() => dispatch({ type: GET_NUMBER_NEW_BREEDS_DB_REACHED, payload: false }));
     }
 };
 

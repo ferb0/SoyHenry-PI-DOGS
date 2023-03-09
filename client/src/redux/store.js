@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import defaultReducer from './reducer/defaultReducer.js';
 import breedsReducer from './reducer/breedsReducer.js';
 import temperReducer from './reducer/temperReducer.js';
+import configReducer from './reducer/configReducer.js';
 
 const composeEnhancers =
    (typeof window !== 'undefined' &&
@@ -11,9 +12,10 @@ const composeEnhancers =
    compose;
 
 let rootReducer = combineReducers({
+   configReducer,
    defaultReducer,
-   temperReducer,
-   breedsReducer
+   breedsReducer,
+   temperReducer
 });
 
 const store = createStore(

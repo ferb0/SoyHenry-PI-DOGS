@@ -3,7 +3,6 @@ import {
     SET_BREEDS,
     GET_BREED,
     LOADING_BREED,
-    GET_NUMBER_NEW_BREEDS_DB_REACHED,
     DELETE_BREED,
     MODIFY_BREED,
     CREATED_BREED,
@@ -51,12 +50,6 @@ const breedsReducer = (state = breedsState, action) => {
             return {
                 ...state,
                 loadingBreed: true
-            };
-
-        case GET_NUMBER_NEW_BREEDS_DB_REACHED:
-            return {
-                ...state,
-                numberNewBreedsDBReached: action.payload
             };
 
         case DELETE_BREED:
