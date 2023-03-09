@@ -20,7 +20,9 @@ router.put('/update', async (req, res) => {
     try {
         let config = await ConfigM.findOne();
 
-        config.numberBreedsMaxDB = numberBreedsMaxDB;
+        if (numberBreedsMaxDB)
+            config.numberBreedsMaxDB = numberBreedsMaxDB;
+
         config.save();
 
         res.json({ msg: 'Update correctly.' });
