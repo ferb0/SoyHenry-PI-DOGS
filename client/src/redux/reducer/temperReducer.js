@@ -1,7 +1,8 @@
 import {
     GET_TEMPERS,
     SET_TEMPER,
-    LOADING_TEMPERS
+    LOADING_TEMPERS,
+    CLEAN_TEMPERS
 } from '../actions/temperActions.js';
 
 const tempersState = {
@@ -29,6 +30,12 @@ const temperReducer = (state = tempersState, action) => {
             return {
                 ...state,
                 loadingTemper: true
+            };
+
+        case CLEAN_TEMPERS:
+            return {
+                ...state,
+                temperSelected: null
             };
 
         default:

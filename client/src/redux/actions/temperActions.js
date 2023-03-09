@@ -3,6 +3,7 @@ const { REACT_APP_API_BASE_URL } = process.env;
 export const GET_TEMPERS = "GET_TEMPERS";
 export const SET_TEMPER = "SET_TEMPER";
 export const LOADING_TEMPERS = "LOADING_TEMPERS";
+export const CLEAN_TEMPERS = "CLEAN_TEMPERS";
 
 export const getTempers = () => {
     return function (dispatch) {
@@ -41,3 +42,8 @@ export const setTemper = (temper) => {
     }
 };
 
+export const cleanTempers = () => {
+    return {
+        type: CLEAN_TEMPERS
+    }
+};
