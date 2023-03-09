@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 import { temperFilter, sourceFilter, cantFilter } from '../../controllers/Pagination/funcionsFilter.js';
 import { sortType } from '../../controllers/Pagination/functiosSort.js';
-import { CANT_SUMMARIES } from '../../global/CantSummaries.js';
 import { firstLoadingOff } from '../../redux/actions/defaultActions.js';
 
 import LoadingAnimation from '../Suport/LoadingAnimation.jsx';
@@ -11,7 +10,7 @@ import LoadingAnimation from '../Suport/LoadingAnimation.jsx';
 import { Typography, Container, Pagination, Stack } from '@mui/material';
 import BreedCard from './BreedCard.jsx';
 
-export default function Breeds() {
+export default function Breeds() { 
     const dispatch = useDispatch();
 
     const {
@@ -21,7 +20,8 @@ export default function Breeds() {
         temperSelected,
         sortSelected,
         loadingAllBreed,
-        firstLoading } = useSelector(state => {
+        firstLoading,
+        breedsForPage } = useSelector(state => {
             return {
                 tempers: state.temperReducer.tempers,
                 temperSelected: state.temperReducer.temperSelected,
@@ -29,7 +29,8 @@ export default function Breeds() {
                 loadingAllBreed: state.breedsReducer.loadingAllBreed,
                 sourceSelected: state.defaultReducer.filterType,
                 sortSelected: state.defaultReducer.sortSelected,
-                firstLoading: state.defaultReducer.firstLoading
+                firstLoading: state.defaultReducer.firstLoading,
+                breedsForPage: state.configReducer.breedsForPage
             }
         });
 
@@ -82,7 +83,7 @@ export default function Breeds() {
                             <Stack align='center'>
                                 <Pagination
                                     page={breedsFinal[0]}
-                                    count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)}
+                                    count={Math.ceil(breedsFinal[1] / breedsForPage)}
                                     onChange={handleClick}
                                     sx={{ margin: 'auto', paddingBottom: '1rem', paddingTop: '1rem' }} />
                             </Stack>
@@ -92,7 +93,7 @@ export default function Breeds() {
                             <Stack align='center'>
                                 <Pagination
                                     page={breedsFinal[0]}
-                                    count={Math.ceil(breedsFinal[1] / CANT_SUMMARIES)}
+                                    count={Math.ceil(breedsFinal[1] / breedsForPage)}
                                     onChange={handleClick}
                                     sx={{ margin: 'auto', paddingBottom: '1rem', paddingTop: '1rem' }} />
                             </Stack>
