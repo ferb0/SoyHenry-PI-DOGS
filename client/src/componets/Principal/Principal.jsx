@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { getTempers } from '../../redux/actions/defaultActions.js'
+import { getTempers } from '../../redux/actions/temperActions.js'
 
 import Pagination from '../Pagination/Pagination.jsx';
 import Createbreed from '../CreateBreed/CreateBreed.jsx';

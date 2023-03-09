@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
-import { getTempers, getAllBreeds, setNumberBreedDB } from '../redux/actions/defaultActions.js';
+import { getTempers } from '../redux/actions/temperActions.js';
+import { getAllBreeds, setNumberBreedDB } from '../redux/actions/defaultActions.js';
 import { Route, Switch } from 'react-router-dom';
 
 import NavBar from "./NavBar/NavBar.jsx";

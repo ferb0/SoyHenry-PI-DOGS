@@ -8,11 +8,11 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import LoadingAnimation from './Suport/LoadingAnimation.jsx';
 import Notifications from './Suport/Notifications.jsx';
 
+import { getTempers } from '../redux/actions/temperActions.js';
 import {
     cleanBreed,
     getAllBreeds,
     getBreed,
-    getTempers,
     putModifyBreed,
     postCreateBreed,
     setNumberBreedDB,
