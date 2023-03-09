@@ -12,6 +12,7 @@ export const CLEAN_STATUS_CREATED_BREED = "CLEAN_STATUS_CREATED_BREED";
 export const LOADING_ALL_BREED = "LOADING_ALL_BREED";
 export const CLEAN_STATUS_MODIFY_BREED = "CLEAN_STATUS_MODIFY_BREED";
 export const CLEAN_STATUS_DELETE_BREED = "CLEAN_STATUS_DELETE_BREED";
+export const CLEAN_DATA_BREED = "CLEAN_DATA_BREED";
 
 export const loadingAllBreed = () => {
     return {
@@ -154,5 +155,11 @@ export const cleanStatuModifyBreed = () => {
 export const cleanStatuDeleteBreed = () => {
     return {
         type: CLEAN_STATUS_DELETE_BREED
+    }
+};
+
+export const cleanDataBreed = () => {
+    return {
+        type: CLEAN_DATA_BREED
     }
 };

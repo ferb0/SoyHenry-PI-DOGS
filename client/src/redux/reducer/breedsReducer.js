@@ -10,7 +10,8 @@ import {
     CLEAN_STATUS_CREATED_BREED,
     LOADING_ALL_BREED,
     CLEAN_STATUS_MODIFY_BREED,
-    CLEAN_STATUS_DELETE_BREED
+    CLEAN_STATUS_DELETE_BREED,
+    CLEAN_DATA_BREED
 } from '../actions/breedActions.js';
 
 const breedsState = {
@@ -98,7 +99,10 @@ const breedsReducer = (state = breedsState, action) => {
             return {
                 ...state,
                 deleteBreed: null
-            }
+            };
+
+        case CLEAN_DATA_BREED:
+            return state;
 
         default:
             return state;
