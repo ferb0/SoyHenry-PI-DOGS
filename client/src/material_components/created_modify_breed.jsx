@@ -5,8 +5,8 @@ import { Box, TextField, Typography, CardMedia, Button, Stack } from '@mui/mater
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
 
-import LoadingAnimation from './Suport/LoadingAnimation.jsx';
-import Notifications from './Suport/Notifications.jsx';
+import LoadingAnimation from './suport/loading_animation.jsx';
+import Notifications from './suport/notifications.jsx';
 
 import { getNumberBreedDB } from '../redux/actions/configActions.js';
 import { getTempers } from '../redux/actions/temperActions.js';

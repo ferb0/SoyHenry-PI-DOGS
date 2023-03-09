@@ -6,11 +6,11 @@ import { getNumberBreedDB } from '../redux/actions/configActions.js';
 
 import { Route, Switch } from 'react-router-dom';
 
-import NavBar from "./NavBar/NavBar.jsx";
-import Breeds from './BreedsList/Breeds.jsx';
-import BreedDetail from './BreedDetail.jsx';
-import Footer from './Footer.jsx';
-import CreatedModifyBreed from './CreatedModifyBreed.jsx';
+import NavBar from "./nav_bar/nav_bar.jsx";
+import Breeds from './breeds_list/breeds.jsx';
+import BreedDetail from './breed_detail.jsx';
+import Footer from './footer.jsx';
+import CreatedModifyBreed from './created_modify_breed.jsx';
 
 export default function Principal() {
     const dispatch = useDispatch();

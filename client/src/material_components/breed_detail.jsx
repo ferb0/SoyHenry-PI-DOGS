@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBreed, cleanBreed, cleanStatuDeleteBreed } from '../redux/actions/breedActions.js';
 import { getNumberBreedDB } from "../redux/actions/configActions.js";
 
-import DeteleModifyButtons from "./Suport/DeteleModifyButtons.jsx";
-import LoadingAnimation from './Suport/LoadingAnimation.jsx';
-import Notifications from "./Suport/Notifications.jsx";
+import DeteleModifyButtons from "./suport/detele_modify_buttons.jsx";
+import LoadingAnimation from './suport/loading_animation.jsx';
+import Notifications from "./suport/notifications.jsx";
 
 import { API } from "../global/const_source.js";
 import imageDefault from '../global/images/paws.png';

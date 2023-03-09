@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import TemperSearch from "./Searcher/TemperSearch.jsx";
-import NameSearch from './Searcher/NameSearch.jsx';
-import Options from './Searcher/Options.jsx';
-import Sort from './Searcher/Sort.jsx';
-import FilterSource from './Searcher/FilterSource.jsx';
+import TemperSearch from "./searchers/temper_search.jsx";
+import NameSearch from './searchers/name_search.jsx';
+import Options from './searchers/options.jsx';
+import Sort from './searchers/sort.jsx';
+import FilterSource from './searchers/filter_source.jsx';
 
 import { AppBar, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';

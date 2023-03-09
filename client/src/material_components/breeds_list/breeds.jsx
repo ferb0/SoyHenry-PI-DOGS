@@ -5,10 +5,10 @@ import { temperFilter, sourceFilter, cantFilter } from '../../controllers/pagina
 import { sortType } from '../../controllers/pagination/functios_sort.js';
 import { firstLoadingOff } from '../../redux/actions/defaultActions.js';
 
-import LoadingAnimation from '../Suport/LoadingAnimation.jsx';
+import LoadingAnimation from '../suport/loading_animation.jsx';
 
 import { Typography, Container, Pagination, Stack } from '@mui/material';
-import BreedCard from './BreedCard.jsx';
+import BreedCard from './breed_card.jsx';
 
 export default function Breeds() { 
     const dispatch = useDispatch();
