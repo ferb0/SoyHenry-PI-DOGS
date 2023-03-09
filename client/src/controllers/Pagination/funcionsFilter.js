@@ -1,5 +1,5 @@
 import { ALL, API, DB } from '../../global/ConstSource.js';
-import { CANT_SUMMARIES } from '../../global/CantSummaries.js';
+import { BREEDS_FOR_PAGE } from '../../global/CantSummaries.js';
 
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)
@@ -21,7 +21,7 @@ export function sourceFilter(breeds, sourceSelected) {
         return breeds;
 };
 
-export function cantFilter(breeds, page = 1, cant = CANT_SUMMARIES) {
+export function cantFilter(breeds, page = 1, cant = BREEDS_FOR_PAGE) {
     if (breeds.length === 0) return [];
     let array = [];
     let max = (page - 1) * cant + cant;
