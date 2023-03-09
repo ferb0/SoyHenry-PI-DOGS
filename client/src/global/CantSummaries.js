@@ -1,2 +1,2 @@
 // Cantidad de SumaryBreed que se mostraran por pantalla
-export const CANT_SUMMARIES=8;
+export const BREEDS_FOR_PAGE=8;
