@@ -1,4 +1,4 @@
-const { DogM } = require('../../../../src/models_mongodb/dog.js');
+const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog, Temper } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 

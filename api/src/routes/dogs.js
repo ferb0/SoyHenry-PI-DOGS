@@ -8,15 +8,15 @@ const IDBASE = require('../global/id_dogs_base.js');
 const { DB, API, DBM } = require('../global/const_source.js');
 
 //Funcones para formatos
-const { formatDetail } = require('./controllers/formatDetail.js');
-const { formatSummaryAPIServer, formatSumary } = require('./controllers/formatSumary.js');
-const { checkData } = require('./controllers/checkdataPut.js');
-const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/dataBase/getDataDetail.js');
-const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/dataBase/getDataSumary.js');
-const { postDBM, postDB } = require('./controllers/dataBase/postData.js');
-const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/dataBase/getBreedsNumberDB.js');
-const { deleteDBM } = require('./controllers/dataBase/deleteBreedDB.js');
-const { putDBM, putDB } = require('./controllers/dataBase/putData.js');
+const { formatDetail } = require('./controllers/format_detail.js');
+const { formatSummaryAPIServer, formatSumary } = require('./controllers/format_sumary.js');
+const { checkData } = require('./controllers/checkdata_put.js');
+const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/data_dase/get_data_detail.js');
+const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/data_dase/get_data_sumary.js');
+const { postDBM, postDB } = require('./controllers/data_dase/post_data.js');
+const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/data_dase/get_breeds_number_DB.js');
+const { deleteDBM } = require('./controllers/data_dase/delete_breed_DB.js');
+const { putDBM, putDB } = require('./controllers/data_dase/put_data.js');
 
 router.get('/breedsNumber', async (req, res) => {
     try {
