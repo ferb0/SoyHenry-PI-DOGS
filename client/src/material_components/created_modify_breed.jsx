@@ -8,8 +8,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import LoadingAnimation from './suport/loading_animation.jsx';
 import Notifications from './suport/notifications.jsx';
 
-import { getNumberBreedDB } from '../redux/actions/configActions.js';
-import { getTempers } from '../redux/actions/temperActions.js';
+import { getNumberBreedDB } from '../redux/actions/config_actions.js';
+import { getTempers } from '../redux/actions/temper_actions.js';
 import {
     cleanBreed,
     getAllBreeds,
@@ -18,7 +18,7 @@ import {
     postCreateBreed,
     cleanStatusCreateBreed,
     cleanStatuModifyBreed
-} from '../redux/actions/breedActions.js';
+} from '../redux/actions/breed_actions.js';
 import checker from '../controllers/created/checker.js';
 import formatData from '../controllers/created/format_data.js';
 

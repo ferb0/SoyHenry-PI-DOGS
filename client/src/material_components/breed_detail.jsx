@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 
-import { getBreed, cleanBreed, cleanStatuDeleteBreed } from '../redux/actions/breedActions.js';
-import { getNumberBreedDB } from "../redux/actions/configActions.js";
+import { getBreed, cleanBreed, cleanStatuDeleteBreed } from '../redux/actions/breed_actions.js';
+import { getNumberBreedDB } from "../redux/actions/config_actions.js";
 
 import DeteleModifyButtons from "./suport/detele_modify_buttons.jsx";
 import LoadingAnimation from './suport/loading_animation.jsx';

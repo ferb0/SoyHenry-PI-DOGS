@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setTemper } from '../../../redux/actions/temperActions.js';
+import { setTemper } from '../../../redux/actions/temper_actions.js';
 
 import { TextField, Autocomplete } from '@mui/material';
 import { styleTextInput } from "../../../global/themes.js";

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { temperFilter, sourceFilter, cantFilter } from '../../controllers/pagination/funcions_filter.js';
 import { sortType } from '../../controllers/pagination/functios_sort.js';
-import { firstLoadingOff } from '../../redux/actions/defaultActions.js';
+import { firstLoadingOff } from '../../redux/actions/default_actions.js';
 
 import LoadingAnimation from '../suport/loading_animation.jsx';
 

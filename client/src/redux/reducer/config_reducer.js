@@ -1,4 +1,4 @@
-import { GET_NUMBER_NEW_BREEDS_DB_REACHED } from "../actions/configActions";
+import { GET_NUMBER_NEW_BREEDS_DB_REACHED } from "../actions/config_actions.js";
 import { BREEDS_FOR_PAGE } from '../../global/cant_summaries.js';
 
 const configState = {

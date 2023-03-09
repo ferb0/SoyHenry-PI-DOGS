@@ -3,7 +3,7 @@ import {
     SET_TEMPER,
     LOADING_TEMPERS,
     CLEAN_TEMPERS
-} from '../actions/temperActions.js';
+} from '../actions/temper_actions.js';
 
 const tempersState = {
     tempers: [],

@@ -11,7 +11,7 @@ import {
     CLEAN_STATUS_MODIFY_BREED,
     CLEAN_STATUS_DELETE_BREED,
     CLEAN_DATA_BREED
-} from '../actions/breedActions.js';
+} from '../actions/breed_actions.js';
 
 const breedsState = {
     breeds: [],

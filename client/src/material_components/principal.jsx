@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
-import { getTempers } from '../redux/actions/temperActions.js';
-import { getAllBreeds } from '../redux/actions/breedActions.js';
-import { getNumberBreedDB } from '../redux/actions/configActions.js';
+import { getTempers } from '../redux/actions/temper_actions.js';
+import { getAllBreeds } from '../redux/actions/breed_actions.js';
+import { getNumberBreedDB } from '../redux/actions/config_actions.js';
 
 import { Route, Switch } from 'react-router-dom';
 

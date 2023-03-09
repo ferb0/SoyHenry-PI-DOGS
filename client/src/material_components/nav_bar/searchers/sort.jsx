@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setSortType } from '../../../redux/actions/defaultActions.js';
+import { setSortType } from '../../../redux/actions/default_actions.js';
 
 import { ALPHA_ASC, ALPHA_DES, WEIGHT_ASC, WEIGHT_DES } from "../../../global/const_sort.js";
 

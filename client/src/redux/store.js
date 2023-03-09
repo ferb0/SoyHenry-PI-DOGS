@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import defaultReducer from './reducer/defaultReducer.js';
-import breedsReducer from './reducer/breedsReducer.js';
-import temperReducer from './reducer/temperReducer.js';
-import configReducer from './reducer/configReducer.js';
+import defaultReducer from './reducer/default_reducer.js';
+import breedsReducer from './reducer/breeds_reducer.js';
+import temperReducer from './reducer/temper_reducer.js';
+import configReducer from './reducer/config_reducer.js';
 
 const composeEnhancers =
    (typeof window !== 'undefined' &&
