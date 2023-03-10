@@ -19,9 +19,11 @@ async function deleteMDB(idBreed) {
 
 async function deletePDB(idBreed) {
     try {
-        await ExcludedBreed.destroy({where: {DogId: idBreed}});
-        await Temper.destroy({where: {DogId: idBreed}});
-        await Dog.destroy({where: {DogId: idBreed}});
+        let breed = await Dog.findOne({
+            where: { id: idBreed }
+        });
+
+        await breed.destroy();
     }
     catch (error) {
         throw error;
