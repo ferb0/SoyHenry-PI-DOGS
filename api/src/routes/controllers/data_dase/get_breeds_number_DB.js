@@ -22,14 +22,19 @@ async function getBreedsNumberPDB() {
 };
 
 async function getBreedsNumberDataBase() {
-    let number = 0;
+    try {
+        let number = 0;
 
-    if (MONGODB === 'active')
-        number = await getBreedsNumberMDB();
-    else
-        number = await getBreedsNumberPDB();
+        if (MONGODB === 'active')
+            number = await getBreedsNumberMDB();
+        else
+            number = await getBreedsNumberPDB();
 
-    return number;
+        return number;
+    }
+    catch (error) {
+        throw error;
+    }
 };
 
 module.exports = { getBreedsNumberDataBase }
