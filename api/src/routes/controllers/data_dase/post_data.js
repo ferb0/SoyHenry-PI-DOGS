@@ -61,8 +61,8 @@ async function postPDB({ id, name, height, weight, lifeSpan, img, temper }) {
         await newBreed.addTempers(newTempers);
 
         if (id) {
-            const newExclude = await ExcludedBreed.create({ idBreedAPI: id });
-            newBreed.setExcludedBreed(newExclude);
+            const newExclude = await ExcludedBreed.build({ idBreedAPI: id });
+            await newBreed.setExcludedBreed(newExclude);
         }
     }
     catch (error) {
