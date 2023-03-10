@@ -4,8 +4,6 @@ const router = Router();
 
 const { MONGODB, NUMBER_MAX_ITEMS_DB } = process.env;
 
-const { API } = require('../global/const_source.js');
-
 //Funcones para formatos
 const { formatSummaryAPIServer } = require('./controllers/format_sumary.js');
 const { checkData } = require('./controllers/checkdata_put.js');
@@ -13,7 +11,7 @@ const { getDetailAll } = require('./controllers/data_dase/get_data_detail.js');
 const { getSumaryAPI, getSumaryDataBase } = require('./controllers/data_dase/get_data_sumary.js');
 const { postNewBreedDataBase } = require('./controllers/data_dase/post_data.js');
 const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
-const { deleteDBM } = require('./controllers/data_dase/delete_breed_DB.js');
+const { deleteBreedDataBase } = require('./controllers/data_dase/delete_breed_DB.js');
 const { putDBM, putDB } = require('./controllers/data_dase/put_data.js');
 
 router.get('/breedsNumber', async (req, res) => {
@@ -58,7 +56,7 @@ router.get('/', async (req, res) => {
         // Se busca en DB ya formateado
         let responseFilteredDB = await getSumaryDataBase(name);
 
-        responseFiltered = [...responseFilteredAPI, ...responseFilteredDB ]
+        responseFiltered = [...responseFilteredAPI, ...responseFilteredDB]
 
         res.json({ msg: responseFiltered });
     }
@@ -105,24 +103,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.delete('/delete/:idBreed', async (req, res) => {
-    const { idBreed } = req.params;
-
-    try {
-        if (MONGODB === 'active') {
-            await deleteDBM(idBreed);
-        }
-        else {
-
-        }
-        res.json({ msg: `The breed ${idBreed} eliminated.` });
-    }
-    catch (error) {
-        res.status(500).json({ err: e.message });
-    }
-
-});
-
 router.put('/update/:idBreed', async (req, res) => {
     const { idBreed } = req.params;
     let { name, height, weight, lifeSpan, img, temper } = req.body;
@@ -162,6 +142,20 @@ router.put('/update/:idBreed', async (req, res) => {
     catch (e) {
         res.status(500).json({ err: e.message });
     }
+});
+
+router.delete('/delete/:idBreed', async (req, res) => {
+    const { idBreed } = req.params;
+
+    try {
+        await deleteBreedDataBase(idBreed);
+
+        res.json({ msg: `The breed ${idBreed} was eliminated.` });
+    }
+    catch (error) {
+        res.status(500).json({ err: e.message });
+    }
+
 });
 
 module.exports = router;

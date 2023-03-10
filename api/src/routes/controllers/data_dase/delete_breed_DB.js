@@ -3,7 +3,9 @@ const { Dog, Temper } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 const { ExcludesM } = require('../../../models_mongodb/excluded_breeds.js');
 
-async function deleteDBM(idBreed) {
+const { MONGODB } = process.env;
+
+async function deleteMDB(idBreed) {
     try {
         // Se elimina dog
         await DogM.deleteOne({ _id: idBreed });
@@ -15,4 +17,27 @@ async function deleteDBM(idBreed) {
     }
 };
 
-module.exports = { deleteDBM }
+async function deletePDB(idBreed) {
+    try {
+        // Completar
+    }
+    catch (error) {
+        throw error;
+    }
+};
+
+async function deleteBreedDataBase(idBreed) {
+    try {
+        if (MONGODB === 'active') {
+            await deleteMDB(idBreed);
+        }
+        else {
+
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+module.exports = { deleteBreedDataBase }
