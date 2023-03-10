@@ -2,7 +2,7 @@
 
 const { DB, API, DBM } = require('../../global/const_source.js');
 const { ExcludesM } = require('../../models_mongodb/excluded_breeds.js');
-const { Dog, Temper } = require('../../db.js');
+const { ExcludedBreed } = require('../../db.js');
 
 const { MONGODB } = process.env;
 
@@ -12,7 +12,7 @@ async function filterExcludedBreed(breeds) {
         if (MONGODB === 'active')
             results = await ExcludesM.find({});
         else
-            results = await Dog.findAll();
+            results = await ExcludedBreed.findAll();
 
         breeds = breeds.filter(el => {
             for (const elRe of results) {
@@ -92,4 +92,3 @@ module.exports = {
     formatSummaryBDServerMDB,
     formatSumary
 }
-
