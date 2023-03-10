@@ -14,17 +14,14 @@ const { checkData } = require('./controllers/checkdata_put.js');
 const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/data_dase/get_data_detail.js');
 const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/data_dase/get_data_sumary.js');
 const { postDBM, postDB } = require('./controllers/data_dase/post_data.js');
-const { getBreedsNumberDBM, getBreedsNumberDB } = require('./controllers/data_dase/get_breeds_number_DB.js');
+const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
 const { deleteDBM } = require('./controllers/data_dase/delete_breed_DB.js');
 const { putDBM, putDB } = require('./controllers/data_dase/put_data.js');
 
 router.get('/breedsNumber', async (req, res) => {
     try {
         let number = 0;
-        if (MONGODB === 'active')
-            number = await getBreedsNumberDBM();
-        else
-            number = await getBreedsNumberDB();
+        number = getBreedsNumberDataBase();
 
         if (NUMBER_MAX_ITEMS_DB < number)
             res.json({ msg: true });
