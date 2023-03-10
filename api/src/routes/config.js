@@ -15,13 +15,21 @@ router.get('/numberBreedForPage', async (req, res) => {
 });
 
 router.put('/update', async (req, res) => {
-    const { numberBreedsMaxDB } = req.body;
+    const { numberBreedsMaxDB, breedsForPage } = req.body;
+
+    // Control
+    if (isNaN(numberBreedsMaxDB))
+        return res.status(500).json({ msg: 'numberBreedsMaxDB is not a number.' });
+    if (isNaN(breedsForPage))
+        return res.status(500).json({ msg: 'breedsForPage is not a number.' });
 
     try {
         let config = await ConfigM.findOne();
 
         if (numberBreedsMaxDB)
             config.numberBreedsMaxDB = numberBreedsMaxDB;
+        if (breedsForPage)
+            config.breedsForPage = breedsForPage;
 
         config.save();
 
