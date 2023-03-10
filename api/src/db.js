@@ -39,10 +39,20 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Dog, Temper, ExcludedBreed } = sequelize.models;
 
 // Aca vendrian las relaciones
-Dog.belongsToMany(Temper, { through: 'DogTemper', timestamps: false });
+Dog.belongsToMany(Temper, { 
+  through: 'DogTemper',
+   timestamps: false,
+   onDelete: 'CASCADE',
+   hooks: true,
+   foreignKey: { allowNull: false } });
 Temper.belongsToMany(Dog, { through: 'DogTemper', timestamps: false });
 
-Dog.hasOne(ExcludedBreed, { timestamps: false });
+Dog.hasOne(ExcludedBreed, { 
+  timestamps: false,
+  onDelete: 'CASCADE',
+  hooks: true,
+  foreignKey: { allowNull: false }
+ });
 ExcludedBreed.belongsTo(Dog, { timestamps: false });
 
 module.exports = {
