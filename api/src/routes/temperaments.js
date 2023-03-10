@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { MONGODB } = process.env;
-const { getTempersAPI, getTempersDBM, getTempersDB } = require('./controllers/data_dase/get_data_tempers.js');
+const { getTempersAPI, getTempersDataBase } = require('./controllers/data_dase/get_data_tempers.js');
 
 router.get('/', async (req, res) => {
     try {
@@ -10,10 +9,7 @@ router.get('/', async (req, res) => {
         let temperaments = await getTempersAPI();
 
         // Se busca en la BS
-        if (MONGODB === 'active')
-            temperaments = [...temperaments, ... (await getTempersDBM())];
-        else
-            temperaments = [...temperaments, ... (await getTempersDB())];
+        temperaments = [...temperaments, ...(await getTempersDataBase())];
 
         // Se converte en Set para eliminar duplicados.
         res.send({ msg: Array.from(new Set(temperaments)) });

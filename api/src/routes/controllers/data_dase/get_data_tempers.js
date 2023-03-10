@@ -2,6 +2,8 @@ const axiosTemperaments = require('../../../global/axios_instance.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 const { Temper } = require('../../../db.js');
 
+const { MONGODB } = process.env;
+
 async function getTempersAPI() {
     try {
         let temperaments = new Set();
@@ -22,7 +24,7 @@ async function getTempersAPI() {
     }
 }
 
-async function getTempersDBM() {
+async function getTempersMDB() {
     try {
         let temperaments = new Set();
 
@@ -36,7 +38,7 @@ async function getTempersDBM() {
     }
 }
 
-async function getTempersDB() {
+async function getTempersPDB() {
     try {
         let temperaments = new Set();
 
@@ -52,4 +54,15 @@ async function getTempersDB() {
     }
 }
 
-module.exports = { getTempersAPI, getTempersDBM, getTempersDB }
+async function getTempersDataBase() {
+    let temperaments;
+
+    if (MONGODB === 'active')
+        temperaments = await getTempersMDB();
+    else
+        temperaments = await getTempersPDB();
+
+    return temperaments;
+}
+
+module.exports = { getTempersAPI, getTempersDataBase }
