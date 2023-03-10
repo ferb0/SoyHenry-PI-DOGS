@@ -3,7 +3,9 @@ const { Dog, Temper } = require('../../../db.js');
 const { ExcludesM } = require('../../../models_mongodb/excluded_breeds.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 
-async function postDBM({ id, name, height, weight, lifeSpan, img, temper }) {
+const { MONGODB } = process.env;
+
+async function postMDB({ id, name, height, weight, lifeSpan, img, temper }) {
     try {
         const newDog = new DogM({
             name,
@@ -37,7 +39,7 @@ async function postDBM({ id, name, height, weight, lifeSpan, img, temper }) {
     }
 };
 
-async function postDB({ name, height, weight, lifeSpan, img, temper }) {
+async function postPDB({ name, height, weight, lifeSpan, img, temper }) {
     try {
         // Obtener la cantidad de elementos en la tabla.
         const id = await Dog.count();
@@ -65,4 +67,16 @@ async function postDB({ name, height, weight, lifeSpan, img, temper }) {
     }
 };
 
-module.exports = { postDBM, postDB }
+async function postNewBreedDataBase({ id, name, height, weight, lifeSpan, img, temper }) {
+    try {
+        if (MONGODB === 'active')
+            await postMDB({ id, name, height, weight, lifeSpan, img, temper });
+        else
+            await postPDB({ name, height, weight, lifeSpan, img, temper });
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+module.exports = { postNewBreedDataBase }

@@ -11,7 +11,7 @@ const { formatSummaryAPIServer } = require('./controllers/format_sumary.js');
 const { checkData } = require('./controllers/checkdata_put.js');
 const { getDetailAll } = require('./controllers/data_dase/get_data_detail.js');
 const { getSumaryAPI, getSumaryDataBase } = require('./controllers/data_dase/get_data_sumary.js');
-const { postDBM, postDB } = require('./controllers/data_dase/post_data.js');
+const { postNewBreedDataBase } = require('./controllers/data_dase/post_data.js');
 const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
 const { deleteDBM } = require('./controllers/data_dase/delete_breed_DB.js');
 const { putDBM, putDB } = require('./controllers/data_dase/put_data.js');
@@ -70,6 +70,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     let { id, name, height, weight, lifeSpan, img, temper } = req.body;
 
+    // Chequeo de datos
     if (!name || !height || !weight || !lifeSpan || !temper)
         return res.status(500).json({ err: 'Insufficient data.' });
 
@@ -96,11 +97,7 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        if (MONGODB === 'active')
-            await postDBM({ id, name, height, weight, lifeSpan, img, temper });
-        else
-            await postDB({ name, height, weight, lifeSpan, img, temper });
-
+        await postNewBreedDataBase({ id, name, height, weight, lifeSpan, img, temper });
         res.send({ msg: "New race successfully created." });
     }
     catch (e) {
