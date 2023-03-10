@@ -12,7 +12,7 @@ const { getSumaryAPI, getSumaryDataBase } = require('./controllers/data_dase/get
 const { postNewBreedDataBase } = require('./controllers/data_dase/post_data.js');
 const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
 const { deleteBreedDataBase } = require('./controllers/data_dase/delete_breed_DB.js');
-const { putDBM, putDB } = require('./controllers/data_dase/put_data.js');
+const { putUpdateBreed } = require('./controllers/data_dase/put_data.js');
 
 router.get('/breedsNumber', async (req, res) => {
     try {
@@ -132,10 +132,7 @@ router.put('/update/:idBreed', async (req, res) => {
         return res.status(500).json({ err: responseCheck });
     }
     try {
-        if (MONGODB === 'active')
-            await putDBM({ idBreed, name, height, weight, lifeSpan, img, temper });
-        else
-            await putDB({ idBreed, name, height, weight, lifeSpan, img, temper });
+        await putUpdateBreed({ idBreed, name, height, weight, lifeSpan, img, temper });
 
         res.send({ msg: "New race successfully update." });
     }

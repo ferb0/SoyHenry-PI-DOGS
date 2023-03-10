@@ -2,15 +2,14 @@ const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog, Temper } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 
-async function putDBM({ idBreed, name, height, weight, lifeSpan, img, temper }) {
+const { MONGODB } = process.env;
+
+async function putMDB({ idBreed, name, height, weight, lifeSpan, img, temper }) {
     try {
         // Se obtiene dog
         let dog = await DogM.findById(idBreed);
         // Se eliminan tempers
         await TempersM.deleteMany({ dogId: dog._id.toString() });
-
-        // // Se elimina dog
-        // await DogM.deleteOne({ _id: idBreed });
 
         // Se edita dog
         dog.name = name;
@@ -31,7 +30,7 @@ async function putDBM({ idBreed, name, height, weight, lifeSpan, img, temper }) 
     }
 };
 
-async function putDB({ name, height, weight, lifeSpan, img, temper }) {
+async function putPDB({ name, height, weight, lifeSpan, img, temper }) {
     try {
         // Obtener la cantidad de elementos en la tabla.
         const id = await Dog.count();
@@ -59,4 +58,16 @@ async function putDB({ name, height, weight, lifeSpan, img, temper }) {
     }
 };
 
-module.exports = { putDB, putDBM }
+async function putUpdateBreed({ idBreed, name, height, weight, lifeSpan, img, temper }) {
+    try {
+        if (MONGODB === 'active')
+            await putMDB({ idBreed, name, height, weight, lifeSpan, img, temper });
+        else
+            await putPDB({ idBreed, name, height, weight, lifeSpan, img, temper });
+    }
+    catch (error) {
+        throw error;
+    }
+};
+
+module.exports = { putUpdateBreed }
