@@ -4,13 +4,13 @@ const router = Router();
 
 const { MONGODB, NUMBER_MAX_ITEMS_DB } = process.env;
 
-const { DB, DBM } = require('../global/const_source.js');
+const { API } = require('../global/const_source.js');
 
 //Funcones para formatos
-const { formatSummaryAPIServer, formatSumary } = require('./controllers/format_sumary.js');
+const { formatSummaryAPIServer } = require('./controllers/format_sumary.js');
 const { checkData } = require('./controllers/checkdata_put.js');
 const { getDetailAll } = require('./controllers/data_dase/get_data_detail.js');
-const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/data_dase/get_data_sumary.js');
+const { getSumaryAPI, getSumaryDataBase } = require('./controllers/data_dase/get_data_sumary.js');
 const { postDBM, postDB } = require('./controllers/data_dase/post_data.js');
 const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
 const { deleteDBM } = require('./controllers/data_dase/delete_breed_DB.js');
@@ -52,16 +52,9 @@ router.get('/', async (req, res) => {
 
     try {
         let responseFilteredAPI = await getSumaryAPI(name);
-        let responseFiltered = await formatSummaryAPIServer(responseFilteredAPI);
+        let responseFiltered = await formatSummaryAPIServer(responseFilteredAPI, API);
 
-        if (MONGODB === 'active') {
-            let responseFilteredDB = await getSumaryDBM(name);
-            responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DBM)]
-        }
-        else {
-            let responseFilteredDB = await getSumaryDB(name);
-            responseFiltered = [...responseFiltered, ...formatSumary(responseFilteredDB, DB)]
-        }
+        responseFiltered = [...responseFiltered, ... (await getSumaryDataBase(name))]
 
         res.json({ msg: responseFiltered });
     }

@@ -3,6 +3,11 @@ const { DogM } = require('../../../models_mongodb/dog.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 const { Dog, Temper } = require('../../../db.js');
 
+const { DB, DBM } = require('../../../global/const_source.js');
+const { MONGODB } = process.env;
+
+const { formatSumary } = require('../format_sumary.js');
+
 async function getSumaryAPI(name) {
     try {
         let responseAPI = await axiosDogs({ method: 'get', url: 'v1/breeds' })
@@ -42,7 +47,7 @@ async function getSumaryDBM(name) {
     }
 };
 
-async function getSumaryDB(name) {
+async function getSumaryPDB(name) {
     try {
         if (name) {
             var paramSearch = {
@@ -63,4 +68,20 @@ async function getSumaryDB(name) {
     }
 };
 
-module.exports = { getSumaryAPI, getSumaryDBM, getSumaryDB }
+async function getSumaryDataBase(name) {
+    try {
+        let responseFilteredDB;
+        if (MONGODB === 'active') {
+            responseFilteredDB = await getSumaryDBM(name);
+            return formatSumary(responseFilteredDB, DBM);
+        }
+        else {
+            responseFilteredDB = await getSumaryPDB(name);
+            return formatSumary(responseFilteredDB, DB);
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+};
+module.exports = { getSumaryAPI, getSumaryDataBase }
