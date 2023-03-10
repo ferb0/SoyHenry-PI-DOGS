@@ -3,15 +3,13 @@ const { Router } = require('express');
 const router = Router();
 
 const { MONGODB, NUMBER_MAX_ITEMS_DB } = process.env;
-// IdBase
-const IDBASE = require('../global/id_dogs_base.js');
-const { DB, API, DBM } = require('../global/const_source.js');
+
+const { DB, DBM } = require('../global/const_source.js');
 
 //Funcones para formatos
-const { formatDetail } = require('./controllers/format_detail.js');
 const { formatSummaryAPIServer, formatSumary } = require('./controllers/format_sumary.js');
 const { checkData } = require('./controllers/checkdata_put.js');
-const { getDetailAPI, getDetailMDB, getDetailDB } = require('./controllers/data_dase/get_data_detail.js');
+const { getDetailAll } = require('./controllers/data_dase/get_data_detail.js');
 const { getSumaryAPI, getSumaryDBM, getSumaryDB } = require('./controllers/data_dase/get_data_sumary.js');
 const { postDBM, postDB } = require('./controllers/data_dase/post_data.js');
 const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
@@ -40,22 +38,9 @@ router.get('/:idBreed', async (req, res) => {
         return res.status(500).json({ err: "Wrong parameter." });
 
     try {
-        let breed; let format;
-        if (idBreed < IDBASE) {
-            breed = await getDetailAPI(idBreed);
-            format = API;
-        }
-        else if (MONGODB === 'active') {
-            breed = await getDetailMDB(idBreed);
-            format = DBM;
-        }
-        else {
-            breed = await getDetailDB(idBreed);
-            // Se quita metadata
-            breed = breed.get({ plain: true });
-            format = DB;
-        }
-        res.json({ msg: formatDetail(breed, format) });
+        let breed = await getDetailAll(idBreed);
+
+        res.json({ msg: breed });
     }
     catch (e) {
         res.status(500).json({ err: e.message });

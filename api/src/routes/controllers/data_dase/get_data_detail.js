@@ -3,6 +3,13 @@ const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog, Temper } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 
+// IdBase
+const IDBASE = require('../../../global/id_dogs_base.js');
+const { DB, API, DBM } = require('../../../global/const_source.js');
+
+const { formatDetail } = require('../format_detail.js');
+const { MONGODB } = process.env;
+
 async function getDetailAPI(idBreed) {
     try {
         let response = (await axiosDogs({ method: 'get', url: 'v1/breeds/' })).data;
@@ -32,7 +39,7 @@ async function getDetailMDB(idBreed) {
     }
 }
 
-async function getDetailDB(idBreed) {
+async function getDetailPDB(idBreed) {
     try {
         return await Dog.findOne({
             where: { id: idBreed },
@@ -44,4 +51,28 @@ async function getDetailDB(idBreed) {
     }
 }
 
-module.exports = { getDetailAPI, getDetailMDB, getDetailDB }
+async function getDetailAll(idBreed) {
+    try {
+        let breed; let format;
+
+        if (idBreed < IDBASE) {
+            breed = await getDetailAPI(idBreed);
+            format = API;
+        }
+        else if (MONGODB === 'active') {
+            breed = await getDetailMDB(idBreed);
+            format = DBM;
+        }
+        else {
+            breed = await getDetailPDB(idBreed);
+            // Se quita metadata
+            breed = breed.get({ plain: true });
+            format = DB;
+        }
+
+        return formatDetail(breed, format);
+    } catch (error) {
+        throw error;
+    }
+}
+module.exports = { getDetailAll }
