@@ -1,5 +1,5 @@
 const { DogM } = require('../../../models_mongodb/dog.js');
-const { Dog, Temper } = require('../../../db.js');
+const { Dog, Temper, ExcludedBreed } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 const { ExcludesM } = require('../../../models_mongodb/excluded_breeds.js');
 
@@ -19,7 +19,9 @@ async function deleteMDB(idBreed) {
 
 async function deletePDB(idBreed) {
     try {
-        // Completar
+        await ExcludedBreed.destroy({where: {DogId: idBreed}});
+        await Temper.destroy({where: {DogId: idBreed}});
+        await Dog.destroy({where: {DogId: idBreed}});
     }
     catch (error) {
         throw error;
@@ -32,7 +34,7 @@ async function deleteBreedDataBase(idBreed) {
             await deleteMDB(idBreed);
         }
         else {
-
+            await deletePDB(idBreed);
         }
     }
     catch (error) {
