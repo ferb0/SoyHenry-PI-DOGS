@@ -51,10 +51,14 @@ router.get('/', async (req, res) => {
     let name = req.query.name;
 
     try {
+        // Se busca en API
         let responseFilteredAPI = await getSumaryAPI(name);
-        let responseFiltered = await formatSummaryAPIServer(responseFilteredAPI, API);
+        responseFilteredAPI = await formatSummaryAPIServer(responseFilteredAPI);
 
-        responseFiltered = [...responseFiltered, ... (await getSumaryDataBase(name))]
+        // Se busca en DB ya formateado
+        let responseFilteredDB = await getSumaryDataBase(name);
+
+        responseFiltered = [...responseFilteredAPI, ...responseFilteredDB ]
 
         res.json({ msg: responseFiltered });
     }
