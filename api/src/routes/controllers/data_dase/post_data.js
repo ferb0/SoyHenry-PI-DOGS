@@ -1,5 +1,5 @@
 const { DogM } = require('../../../models_mongodb/dog.js');
-const { Dog, Temper } = require('../../../db.js');
+const { Dog, Temper, ExcludedBreed } = require('../../../db.js');
 const { ExcludesM } = require('../../../models_mongodb/excluded_breeds.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 
@@ -39,13 +39,10 @@ async function postMDB({ id, name, height, weight, lifeSpan, img, temper }) {
     }
 };
 
-async function postPDB({ name, height, weight, lifeSpan, img, temper }) {
+async function postPDB({ id, name, height, weight, lifeSpan, img, temper }) {
     try {
-        // Obtener la cantidad de elementos en la tabla.
-        const id = await Dog.count();
         // Se crea la raza.
         const newBreed = await Dog.create({
-            id,
             name,
             minHeight: height[0],
             maxHeight: height[1],
@@ -59,8 +56,14 @@ async function postPDB({ name, height, weight, lifeSpan, img, temper }) {
         let promiseTempers = temper.map(element => {
             return Temper.create({ name: element });
         });
+
         let newTempers = await Promise.all(promiseTempers);
         await newBreed.addTempers(newTempers);
+
+        if (id) {
+            const newExclude = await ExcludedBreed.create({ idBreedAPI: id });
+            newBreed.setExcludedBreed(newExclude);
+        }
     }
     catch (error) {
         throw error;
@@ -72,7 +75,7 @@ async function postNewBreedDataBase({ id, name, height, weight, lifeSpan, img, t
         if (MONGODB === 'active')
             await postMDB({ id, name, height, weight, lifeSpan, img, temper });
         else
-            await postPDB({ name, height, weight, lifeSpan, img, temper });
+            await postPDB({ id, name, height, weight, lifeSpan, img, temper });
     }
     catch (error) {
         throw error;

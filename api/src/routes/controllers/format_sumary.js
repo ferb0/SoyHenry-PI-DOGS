@@ -2,10 +2,18 @@
 
 const { DB, API, DBM } = require('../../global/const_source.js');
 const { ExcludesM } = require('../../models_mongodb/excluded_breeds.js');
+const { Dog, Temper } = require('../../db.js');
+
+const { MONGODB } = process.env;
 
 async function filterExcludedBreed(breeds) {
     try {
-        let results = await ExcludesM.find({});
+        let results;
+        if (MONGODB === 'active')
+            results = await ExcludesM.find({});
+        else
+            results = await Dog.findAll();
+
         breeds = breeds.filter(el => {
             for (const elRe of results) {
                 if (el.id === elRe.idBreedAPI)
