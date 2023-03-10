@@ -1,20 +1,15 @@
 const { DataTypes } = require('sequelize');
+const Sequelize = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
-
-// IdBase
-const IDBASE = require('../global/id_dogs_base.js');
 
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Dog', {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      set(value) {
-        this.setDataValue('id', (value + IDBASE));
-      }
+      type: DataTypes.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
@@ -31,13 +26,13 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         onlyPositive(value) {
-          if(value <= 0)
-          throw new Error('Only numbers greater than zero are allowed.');
+          if (value <= 0)
+            throw new Error('Only numbers greater than zero are allowed.');
         },
 
         minorHeight(value) {
-          if(value > this.maxHeight)
-          throw new Error('The minHeight > maxHeight.');
+          if (value > this.maxHeight)
+            throw new Error('The minHeight > maxHeight.');
         }
       }
     },
@@ -49,13 +44,13 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         onlyPositive(value) {
-          if(value <= 0)
-          throw new Error('Only numbers greater than zero are allowed.');
+          if (value <= 0)
+            throw new Error('Only numbers greater than zero are allowed.');
         },
 
         maxHeight(value) {
-          if(value < this.minHeight)
-          throw new Error('The maxHeight < minHeight.');
+          if (value < this.minHeight)
+            throw new Error('The maxHeight < minHeight.');
         }
       }
     },
@@ -67,13 +62,13 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         onlyPositive(value) {
-          if(value <= 0)
-          throw new Error('Only numbers greater than zero are allowed.');
+          if (value <= 0)
+            throw new Error('Only numbers greater than zero are allowed.');
         },
 
         minorWeight(value) {
-          if(value > this.maxWeight)
-          throw new Error('The minWeight > minWeight.');
+          if (value > this.maxWeight)
+            throw new Error('The minWeight > minWeight.');
         }
       }
     },
@@ -85,13 +80,13 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         onlyPositive(value) {
-          if(value <= 0)
-          throw new Error('Only numbers greater than zero are allowed.');
+          if (value <= 0)
+            throw new Error('Only numbers greater than zero are allowed.');
         },
 
         maxWeight(value) {
-          if(value < this.minWeight)
-          throw new Error('The maxWeight < minWeight.');
+          if (value < this.minWeight)
+            throw new Error('The maxWeight < minWeight.');
         }
       }
     },
@@ -103,13 +98,13 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         onlyPositive(value) {
-          if(value <= 0)
-          throw new Error('Only numbers greater than zero are allowed.');
+          if (value <= 0)
+            throw new Error('Only numbers greater than zero are allowed.');
         },
 
         minorLifeSpan(value) {
-          if(value > this.maxLifeSpan)
-          throw new Error('The minLifeSpan > maxLifeSpan.');
+          if (value > this.maxLifeSpan)
+            throw new Error('The minLifeSpan > maxLifeSpan.');
         }
       }
     },
@@ -121,25 +116,25 @@ module.exports = (sequelize) => {
         isNumeric: true,
 
         onlyPositive(value) {
-          if(value <= 0)
-          throw new Error('Only numbers greater than zero are allowed.');
+          if (value <= 0)
+            throw new Error('Only numbers greater than zero are allowed.');
         },
 
         maxLifeSpan(value) {
-          if(value < this.minLifeSpan)
-          throw new Error('The maxLifeSpan < minLifeSpan.');
+          if (value < this.minLifeSpan)
+            throw new Error('The maxLifeSpan < minLifeSpan.');
         }
       }
     },
 
-    img : {
+    img: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate : {
+      validate: {
 
         url(value) {
-          if(value && !value.match(/^http/))
-          throw new Error('The img is not a URL valid.');
+          if (value && !value.match(/^http/))
+            throw new Error('The img is not a URL valid.');
         }
       }
     },
