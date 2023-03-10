@@ -5,6 +5,12 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define('ExcludedBreed', {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+
         idBreedAPI: {
             type: DataTypes.INTEGER
         }
