@@ -1,7 +1,7 @@
 const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog } = require('../../../db.js');
 
-const { MONGODB, NUMBER_MAX_ITEMS_DB } = process.env;
+const { MONGODB } = process.env;
 
 async function getBreedsNumberMDB() {
     try {
