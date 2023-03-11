@@ -1,5 +1,5 @@
 const { DogM } = require('../../../models_mongodb/dog.js');
-const { Dog, Temper, ExcludedBreed } = require('../../../db.js');
+const { Dog } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 const { ExcludesM } = require('../../../models_mongodb/excluded_breeds.js');
 
