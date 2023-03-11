@@ -3,8 +3,6 @@ const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog, Temper } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 
-// IdBase
-const IDBASE = require('../../../global/id_dogs_base.js');
 const { DB, API, DBM } = require('../../../global/const_source.js');
 
 const { formatDetail } = require('../format_detail.js');
@@ -55,7 +53,7 @@ async function getDetailAll(idBreed) {
     try {
         let breed; let format;
 
-        if (idBreed < IDBASE) {
+        if (!isNaN(idBreed)) {
             breed = await getDetailAPI(idBreed);
             format = API;
         }
