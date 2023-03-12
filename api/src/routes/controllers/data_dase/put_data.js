@@ -1,6 +1,9 @@
 const { DogM } = require('../../../models_mongodb/dog.js');
-const { Dog, Temper } = require('../../../db.js');
+const { Dog, Temper, ExcludedBreed } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
+
+const { deleteBreedDataBase } = require('./delete_breed_DB.js');
+const { postNewBreedDataBase } = require('./post_data.js');
 
 const { MONGODB } = process.env;
 
@@ -30,28 +33,20 @@ async function putMDB({ idBreed, name, height, weight, lifeSpan, img, temper }) 
     }
 };
 
-async function putPDB({ name, height, weight, lifeSpan, img, temper }) {
+async function putPDB({ idBreed, name, height, weight, lifeSpan, img, temper }) {
     try {
-        // Obtener la cantidad de elementos en la tabla.
-        const id = await Dog.count();
-        // Se crea la raza.
-        const newBreed = await Dog.create({
-            id,
-            name,
-            minHeight: height[0],
-            maxHeight: height[1],
-            minWeight: weight[0],
-            maxWeight: weight[1],
-            minLifeSpan: lifeSpan[0],
-            maxLifeSpan: lifeSpan[1],
-            img
-        });
+        // Se busca la raza para obtener el id de la api a la que esta sustituyendo si existe
+        let excludedBreed = await ExcludedBreed.findOne({ where: { DogId: idBreed } });
+        let id = null;
+        if (excludedBreed)
+            id = excludedBreed.idBreedAPI;
 
-        let promiseTempers = temper.map(element => {
-            return Temper.create({ name: element });
-        });
-        let newTempers = await Promise.all(promiseTempers);
-        await newBreed.addTempers(newTempers);
+        // Se elimina breed totalmente
+        await deleteBreedDataBase(idBreed);
+
+        // Se crea breed
+        console.log({ id, name, height, weight, lifeSpan, img, temper })
+        await postNewBreedDataBase({ id, name, height, weight, lifeSpan, img, temper });
     }
     catch (error) {
         throw error;
