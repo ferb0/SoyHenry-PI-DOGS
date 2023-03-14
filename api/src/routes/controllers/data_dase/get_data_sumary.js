@@ -3,7 +3,7 @@ const { DogM } = require('../../../models_mongodb/dog.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 const { Dog, Temper } = require('../../../db.js');
 
-const { DB, DBM } = require('../../../global/const_source.js');
+const { SOURCES } = require('../../../global/const_source.js');
 const { MONGODB } = process.env;
 
 const { formatSumary } = require('../format_sumary.js');
@@ -73,11 +73,11 @@ async function getSumaryDataBase(name) {
         let responseFilteredDB;
         if (MONGODB === 'active') {
             responseFilteredDB = await getSumaryDBM(name);
-            return formatSumary(responseFilteredDB, DBM);
+            return formatSumary(responseFilteredDB, SOURCES.DBM);
         }
         else {
             responseFilteredDB = await getSumaryPDB(name);
-            return formatSumary(responseFilteredDB, DB);
+            return formatSumary(responseFilteredDB, SOURCES.DB);
         }
     }
     catch (error) {

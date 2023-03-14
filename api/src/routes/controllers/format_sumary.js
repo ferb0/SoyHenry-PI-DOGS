@@ -1,6 +1,6 @@
 // Funciones para darle formato a las respuestas del server.
 
-const { DB, API, DBM } = require('../../global/const_source.js');
+const { SOURCES } = require('../../global/const_source.js');
 const { ExcludesM } = require('../../models_mongodb/excluded_breeds.js');
 const { ExcludedBreed } = require('../../db.js');
 
@@ -41,7 +41,7 @@ async function formatSummaryAPIServer(breeds) {
             weight: el.weight.metric.split(" - "),
             img: el.image.url,
             temper: el.temperament?.split(", "),
-            source: API
+            source: SOURCES.API
         }
     });
 };
@@ -56,7 +56,7 @@ function formatSummaryBDServer(breeds) {
             weight: [String(obj.minWeight), String(obj.maxWeight)],
             img: obj.img,
             temper: obj.Tempers.map(el => el.name),
-            source: DB
+            source: SOURCES.DB
         };
     });
     return response;
@@ -70,17 +70,17 @@ function formatSummaryBDServerMDB(breeds) {
             weight: [String(el.weight[0]), String(el.weight[1])],
             img: el.img,
             temper: el.temper,
-            source: DB
+            source: SOURCES.DB
         };
     });
 };
 
 function formatSumary(breeds, format) {
-    if (format === API)
+    if (format === SOURCES.API)
         return formatSummaryAPIServer(breeds);
-    if (format === DB)
+    if (format === SOURCES.DB)
         return formatSummaryBDServer(breeds);
-    if (format === DBM)
+    if (format === SOURCES.DBM)
         return formatSummaryBDServerMDB(breeds);
 
     return breeds;

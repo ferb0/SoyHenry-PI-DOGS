@@ -1,5 +1,5 @@
 // Funciones para darle formato a las respuestas del server.
-const { DB, API, DBM } = require('../../global/const_source.js');
+const { SOURCES } = require('../../global/const_source.js');
 
 function formatDetailAPIServer(breed) {
     return breed ? {
@@ -10,7 +10,7 @@ function formatDetailAPIServer(breed) {
         lifeSpan: breed.life_span.slice(0, -6).split(" - "),
         img: breed.image.url,
         temper: breed.temperament ? breed.temperament.split(", ") : null,
-        source: API
+        source: SOURCES.API
     } : null;
 };
 
@@ -23,7 +23,7 @@ function formatDetailBDServer(breed) {
         lifeSpan: [String(breed.minLifeSpan), String(breed.maxLifeSpan)],
         img: breed.img,
         temper: breed.Tempers.map(el => el.name),
-        source: DB
+        source: SOURCES.DB
     } : null;
 };
 
@@ -36,16 +36,16 @@ function formatDetailBDServerMDB(breed) {
         lifeSpan: [String(breed.lifeSpan[0]), String(breed.lifeSpan[1])],
         img: breed.img,
         temper: breed.temper,
-        source: DB
+        source: SOURCES.DB
     } : null;
 };
 
 function formatDetail(breed, format) {
-    if (format === API)
+    if (format === SOURCES.API)
         return formatDetailAPIServer(breed);
-    if (format === DB)
+    if (format === SOURCES.DB)
         return formatDetailBDServer(breed);
-    if (format === DBM)
+    if (format === SOURCES.DBM)
         return formatDetailBDServerMDB(breed);
 
     return breed;

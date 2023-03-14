@@ -3,7 +3,7 @@ const { DogM } = require('../../../models_mongodb/dog.js');
 const { Dog, Temper } = require('../../../db.js');
 const { TempersM } = require('../../../models_mongodb/tempers.js');
 
-const { DB, API, DBM } = require('../../../global/const_source.js');
+const { SOURCES } = require('../../../global/const_source.js');
 
 const { formatDetail } = require('../format_detail.js');
 const { MONGODB } = process.env;
@@ -55,17 +55,17 @@ async function getDetailAll(idBreed) {
 
         if (!isNaN(idBreed)) {
             breed = await getDetailAPI(idBreed);
-            format = API;
+            format = SOURCES.API;
         }
         else if (MONGODB === 'active') {
             breed = await getDetailMDB(idBreed);
-            format = DBM;
+            format = SOURCES.DBM;
         }
         else {
             breed = await getDetailPDB(idBreed);
             // Se quita metadata
             breed = breed.get({ plain: true });
-            format = DB;
+            format = SOURCES.DB;
         }
 
         return formatDetail(breed, format);
