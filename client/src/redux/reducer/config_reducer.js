@@ -1,4 +1,7 @@
-import { GET_NUMBER_NEW_BREEDS_DB_REACHED } from "../actions/config_actions.js";
+import {
+    GET_NUMBER_NEW_BREEDS_DB_REACHED,
+    GET_NUMBER_BREEDS_FOR_PAGE
+} from "../actions/config_actions.js";
 import { DEFAULT_BREEDS_FOR_PAGE } from '../../global/cant_summaries.js';
 
 const configState = {
@@ -14,6 +17,11 @@ const configReducer = (state = configState, action) => {
                 numberNewBreedsDBReached: action.payload
             };
 
+        case GET_NUMBER_BREEDS_FOR_PAGE:
+            return {
+                ...state,
+                breedsForPage: action.payload
+            }
         default:
             return state;
     }
