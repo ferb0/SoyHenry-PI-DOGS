@@ -10,7 +10,7 @@ import LoadingAnimation from '../suport/loading_animation.jsx';
 import { Typography, Container, Pagination, Stack } from '@mui/material';
 import BreedCard from './breed_card.jsx';
 
-export default function Breeds() { 
+export default function Breeds() {
     const dispatch = useDispatch();
 
     const {
@@ -51,9 +51,9 @@ export default function Breeds() {
             let temperFiltered = temperFilter(breeds, temperSelected);
             let sourceFiltered = sourceFilter(temperFiltered, sourceSelected);
             let sortFiltered = sortType(sourceFiltered, sortSelected);
-            setBreedsFinal([1, sortFiltered.length, cantFilter(sortFiltered)]);
+            setBreedsFinal([1, sortFiltered.length, cantFilter(sortFiltered, 1, breedsForPage)]);
         }
-    }, [breeds, sourceSelected, temperSelected, sortSelected]);
+    }, [breeds, sourceSelected, temperSelected, sortSelected, breedsForPage]);
 
     function handleClick(event, value) {
         // Para llevar foco al top de la ventana. 
@@ -63,7 +63,7 @@ export default function Breeds() {
             let temperFiltered = temperFilter(breeds, temperSelected);
             let sourceFiltered = sourceFilter(temperFiltered, sourceSelected);
             let sortFiltered = sortType(sourceFiltered, sortSelected);
-            setBreedsFinal([parseInt(value), sortFiltered.length, cantFilter(sortFiltered, value)]);
+            setBreedsFinal([parseInt(value), sortFiltered.length, cantFilter(sortFiltered, value, breedsForPage)]);
         }
     };
 
