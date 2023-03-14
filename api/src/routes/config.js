@@ -3,6 +3,7 @@ const { Router } = require('express');
 const router = Router();
 
 const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
+const { DB, API, ALL } = require('../global/const_source.js');
 
 const { NUMBER_MAX_ITEMS_DB, BREEDS_FOR_PAGE } = process.env;
 
@@ -23,6 +24,10 @@ router.get('/breedsNumber', async (req, res) => {
 
 router.get('/breedsForPage', (req, res) => {
     res.json({ msg: BREEDS_FOR_PAGE });
+});
+
+router.get('/constSources', (req, res) => {
+    res.json({msg: { DB, API, ALL }});
 });
 
 module.exports = router;
