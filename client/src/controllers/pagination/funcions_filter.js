@@ -1,5 +1,3 @@
-import store from '../../redux/store.js';
-
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)
         return breeds?.filter(el => el.temper?.some((el) => el.toLowerCase() === temperSelected.toLowerCase()));
@@ -8,18 +6,14 @@ export function temperFilter(breeds, temperSelected) {
 };
 
 export function sourceFilter(breeds, sourceSelected) {
-    const constSources = store.getState().configReducer.constSources;
-    const ALL = constSources ? constSources.ALL : null;
-    const DB = constSources ? constSources.DB : null;
-    const API = constSources ? constSources.API : null;
+    if (sourceSelected) {
+        let breedsFiltered = breeds?.filter(el => el.source === sourceSelected);
+        // No es lo más eficiente
+        // pero no dependo de las constantes que definen el origen de los datos
+        if (breedsFiltered.length === 0)
+            return breeds;
 
-    if (sourceSelected && sourceSelected !== ALL) {
-        if (sourceSelected === DB) {
-            return breeds?.filter(el => el.source === DB);
-        }
-        else {
-            return breeds?.filter(el => el.source === API);
-        }
+        return breedsFiltered
     }
     else
         return breeds;
