@@ -17,9 +17,9 @@ const { putUpdateBreed } = require('./controllers/data_dase/put_data.js');
 router.get('/breedsNumber', async (req, res) => {
     try {
         let number = 0;
-        number = getBreedsNumberDataBase();
+        number = await getBreedsNumberDataBase();
 
-        if (NUMBER_MAX_ITEMS_DB < number)
+        if (NUMBER_MAX_ITEMS_DB <= number)
             res.json({ msg: true });
         else
             res.json({ msg: false });

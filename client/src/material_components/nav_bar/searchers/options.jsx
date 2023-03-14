@@ -58,7 +58,7 @@ function Options({ maxNewBreeds }) {
 
 function mapStateToProps(state) {
     return {
-        maxNewBreeds: state.defaultReducer.numberNewBreedsDBReached
+        maxNewBreeds: state.configReducer.numberNewBreedsDBReached
     }
 }
 
