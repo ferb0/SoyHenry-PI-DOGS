@@ -1,9 +1,9 @@
 import { GET_NUMBER_NEW_BREEDS_DB_REACHED } from "../actions/config_actions.js";
-import { BREEDS_FOR_PAGE } from '../../global/cant_summaries.js';
+import { DEFAULT_BREEDS_FOR_PAGE } from '../../global/cant_summaries.js';
 
 const configState = {
     numberNewBreedsDBReached: null,
-    breedsForPage: BREEDS_FOR_PAGE
+    breedsForPage: DEFAULT_BREEDS_FOR_PAGE
 };
 
 const configReducer = (state = configState, action) => {
