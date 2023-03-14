@@ -2,5 +2,7 @@
 const DB = 'LOCAL';
 const DBM = 'LOCALM';
 const API = 'API';
+// Solo para el front
+const ALL = 'ALL';
 
-module.exports = { DB, API };
+module.exports = { DB, API, DBM, ALL };
