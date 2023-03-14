@@ -3,6 +3,7 @@ const { REACT_APP_API_BASE_URL } = process.env;
 
 export const GET_NUMBER_NEW_BREEDS_DB_REACHED = "GET_NUMBER_NEW_BREEDS_DB_REACHED";
 export const GET_NUMBER_BREEDS_FOR_PAGE = "GET_NUMBER_BREEDS_FOR_PAGE";
+export const GET_CONST_SOURCES = "GET_CONST_SOURCES";
 
 export const getNumberBreedDB = () => {
     return function (dispatch) {
@@ -29,5 +30,19 @@ export const getNumberBreedsForPage = () => {
                     dispatch({ type: GET_NUMBER_BREEDS_FOR_PAGE, payload: DEFAULT_BREEDS_FOR_PAGE })
             })
             .catch(() => dispatch({ type: GET_NUMBER_BREEDS_FOR_PAGE, payload: DEFAULT_BREEDS_FOR_PAGE }));
+    }
+};
+
+export const getConstSources = () => {
+    return function (dispatch) {
+        return fetch(REACT_APP_API_BASE_URL + `/config/constSources`)
+            .then(response => response.json())
+            .then((response) => {
+                if (response.hasOwnProperty('msg'))
+                    dispatch({ type: GET_CONST_SOURCES, payload: response.msg })
+                if (response.hasOwnProperty('err'))
+                    dispatch({ type: GET_CONST_SOURCES, payload: false })
+            })
+            .catch(() => dispatch({ type: GET_CONST_SOURCES, payload: false }));
     }
 };
