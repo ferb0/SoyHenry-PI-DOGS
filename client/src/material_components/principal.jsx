@@ -2,7 +2,11 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import { getTempers } from '../redux/actions/temper_actions.js';
 import { getAllBreeds } from '../redux/actions/breed_actions.js';
-import { getNumberBreedDB, getNumberBreedsForPage } from '../redux/actions/config_actions.js';
+import {
+    getNumberBreedDB,
+    getNumberBreedsForPage,
+    getConstSources
+} from '../redux/actions/config_actions.js';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -20,6 +24,7 @@ export default function Principal() {
         dispatch(getAllBreeds(''));
         dispatch(getNumberBreedDB());
         dispatch(getNumberBreedsForPage());
+        dispatch(getConstSources());
     }, [dispatch]);
 
     return (
