@@ -4,7 +4,7 @@ export const GET_NUMBER_NEW_BREEDS_DB_REACHED = "GET_NUMBER_NEW_BREEDS_DB_REACHE
 
 export const getNumberBreedDB = () => {
     return function (dispatch) {
-        return fetch(REACT_APP_API_BASE_URL + `/dogs/breedsNumber`)
+        return fetch(REACT_APP_API_BASE_URL + `/config/breedsNumber`)
             .then(response => response.json())
             .then((response) => {
                 if (response.hasOwnProperty('msg'))
