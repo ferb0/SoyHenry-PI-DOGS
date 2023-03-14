@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Router } = require('express');
 const router = Router();
 
-const { MONGODB, NUMBER_MAX_ITEMS_DB } = process.env;
+const { MONGODB } = process.env;
 
 //Funcones para formatos
 const { formatSummaryAPIServer } = require('./controllers/format_sumary.js');
@@ -10,24 +10,8 @@ const { checkData } = require('./controllers/checkdata_put.js');
 const { getDetailAll } = require('./controllers/data_dase/get_data_detail.js');
 const { getSumaryAPI, getSumaryDataBase } = require('./controllers/data_dase/get_data_sumary.js');
 const { postNewBreedDataBase } = require('./controllers/data_dase/post_data.js');
-const { getBreedsNumberDataBase } = require('./controllers/data_dase/get_breeds_number_DB.js');
 const { deleteBreedDataBase } = require('./controllers/data_dase/delete_breed_DB.js');
 const { putUpdateBreed } = require('./controllers/data_dase/put_data.js');
-
-router.get('/breedsNumber', async (req, res) => {
-    try {
-        let number = 0;
-        number = await getBreedsNumberDataBase();
-
-        if (NUMBER_MAX_ITEMS_DB <= number)
-            res.json({ msg: true });
-        else
-            res.json({ msg: false });
-    }
-    catch (error) {
-        res.status(500).json({ err: err.message });
-    }
-});
 
 router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
