@@ -3,13 +3,12 @@ import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 
 import { getBreed, cleanBreed, cleanStatuDeleteBreed } from '../redux/actions/breed_actions.js';
-import { getNumberBreedDB } from "../redux/actions/config_actions.js";
+import { getConstSources, getNumberBreedDB } from "../redux/actions/config_actions.js";
 
 import DeteleModifyButtons from "./suport/detele_modify_buttons.jsx";
 import LoadingAnimation from './suport/loading_animation.jsx';
 import Notifications from "./suport/notifications.jsx";
 
-import { API } from "../global/const_source.js";
 import imageDefault from '../global/images/paws.png';
 
 import {
@@ -28,16 +27,20 @@ export default function BreedDetail() {
 
     const dispatch = useDispatch();
 
-    const { breed, loading, deleteBreed } = useSelector(state => {
+    const { breed, loading, deleteBreed, API } = useSelector(state => {
         return {
             breed: state.breedsReducer.breed,
             loading: state.breedsReducer.loadingBreed,
-            deleteBreed: state.breedsReducer.deleteBreed
+            deleteBreed: state.breedsReducer.deleteBreed,
+            API: state.configReducer.constSources?.API
         }
     });
 
     React.useEffect(() => {
-        dispatch(getBreed(id))
+        dispatch(getBreed(id));
+        // Necesario por si se recarga la página estando en el DetailBreed
+        dispatch(getConstSources());
+
         return function () {
             dispatch(cleanStatuDeleteBreed());
             dispatch(cleanBreed());

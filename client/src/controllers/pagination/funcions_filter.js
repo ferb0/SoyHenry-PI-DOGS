@@ -1,4 +1,4 @@
-import { ALL, API, DB } from '../../global/const_source.js';
+import store from '../../redux/store.js';
 
 export function temperFilter(breeds, temperSelected) {
     if (temperSelected)
@@ -8,6 +8,11 @@ export function temperFilter(breeds, temperSelected) {
 };
 
 export function sourceFilter(breeds, sourceSelected) {
+    const constSources = store.getState().configReducer.constSources;
+    const ALL = constSources ? constSources.ALL : null;
+    const DB = constSources ? constSources.DB : null;
+    const API = constSources ? constSources.API : null;
+
     if (sourceSelected && sourceSelected !== ALL) {
         if (sourceSelected === DB) {
             return breeds?.filter(el => el.source === DB);
