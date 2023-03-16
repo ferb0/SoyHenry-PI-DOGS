@@ -17,7 +17,7 @@ router.get('/:idBreed', async (req, res) => {
     let idBreed = req.params.idBreed;
 
     if (!MONGODB === 'active' && !idBreed.match(/^[0-9]+$/))
-        return res.status(500).json({ err: "Wrong parameter." });
+        return res.status(400).json({ err: "Wrong parameter." });
 
     try {
         let breed = await getDetailAll(idBreed);
@@ -40,9 +40,7 @@ router.get('/', async (req, res) => {
         // Se busca en DB ya formateado
         let responseFilteredDB = await getSumaryDataBase(name);
 
-        responseFiltered = [...responseFilteredAPI, ...responseFilteredDB]
-
-        res.json({ msg: responseFiltered });
+        res.json({ msg: [...responseFilteredAPI, ...responseFilteredDB] });
     }
     catch (e) {
         res.status(500).json({ err: e.message });
@@ -54,13 +52,13 @@ router.post('/', async (req, res) => {
 
     // Chequeo de datos
     if (!name || !height || !weight || !lifeSpan || !temper)
-        return res.status(500).json({ err: 'Insufficient data.' });
+        return res.status(400).json({ err: 'Insufficient data.' });
 
     if (img && !img.match(/^http/))
-        return res.status(500).json({ err: 'Bad format image.' });
+        return res.status(400).json({ err: 'Bad format image.' });
 
     if (!Array.isArray(temper))
-        return res.status(500).json({ err: 'Bad format temper.' });
+        return res.status(400).json({ err: 'Bad format temper.' });
 
     // Se convierte en numeros.
     height = height.map(Number);
@@ -80,7 +78,7 @@ router.post('/', async (req, res) => {
 
     try {
         await postNewBreedDataBase({ id, name, height, weight, lifeSpan, img, temper });
-        res.send({ msg: "New race successfully created." });
+        res.status(201).json({ msg: "New race successfully created." });
     }
     catch (e) {
         res.status(500).json({ err: e.message });
@@ -92,13 +90,13 @@ router.put('/update/:idBreed', async (req, res) => {
     let { name, height, weight, lifeSpan, img, temper } = req.body;
 
     if (!name || !height || !weight || !lifeSpan || !temper)
-        return res.status(500).json({ err: 'Insufficient data.' });
+        return res.status(400).json({ err: 'Insufficient data.' });
 
     if (img && !img.match(/^http/))
-        return res.status(500).json({ err: 'Bad format image.' });
+        return res.status(400).json({ err: 'Bad format image.' });
 
     if (!Array.isArray(temper))
-        return res.status(500).json({ err: 'Bad format temper.' });
+        return res.status(400).json({ err: 'Bad format temper.' });
 
     // Se convierte en numeros.
     height = height.map(Number);
@@ -118,7 +116,7 @@ router.put('/update/:idBreed', async (req, res) => {
     try {
         await putUpdateBreed({ idBreed, name, height, weight, lifeSpan, img, temper });
 
-        res.send({ msg: "New race successfully update." });
+        res.status(201).json({ msg: "New race successfully update." });
     }
     catch (e) {
         res.status(500).json({ err: e.message });
@@ -128,6 +126,9 @@ router.put('/update/:idBreed', async (req, res) => {
 router.delete('/delete/:idBreed', async (req, res) => {
     const { idBreed } = req.params;
 
+    if (idBreed)
+        return res.status(400).json({ err: 'Missing idBreed.' });
+
     try {
         await deleteBreedDataBase(idBreed);
 
@@ -136,7 +137,6 @@ router.delete('/delete/:idBreed', async (req, res) => {
     catch (error) {
         res.status(500).json({ err: e.message });
     }
-
 });
 
 module.exports = router;
