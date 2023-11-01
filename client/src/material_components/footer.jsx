@@ -7,12 +7,13 @@ export default function Footer() {
             component='h3'
             variant='subtitle1'
             sx={{ paddingBottom: '0.5rem' }}>
-            Created by <Link
-                            href='https://portfolio-ferb.onrender.com/'
-                            target='_blank'
-                            rel='noreferrer'>
-                            FerB
-                        </Link>.
+            <Link
+                href='https://www.ferb.ar/'
+                target='_blank'
+                rel='noreferrer'
+                sx={{ textDecoration: 'none' }}>
+                Created by FerB
+            </Link>.
         </Typography>
     )
 };
